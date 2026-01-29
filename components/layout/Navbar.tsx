@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -73,10 +74,17 @@ export default function Navbar() {
         <div className="p-6 border-b-2 border-gray-900">
           <Link 
             href="/" 
-            className="text-xl font-bold text-white hover:text-gray-400 transition-colors block"
+            className="block hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
-            NAIL SALON
+            <Image
+              src="/Lyniq.svg"
+              alt="Lyniq Logo"
+              width={120}
+              height={60}
+              className="h-auto w-auto"
+              priority
+            />
           </Link>
         </div>
 

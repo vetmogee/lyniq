@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -6,7 +7,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">NAIL SALON</h3>
+            <div className="mb-4">
+              <Image
+                src="/Lyniq.svg"
+                alt="Lyniq Beauty Studio"
+                width={120}
+                height={60}
+                className="h-auto w-auto"
+              />
+            </div>
             <p className="text-sm text-gray-400">
               Professional nail care services with a modern, sharp aesthetic.
             </p>
@@ -39,14 +48,14 @@ export default function Footer() {
               <li>123 Salon Street</li>
               <li>City, State 12345</li>
               <li>Phone: (555) 123-4567</li>
-              <li>Email: info@nailsalon.com</li>
+              <li>Email: info@lyniqbeautystudio.com</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t-2 border-gray-900">
           <p className="text-sm text-gray-400 text-center">
-            © {new Date().getFullYear()} Nail Salon. All rights reserved.
+            © {new Date().getFullYear()} Lyniq Beauty Studio. All rights reserved.
           </p>
         </div>
       </div>

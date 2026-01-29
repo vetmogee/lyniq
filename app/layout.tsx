@@ -16,6 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nail Salon - Professional Nail Care",
   description: "Modern nail salon with professional services",
+  icons: {
+    icon: "/Lyniq.svg",
+    shortcut: "/Lyniq.svg",
+    apple: "/Lyniq.svg",
+  },
 };
 
 export default function RootLayout({
