@@ -1,0 +1,131 @@
+// Prisma schema for Nail Salon Management System
+// Connected to Supabase PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String // Hashed password
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model ServiceGroup {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  services Service[]
+
+  @@map("service_groups")
+}
+
+model Service {
+  id             String        @id @default(uuid())
+  name           String
+  description    String?
+  price          Float
+  duration       Int // Duration in minutes
+  category       String? // e.g., "Manicure", "Pedicure", "Nail Art"
+  imageUrl       String?
+  isActive       Boolean       @default(true)
+  serviceGroupId String?
+  serviceGroup   ServiceGroup? @relation(fields: [serviceGroupId], references: [id], onDelete: Cascade)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([serviceGroupId])
+  @@map("services")
+}
+
+model Employee {
+  id          String   @id @default(uuid())
+  name        String
+  title       String?  // Employee job title/position
+  photo       String?  // URL to employee photo (deprecated - use images relation)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  images Image[] // Images linked to this employee
+
+  @@map("employees")
+}
+
+model GoogleReviewCache {
+  id              String   @id @default(uuid())
+  placeId         String
+  reviewId        String   @unique // SerpAPI review_id (unique identifier)
+  authorName      String
+  rating          Int
+  text            String? // Review snippet/text
+  relativeTime    String // e.g., "před 4 dny"
+  reviewCreatedAt DateTime // Parsed from iso_date
+  reviewLink      String? // Review URL
+  source          String? // e.g., "Google"
+  fetchedAt       DateTime @default(now())
+
+  // Index for efficient queries
+  @@index([placeId])
+  @@index([placeId, fetchedAt])
+  @@index([placeId, reviewCreatedAt])
+  @@map("google_review_cache")
+}
+
+model ImageGroup {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  images Image[]
+
+  @@map("image_groups")
+}
+
+model Image {
+  id           String      @id @default(uuid())
+  data         String      @db.Text // Base64 encoded image data as JSON string
+  mimeType     String      // e.g., "image/jpeg", "image/png"
+  filename     String?     // Original filename
+  title        String?     // Optional title/alt text
+  description  String?     // Optional description
+  order        Int         @default(0) // For ordering within a group or employee
+  imageGroupId String?     // Link to gallery (ImageGroup)
+  imageGroup   ImageGroup? @relation(fields: [imageGroupId], references: [id], onDelete: Cascade)
+  employeeId   String?     // Link to employee
+  employee     Employee?   @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([imageGroupId])
+  @@index([imageGroupId, order])
+  @@index([employeeId])
+  @@index([employeeId, order])
+  @@map("images")
+}

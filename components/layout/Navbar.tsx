@@ -1,0 +1,108 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/employees', label: 'Team' },
+    { href: '/gallery', label: 'Gallery' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
+  const isActive = (href: string) => pathname === href;
+
+  return (
+    <>
+      {/* Mobile: Hamburger Button */}
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="md:hidden fixed top-4 left-4 z-50 text-white focus:outline-none focus:ring-2 focus:ring-gray-900 p-2 bg-black border-2 border-gray-900"
+        aria-label="Toggle menu"
+        aria-expanded={isMenuOpen}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          {isMenuOpen ? (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          ) : (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          )}
+        </svg>
+      </button>
+
+      {/* Mobile Overlay */}
+      {isMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      {/* Sticky Left Sidebar - Desktop & Mobile */}
+      <nav
+        className={`
+          fixed left-0 top-0 h-full z-40
+          bg-black border-r-2 border-gray-900
+          w-64 flex flex-col
+          transform transition-transform duration-300 ease-in-out
+          ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        `}
+      >
+        {/* Logo */}
+        <div className="p-6 border-b-2 border-gray-900">
+          <Link 
+            href="/" 
+            className="text-xl font-bold text-white hover:text-gray-400 transition-colors block"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            NAIL SALON
+          </Link>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="flex-1 p-4">
+          <ul className="space-y-2">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`
+                    flex items-center px-4 py-3 text-sm font-medium transition-colors
+                    ${isActive(link.href)
+                      ? 'bg-gray-900 text-white border-l-2 border-white'
+                      : 'text-gray-400 hover:bg-gray-900 hover:text-white'
+                    }
+                  `}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </nav>
+    </>
+  );
+}
