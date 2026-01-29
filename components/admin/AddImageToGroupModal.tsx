@@ -61,7 +61,6 @@ export default function AddImageToGroupModal({ isOpen, onClose, imageGroup }: Ad
   const handleRemoveImage = () => {
     setImageFile(null);
     setImagePreview(null);
-    setUrl('');
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
