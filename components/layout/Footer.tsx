@@ -17,45 +17,45 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-gray-400">
-              Professional nail care services with a modern, sharp aesthetic.
+              Profesionální péče o nehty s moderním, ostrým estetickým designem.
             </p>
           </div>
           
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Quick Links</h4>
+            <h4 className="text-sm font-semibold text-white mb-4">Rychlé odkazy</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/services" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Services
+                  Služby
                 </Link>
               </li>
               <li>
                 <Link href="/gallery" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Gallery
+                  Galerie
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Contact
+                  Kontakt
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Contact</h4>
+            <h4 className="text-sm font-semibold text-white mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>123 Salon Street</li>
               <li>City, State 12345</li>
-              <li>Phone: (555) 123-4567</li>
-              <li>Email: info@lyniqbeautystudio.com</li>
+              <li>Telefon: (555) 123-4567</li>
+              <li>E-mail: info@lyniqbeautystudio.com</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t-2 border-[#b0aeab]">
           <p className="text-sm text-gray-400 text-center">
-            © {new Date().getFullYear()} Lyniq Beauty Studio. All rights reserved.
+            © {new Date().getFullYear()} Lyniq Beauty Studio. Všechna práva vyhrazena.
           </p>
         </div>
       </div>

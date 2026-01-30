@@ -13,7 +13,7 @@ export async function PUT(
     await requireAuth();
 
     const body = await request.json();
-    const { name, description, price, duration, isActive, serviceGroupId } = body;
+    const { name, description, price, duration, position, serviceGroupId } = body;
 
     if (!name || price === undefined) {
       return NextResponse.json(
@@ -22,16 +22,21 @@ export async function PUT(
       );
     }
 
+    const updateData: any = {
+      name,
+      description: description || null,
+      price: parseFloat(price.toString()),
+      duration: duration ? parseInt(duration.toString()) : 60,
+      serviceGroupId: serviceGroupId || null,
+    };
+
+    if (position !== undefined) {
+      updateData.position = parseInt(position.toString());
+    }
+
     const service = await prisma.service.update({
       where: { id },
-      data: {
-        name,
-        description: description || null,
-        price: parseFloat(price.toString()),
-        duration: duration ? parseInt(duration.toString()) : 60,
-        isActive: isActive !== undefined ? isActive : true,
-        serviceGroupId: serviceGroupId || null,
-      },
+      data: updateData,
     });
 
     return NextResponse.json({ service }, { status: 200 });

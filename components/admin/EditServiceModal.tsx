@@ -12,7 +12,7 @@ interface Service {
   description: string | null;
   price: number;
   duration: number;
-  isActive: boolean;
+  position: number;
   serviceGroupId: string | null;
 }
 
@@ -73,7 +73,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
           description: description.trim() || null,
           price: parseFloat(price),
           duration: parseInt(duration) || 60,
-          isActive,
+          position: parseInt(position) || 0,
           serviceGroupId: service.serviceGroupId,
         }),
       });
@@ -185,24 +185,22 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
           />
         </div>
 
-        <Input
-          label="Description (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Service description"
-        />
-
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="isActive"
-            checked={isActive}
-            onChange={(e) => setIsActive(e.target.checked)}
-            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            label="Position"
+            type="number"
+            min="0"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+            placeholder="0"
+            required
           />
-          <label htmlFor="isActive" className="text-sm font-medium text-white">
-            Active (service is visible to customers)
-          </label>
+          <Input
+            label="Description (optional)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Service description"
+          />
         </div>
 
         {error && (

@@ -38,10 +38,10 @@ export default function ContactPage() {
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            CONTACT US
+            KONTAKTUJTE NÁS
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Get in touch with us for any questions or inquiries.
+            Kontaktujte nás s jakýmikoli dotazy nebo dotazy.
           </p>
         </div>
 
@@ -49,24 +49,24 @@ export default function ContactPage() {
           <div>
             <Card variant="bordered">
               <CardHeader>
-                <CardTitle>Visit Us</CardTitle>
+                <CardTitle>Navštivte nás</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Address</p>
+                  <p className="text-sm font-semibold text-white mb-1">Adresa</p>
                   <p className="text-gray-400">123 Salon Street</p>
                   <p className="text-gray-400">City, State 12345</p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Phone</p>
+                  <p className="text-sm font-semibold text-white mb-1">Telefon</p>
                   <p className="text-gray-400">(555) 123-4567</p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Email</p>
+                  <p className="text-sm font-semibold text-white mb-1">E-mail</p>
                   <p className="text-gray-400">info@nailsalon.com</p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Hours</p>
+                  <p className="text-sm font-semibold text-white mb-1">Otevírací doba</p>
                   <p className="text-gray-400">Monday - Friday: 9:00 AM - 7:00 PM</p>
                   <p className="text-gray-400">Saturday: 10:00 AM - 6:00 PM</p>
                   <p className="text-gray-400">Sunday: Closed</p>
@@ -78,33 +78,33 @@ export default function ContactPage() {
           <div>
             <Card variant="bordered">
               <CardHeader>
-                <CardTitle>Send a Message</CardTitle>
+                <CardTitle>Odeslat zprávu</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <Input
-                    label="Name"
+                    label="Jméno"
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                   <Input
-                    label="Email"
+                    label="E-mail"
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                   <Input
-                    label="Phone"
+                    label="Telefon"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
                   <div>
                     <label className="block text-sm font-medium text-white mb-2">
-                      Message
+                      Zpráva
                     </label>
                     <textarea
                       className="w-full px-4 py-3 border-2 border-[#b0aeab] bg-black text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#b0aeab] focus:ring-offset-2 transition-all duration-200"
@@ -116,14 +116,14 @@ export default function ContactPage() {
                   </div>
                   
                   {submitStatus === 'success' && (
-                    <p className="text-sm text-green-400">Message sent successfully!</p>
+                    <p className="text-sm text-green-400">Zpráva byla úspěšně odeslána!</p>
                   )}
                   {submitStatus === 'error' && (
-                    <p className="text-sm text-red-400">Failed to send message. Please try again.</p>
+                    <p className="text-sm text-red-400">Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.</p>
                   )}
 
                   <Button type="submit" isLoading={isSubmitting} className="w-full">
-                    Send Message
+                    Odeslat zprávu
                   </Button>
                 </form>
               </CardContent>

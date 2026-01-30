@@ -10,6 +10,7 @@ interface ServiceGroup {
   id: string;
   name: string;
   description: string | null;
+  position: number;
 }
 
 interface EditServiceGroupModalProps {
@@ -22,6 +23,7 @@ export default function EditServiceGroupModal({ isOpen, onClose, serviceGroup }:
   const router = useRouter();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [position, setPosition] = useState('0');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -29,6 +31,7 @@ export default function EditServiceGroupModal({ isOpen, onClose, serviceGroup }:
     if (serviceGroup) {
       setName(serviceGroup.name);
       setDescription(serviceGroup.description || '');
+      setPosition(serviceGroup.position.toString());
     }
   }, [serviceGroup]);
 
@@ -143,12 +146,23 @@ export default function EditServiceGroupModal({ isOpen, onClose, serviceGroup }:
           required
         />
 
-        <Input
-          label="Service Group Description (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Describe this service group"
-        />
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            label="Position"
+            type="number"
+            min="0"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+            placeholder="0"
+            required
+          />
+          <Input
+            label="Service Group Description (optional)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Describe this service group"
+          />
+        </div>
 
         {error && (
           <div className="p-3 bg-red-900 border-2 border-red-600">

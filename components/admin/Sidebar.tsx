@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useState, useEffect } from 'react';
 
@@ -49,159 +48,85 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Fixed Top Navbar - Mobile */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-[#b0aeab] h-16 flex items-center justify-between px-4">
-        <Link 
-          href="/" 
-          className="text-xl font-bold text-white hover:text-gray-400 transition-colors"
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="admin-menu-button fixed top-4 left-4 z-50 lg:hidden bg-black text-white p-2 border-2 border-[#b0aeab]"
+        aria-label="Toggle menu"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          NAIL SALON
-        </Link>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="admin-menu-button p-2 text-white hover:bg-[#b0aeab] transition-colors"
-          aria-label="Toggle admin menu"
-          aria-expanded={isOpen}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
+          {isOpen ? (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          ) : (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          )}
+        </svg>
+      </button>
 
-      {/* Fixed Top Navbar - Desktop */}
-      <div className="hidden lg:flex fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-[#b0aeab] h-16 items-center justify-between px-6">
-        <Link 
-          href="/" 
-          className="text-xl font-bold text-white hover:text-gray-400 transition-colors"
-        >
-          NAIL SALON
-        </Link>
-        <div className="flex items-center gap-4">
-          <nav className="flex items-center gap-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`
-                  flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors
-                  ${isActive(item.href)
-                    ? 'bg-[#b0aeab] text-white'
-                    : 'text-gray-400 hover:bg-[#b0aeab] hover:text-white'
-                  }
-                `}
-              >
-                <span>{item.icon}</span>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <button
-            onClick={handleSignOut}
-            className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:bg-[#b0aeab] hover:text-white transition-colors"
-          >
-            <span>🚪</span>
-            Sign Out
-          </button>
-        </div>
-      </div>
-
-
-      {/* Overlay for mobile */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* Sidebar - Mobile Only */}
+      {/* Sidebar */}
       <aside
         className={`
-          admin-sidebar lg:hidden fixed right-0 z-40
-          w-64 border-l-2 border-[#b0aeab] bg-black flex flex-col
+          admin-sidebar
+          fixed top-0 left-0 h-full w-64 bg-black border-r-2 border-[#b0aeab] z-40
           transform transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0 top-16' : 'translate-x-full top-0'}
-          h-[calc(100vh-4rem)]
+          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
-        <div className="p-6 border-b-2 border-[#b0aeab]">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white">ADMIN PANEL</h2>
+        <div className="flex flex-col h-full">
+          {/* Logo */}
+          <div className="p-6 border-b-2 border-[#b0aeab]">
+            <h1 className="text-xl font-bold text-white">Admin Panel</h1>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 p-4">
+            <ul className="space-y-2">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`
+                      flex items-center px-4 py-3 text-sm font-medium transition-colors
+                      ${
+                        isActive(item.href)
+                          ? 'text-white bg-[#b0aeab] bg-opacity-20 border-l-2 border-[#b0aeab]'
+                          : 'text-gray-400 hover:text-white hover:bg-[#b0aeab] hover:bg-opacity-10'
+                      }
+                    `}
+                  >
+                    <span className="mr-3">{item.icon}</span>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Sign Out Button */}
+          <div className="p-4 border-t-2 border-[#b0aeab]">
             <button
-              onClick={() => {
-                setIsOpen(false);
-              }}
-              className="text-gray-400 hover:text-white lg:hidden"
-              aria-label="Close menu"
+              onClick={handleSignOut}
+              className="w-full flex items-center justify-center px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-[#b0aeab] hover:bg-opacity-10 transition-colors"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <span className="mr-3">🚪</span>
+              Sign Out
             </button>
           </div>
-        </div>
-        
-        <nav className="p-4 flex-grow">
-          <ul className="space-y-2">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`
-                    flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors
-                    ${isActive(item.href)
-                      ? 'bg-[#b0aeab] text-white'
-                      : 'text-gray-400 hover:bg-[#b0aeab] hover:text-white'
-                    }
-                  `}
-                >
-                  <span>{item.icon}</span>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="p-4 border-t-2 border-[#b0aeab]">
-          <button
-            onClick={handleSignOut}
-            className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-400 hover:bg-[#b0aeab] hover:text-white transition-colors"
-          >
-            <span>🚪</span>
-            Sign Out
-          </button>
         </div>
       </aside>
     </>

@@ -13,7 +13,7 @@ export async function POST(
     await requireAuth();
 
     const body = await request.json();
-    const { name, description, price, duration } = body;
+    const { name, description, price, duration, position } = body;
 
     if (!name || price === undefined) {
       return NextResponse.json(
@@ -25,6 +25,13 @@ export async function POST(
     // Verify service group exists
     const serviceGroup = await prisma.serviceGroup.findUnique({
       where: { id },
+      include: {
+        services: {
+          orderBy: { position: 'desc' },
+          take: 1,
+          select: { position: true },
+        },
+      },
     });
 
     if (!serviceGroup) {
@@ -34,13 +41,18 @@ export async function POST(
       );
     }
 
+    // Determine position - use provided position or next available
+    const nextPosition = position !== undefined 
+      ? parseInt(position.toString())
+      : ((serviceGroup.services[0]?.position ?? -1) + 1);
+
     const service = await prisma.service.create({
       data: {
         name,
         description: description || null,
         price: parseFloat(price.toString()),
         duration: duration ? parseInt(duration.toString()) : 60,
-        isActive: true,
+        position: nextPosition,
         serviceGroupId: id,
       },
     });

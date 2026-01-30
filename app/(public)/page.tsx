@@ -22,7 +22,7 @@ export default async function HomePage() {
     // Continue rendering page even if reviews fail to load
   }
   return (
-    <div className="bg-black">
+    <div className="bg-[#b0aeab]">
       {/* Sticky Video Background */}
       <video
         autoPlay
@@ -37,23 +37,25 @@ export default async function HomePage() {
       <div className="fixed inset-0 bg-black opacity-30 z-0" />
       
       {/* Hero Section */}
-      <section className="relative w-full flex items-center justify-center py-20 md:py-32 z-10">
+      <section className="relative w-full min-h-screen flex items-center justify-center py-20 md:py-32 z-10">
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              PROFESSIONAL NAIL CARE
+              PROFESIONÁLNÍ PÉČE O NEHTY
             </h1>
-            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl mx-auto">
-              Experience precision and artistry with our modern nail salon services.
-              Sharp designs, expert craftsmanship, and exceptional care.
+            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+              Zažijte preciznost a umění s našimi moderními službami nehtového studia. Ostré designy, odborné řemeslo a výjimečná péče.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/services">
-                <Button size="lg">View Services</Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
+              <Link href="https://noona.app/cs/lyniqstudio/book" target="_blank" rel="noopener noreferrer" className="flex">
+                <Button size="lg" className="w-full sm:w-auto">Rezervovat</Button>
               </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline">Contact Us</Button>
+              <Link href="/services" className="flex">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto">Zobrazit služby</Button>
+              </Link>
+              <Link href="/contact" className="flex">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto">Kontaktujte nás</Button>
               </Link>
             </div>
           </div>
@@ -61,38 +63,38 @@ export default async function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="relative py-16 z-10">
+      <section className="relative bg-[#b0aeab] py-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card variant="bordered">
-              <CardHeader>
-                <CardTitle>Expert Technicians</CardTitle>
+              <CardHeader className="text-center">
+                <CardTitle>Odborní technici</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <p className="text-gray-400">
-                  Our team consists of certified professionals with years of experience in nail art and care.
+                  Náš tým se skládá z certifikovaných profesionálů s mnohaletými zkušenostmi v nehtovém umění a péči.
                 </p>
               </CardContent>
             </Card>
 
             <Card variant="bordered">
-              <CardHeader>
-                <CardTitle>Premium Products</CardTitle>
+              <CardHeader className="text-center">
+                <CardTitle>Prémiové produkty</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <p className="text-gray-400">
-                  We use only the highest quality products and tools to ensure lasting results.
+                  Používáme pouze nejkvalitnější produkty a nástroje, abychom zajistili trvalé výsledky.
                 </p>
               </CardContent>
             </Card>
 
             <Card variant="bordered">
-              <CardHeader>
-                <CardTitle>Modern Techniques</CardTitle>
+              <CardHeader className="text-center">
+                <CardTitle>Moderní techniky</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <p className="text-gray-400">
-                  Stay ahead with the latest trends and techniques in nail design and care.
+                  Zůstaňte vpředu s nejnovějšími trendy a technikami v designu a péči o nehty.
                 </p>
               </CardContent>
             </Card>
@@ -102,13 +104,13 @@ export default async function HomePage() {
 
       {/* Reviews Section */}
       {reviews.length > 0 && (
-        <section className="relative mx-auto px-4 sm:px-6 lg:px-8 py-16 z-10 bg-black">
-          <div className="text-center mb-12">
+        <section className="relative max-w mx-auto bg-black px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-12 ">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Our Customers Say
+              Co říkají naši zákazníci
             </h2>
             <p className="text-lg text-gray-400">
-              Real reviews from Google Maps
+              Skutečné recenze z Google Maps
             </p>
           </div>
           <ReviewsSlider reviews={reviews} />
@@ -119,13 +121,13 @@ export default async function HomePage() {
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Nails?
+            Připraveni proměnit své nehty?
           </h2>
           <p className="text-lg text-gray-400 mb-8">
-            Contact us today and experience the difference.
+            Kontaktujte nás ještě dnes a zažijte rozdíl.
           </p>
           <Link href="/contact">
-            <Button size="lg">Get Started</Button>
+            <Button size="lg">Začít</Button>
           </Link>
         </div>
       </section>

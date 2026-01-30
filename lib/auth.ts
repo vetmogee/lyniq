@@ -17,6 +17,18 @@ export async function getUser() {
   return user;
 }
 
+/**
+ * Check if user is authenticated (for API routes - doesn't redirect)
+ * @returns user if authenticated, null otherwise
+ */
+export async function checkAuth() {
+  return await getUser();
+}
+
+/**
+ * Require authentication, redirecting to login if not authenticated
+ * Use this in page components and layouts
+ */
 export async function requireAuth() {
   const user = await getUser();
   if (!user) {
@@ -25,6 +37,9 @@ export async function requireAuth() {
   return user;
 }
 
+/**
+ * Sign out and redirect to login page
+ */
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();

@@ -16,18 +16,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get the next position for the service group
+    const maxPosition = await prisma.serviceGroup.findFirst({
+      orderBy: { position: 'desc' },
+      select: { position: true },
+    });
+    const nextPosition = (maxPosition?.position ?? -1) + 1;
+
     // Create service group with services
     const serviceGroup = await prisma.serviceGroup.create({
       data: {
         name: serviceGroupName,
         description: serviceGroupDescription || null,
+        position: nextPosition,
         services: {
-          create: services.map((service: { name: string; price: number; description?: string; duration?: number }) => ({
+          create: services.map((service: { name: string; price: number; description?: string; duration?: number; position?: number }, index: number) => ({
             name: service.name,
             price: parseFloat(service.price.toString()),
             description: service.description || null,
             duration: service.duration || 60,
-            isActive: true,
+            position: service.position ?? index,
           })),
         },
       },
@@ -54,10 +62,10 @@ export async function GET() {
     const serviceGroups = await prisma.serviceGroup.findMany({
       include: {
         services: {
-          orderBy: { createdAt: 'asc' },
+          orderBy: { position: 'asc' },
         },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { position: 'asc' },
     });
 
     // Also get services without a group (for backward compatibility)
@@ -65,7 +73,7 @@ export async function GET() {
       where: {
         serviceGroupId: null,
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { position: 'asc' },
     });
 
     return NextResponse.json({ serviceGroups, ungroupedServices });

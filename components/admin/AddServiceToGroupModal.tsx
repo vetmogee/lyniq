@@ -19,6 +19,7 @@ export default function AddServiceToGroupModal({ isOpen, onClose, serviceGroupId
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [duration, setDuration] = useState('');
+  const [position, setPosition] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -51,6 +52,7 @@ export default function AddServiceToGroupModal({ isOpen, onClose, serviceGroupId
           description: description.trim() || null,
           price: parseFloat(price),
           duration: parseInt(duration) || 60,
+          position: position ? parseInt(position) : undefined,
         }),
       });
 
@@ -64,6 +66,7 @@ export default function AddServiceToGroupModal({ isOpen, onClose, serviceGroupId
       setDescription('');
       setPrice('');
       setDuration('');
+      setPosition('');
       setError('');
 
       onClose();
@@ -124,12 +127,22 @@ export default function AddServiceToGroupModal({ isOpen, onClose, serviceGroupId
           />
         </div>
 
-        <Input
-          label="Description (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Service description"
-        />
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            label="Position (optional)"
+            type="number"
+            min="0"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+            placeholder="Auto"
+          />
+          <Input
+            label="Description (optional)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Service description"
+          />
+        </div>
 
         {error && (
           <div className="p-3 bg-red-900 border-2 border-red-600">

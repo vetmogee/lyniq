@@ -6,6 +6,7 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Require authentication - will redirect to login if not authenticated
   await requireAuth();
 
   return (

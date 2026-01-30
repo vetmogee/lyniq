@@ -12,8 +12,8 @@ export default function ConditionalLayout({
   const pathname = usePathname();
   
   // Hide Navbar/Footer for admin routes (admin layout has its own sidebar)
-  const isAdminRoute = pathname?.startsWith('/admin');
-  const isLoginPage = pathname === '/admin/login';
+  const isAdminRoute = pathname?.includes('/admin');
+  const isLoginPage = pathname?.includes('/admin/login');
 
   if (isAdminRoute || isLoginPage) {
     return <>{children}</>;
@@ -22,7 +22,7 @@ export default function ConditionalLayout({
   return (
     <>
       <Navbar />
-      <main className="flex-grow md:ml-64">{children}</main>
+      <main className="flex-grow md:ml-64 mt-25 md:mt-0">{children}</main>
       <Footer />
     </>
   );

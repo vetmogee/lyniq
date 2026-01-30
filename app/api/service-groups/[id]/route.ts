@@ -13,7 +13,7 @@ export async function PUT(
     await requireAuth();
 
     const body = await request.json();
-    const { name, description } = body;
+    const { name, description, position } = body;
 
     if (!name) {
       return NextResponse.json(
@@ -22,12 +22,18 @@ export async function PUT(
       );
     }
 
+    const updateData: any = {
+      name,
+      description: description || null,
+    };
+
+    if (position !== undefined) {
+      updateData.position = parseInt(position.toString());
+    }
+
     const serviceGroup = await prisma.serviceGroup.update({
       where: { id },
-      data: {
-        name,
-        description: description || null,
-      },
+      data: updateData,
       include: {
         services: true,
       },

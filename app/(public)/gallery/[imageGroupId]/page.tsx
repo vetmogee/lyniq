@@ -48,7 +48,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Back to Gallery
+            Zpět do galerie
           </Link>
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -64,7 +64,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
 
         {imageGroup.images.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400">No images in this group yet.</p>
+            <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -97,7 +97,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
                     </>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <p className="text-gray-500">Image unavailable</p>
+                      <p className="text-gray-500">Obrázek není k dispozici</p>
                     </div>
                   )}
                 </div>

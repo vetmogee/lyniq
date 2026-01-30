@@ -11,6 +11,7 @@ interface Service {
   price: string;
   description?: string;
   duration?: string;
+  position?: string;
 }
 
 interface CreateServiceModalProps {
@@ -70,11 +71,12 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
         body: JSON.stringify({
           serviceGroupName: serviceGroupName.trim(),
           serviceGroupDescription: serviceGroupDescription.trim() || undefined,
-          services: validServices.map(s => ({
+          services: validServices.map((s, index) => ({
             name: s.name.trim(),
             price: parseFloat(s.price),
             description: s.description?.trim() || undefined,
             duration: s.duration ? parseInt(s.duration) : 60,
+            position: s.position ? parseInt(s.position) : index,
           })),
         }),
       });
@@ -193,7 +195,7 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 mb-3">
                   <Input
                     label="Duration (minutes)"
                     type="number"
@@ -203,12 +205,20 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
                     placeholder="60"
                   />
                   <Input
-                    label="Description (optional)"
-                    value={service.description || ''}
-                    onChange={(e) => updateService(index, 'description', e.target.value)}
-                    placeholder="Service description"
+                    label="Position"
+                    type="number"
+                    min="0"
+                    value={service.position || index.toString()}
+                    onChange={(e) => updateService(index, 'position', e.target.value)}
+                    placeholder="0"
                   />
                 </div>
+                <Input
+                  label="Description (optional)"
+                  value={service.description || ''}
+                  onChange={(e) => updateService(index, 'description', e.target.value)}
+                  placeholder="Service description"
+                />
               </div>
             ))}
           </div>

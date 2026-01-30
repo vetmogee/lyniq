@@ -7,7 +7,7 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
-export default function AdminLoginPage() {
+export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+    <div className="min-h-screen flex items-center justify-center bg-black px-4 mt-20 md:mt-0">
       <Card variant="bordered" className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl text-center">Admin Login</CardTitle>
@@ -54,7 +54,6 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
             />
             <Input
               label="Password"
@@ -62,15 +61,10 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
             />
-            
             {error && (
-              <div className="p-3 bg-red-900 border-2 border-red-600">
-                <p className="text-sm text-red-400">{error}</p>
-              </div>
+              <p className="text-sm text-red-400">{error}</p>
             )}
-
             <Button type="submit" isLoading={isLoading} className="w-full">
               Sign In
             </Button>
