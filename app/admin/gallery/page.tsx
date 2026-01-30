@@ -169,9 +169,9 @@ export default function AdminGalleryPage() {
                       {group.images.map((image) => (
                         <div
                           key={image.id}
-                          className="relative group border-2 border-gray-900 hover:border-white transition-colors"
+                          className="relative group border-2 border-[#b0aeab] hover:border-white transition-colors"
                         >
-                          <div className="relative w-full aspect-square bg-gray-900 overflow-hidden">
+                          <div className="relative w-full aspect-square bg-[#b0aeab] overflow-hidden">
                             <img
                               src={getImageDataUrl(image.data) || ''}
                               alt={image.title || 'Gallery image'}
@@ -191,7 +191,7 @@ export default function AdminGalleryPage() {
                             </div>
                           </div>
                           {(image.title || image.description) && (
-                            <div className="p-3 bg-gray-900">
+                            <div className="p-3 bg-[#b0aeab]">
                               {image.title && (
                                 <p className="text-white font-medium text-sm mb-1">{image.title}</p>
                               )}

@@ -23,29 +23,45 @@ export default async function HomePage() {
   }
   return (
     <div className="bg-black">
+      {/* Sticky Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/intro.mp4" type="video/mp4" />
+      </video>
+      {/* Overlay for better text readability and tint */}
+      <div className="fixed inset-0 bg-black opacity-30 z-0" />
+      
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            PROFESSIONAL NAIL CARE
-          </h1>
-          <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Experience precision and artistry with our modern nail salon services.
-            Sharp designs, expert craftsmanship, and exceptional care.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/services">
-              <Button size="lg">View Services</Button>
-            </Link>
-            <Link href="/contact">
-              <Button size="lg" variant="outline">Contact Us</Button>
-            </Link>
+      <section className="relative w-full flex items-center justify-center py-20 md:py-32 z-10">
+        {/* Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              PROFESSIONAL NAIL CARE
+            </h1>
+            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl mx-auto">
+              Experience precision and artistry with our modern nail salon services.
+              Sharp designs, expert craftsmanship, and exceptional care.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/services">
+                <Button size="lg">View Services</Button>
+              </Link>
+              <Link href="/contact">
+                <Button size="lg" variant="outline">Contact Us</Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="bg-[#b0aeab] border-y-2 border-gray-900 py-16">
+      <section className="relative py-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card variant="bordered">
@@ -86,7 +102,7 @@ export default async function HomePage() {
 
       {/* Reviews Section */}
       {reviews.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="relative mx-auto px-4 sm:px-6 lg:px-8 py-16 z-10 bg-black">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               What Our Customers Say
@@ -100,7 +116,7 @@ export default async function HomePage() {
       )}
 
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your Nails?

@@ -163,7 +163,7 @@ export default function AdminServicesPage() {
                     <div className="overflow-x-auto">
                       <table className="w-full">
                         <thead>
-                          <tr className="border-b-2 border-gray-900">
+                          <tr className="border-b-2 border-[#b0aeab]">
                             <th className="text-left py-3 px-4 font-semibold text-white">Service Name</th>
                             <th className="text-left py-3 px-4 font-semibold text-white">Price</th>
                             <th className="text-left py-3 px-4 font-semibold text-white">Duration</th>
@@ -173,7 +173,7 @@ export default function AdminServicesPage() {
                         </thead>
                         <tbody>
                           {group.services.map((service) => (
-                            <tr key={service.id} className="border-b border-gray-900 hover:bg-gray-900">
+                            <tr key={service.id} className="border-b border-[#b0aeab] hover:bg-[#b0aeab]">
                               <td className="py-3 px-4">
                                 <div>
                                   <p className="font-medium text-white">{service.name}</p>
@@ -187,7 +187,7 @@ export default function AdminServicesPage() {
                               <td className="py-3 px-4">
                                 <span className={`inline-block px-2 py-1 text-xs font-medium ${
                                   service.isActive
-                                    ? 'bg-gray-900 text-white'
+                                    ? 'bg-[#b0aeab] text-white'
                                     : 'bg-gray-800 text-gray-400'
                                 }`}>
                                   {service.isActive ? 'Active' : 'Inactive'}
@@ -234,7 +234,7 @@ export default function AdminServicesPage() {
                             </div>
                             <span className={`px-2 py-1 text-xs font-medium ${
                               service.isActive
-                                ? 'bg-gray-900 text-white'
+                                ? 'bg-[#b0aeab] text-white'
                                 : 'bg-gray-800 text-gray-400'
                             }`}>
                               {service.isActive ? 'Active' : 'Inactive'}
@@ -245,7 +245,7 @@ export default function AdminServicesPage() {
                           {service.description && (
                             <p className="text-gray-400 mb-4 text-sm">{service.description}</p>
                           )}
-                          <div className="flex items-center justify-between pt-4 border-t-2 border-gray-900">
+                          <div className="flex items-center justify-between pt-4 border-t-2 border-[#b0aeab]">
                             <div>
                               <p className="text-xl font-bold text-white">{service.price} Kč</p>
                               <p className="text-sm text-gray-400">{service.duration} min</p>

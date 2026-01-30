@@ -156,7 +156,7 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
             {services.map((service, index) => (
               <div
                 key={index}
-                className="p-4 border-2 border-gray-900 bg-gray-900"
+                className="p-4 border-2 border-[#b0aeab] bg-[#b0aeab]"
               >
                 <div className="flex items-start justify-between mb-3">
                   <span className="text-sm font-medium text-gray-400">

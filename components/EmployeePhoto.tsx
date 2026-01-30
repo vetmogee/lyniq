@@ -19,14 +19,14 @@ export default function EmployeePhoto({ photo, name, isImageData = false }: Empl
 
   if (!imageUrl || hasError) {
     return (
-      <div className="w-full h-64 bg-gray-900 border-b-2 border-gray-900 flex items-center justify-center">
+      <div className="w-full h-64 bg-[#b0aeab] border-b-2 border-[#b0aeab] flex items-center justify-center">
         <p className="text-gray-500">No Photo</p>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-64 bg-gray-900 border-b-2 border-gray-900 overflow-hidden">
+    <div className="w-full h-64 bg-[#b0aeab] border-b-2 border-[#b0aeab] overflow-hidden">
       <img
         src={imageUrl}
         alt={name}

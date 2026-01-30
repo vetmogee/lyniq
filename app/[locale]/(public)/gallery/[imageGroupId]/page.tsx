@@ -73,7 +73,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
               return (
                 <div
                   key={image.id}
-                  className="border-2 border-gray-900 bg-gray-900 aspect-square relative group overflow-hidden"
+                  className="border-2 border-[#b0aeab] bg-[#b0aeab] aspect-square relative group overflow-hidden"
                 >
                   {imageUrl ? (
                     <>

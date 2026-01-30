@@ -44,7 +44,7 @@ export default async function GalleryPage() {
                 <Link
                   key={group.id}
                   href={`/gallery/${group.id}`}
-                  className="border-2 border-gray-900 bg-gray-900 aspect-square relative group overflow-hidden hover:border-white transition-colors cursor-pointer"
+                  className="border-2 border-[#b0aeab] bg-[#b0aeab] aspect-square relative group overflow-hidden hover:border-white transition-colors cursor-pointer"
                 >
                   {previewImageUrl ? (
                     <>

@@ -60,11 +60,11 @@ export default function Modal({
       onClick={onClose}
     >
       <div
-        className={`bg-black ${sizes[size]} w-full border-2 border-gray-900 shadow-lg`}
+        className={`bg-black ${sizes[size]} w-full border-2 border-[#b0aeab] shadow-lg`}
         onClick={(e) => e.stopPropagation()}
       >
         {title && (
-          <div className="flex items-center justify-between p-6 border-b-2 border-gray-900">
+          <div className="flex items-center justify-between p-6 border-b-2 border-[#b0aeab]">
             <h2 className="text-xl font-semibold text-white">{title}</h2>
             <button
               onClick={onClose}
@@ -89,7 +89,7 @@ export default function Modal({
         )}
         <div className="p-6">{children}</div>
         {footer && (
-          <div className="flex items-center justify-end gap-4 p-6 border-t-2 border-gray-900">
+          <div className="flex items-center justify-end gap-4 p-6 border-t-2 border-[#b0aeab]">
             {footer}
           </div>
         )}

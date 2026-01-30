@@ -234,7 +234,7 @@ export default function EditImageModal({ isOpen, onClose, image }: EditImageModa
           
           {(imagePreview || currentImageDataUrl) ? (
             <div className="mb-4">
-              <div className="relative w-full h-48 bg-gray-900 border-2 border-gray-800 mb-2">
+              <div className="relative w-full h-48 bg-[#b0aeab] border-2 border-gray-800 mb-2">
                 <img
                   src={imagePreview || currentImageDataUrl || ''}
                   alt="Preview"
@@ -267,7 +267,7 @@ export default function EditImageModal({ isOpen, onClose, image }: EditImageModa
               />
               <label
                 htmlFor="image-upload-edit"
-                className="block w-full px-4 py-2 bg-gray-900 border-2 border-gray-800 text-white cursor-pointer hover:border-white transition-colors text-center"
+                className="block w-full px-4 py-2 bg-[#b0aeab] border-2 border-gray-800 text-white cursor-pointer hover:border-white transition-colors text-center"
               >
                 Choose New Image
               </label>
@@ -291,7 +291,7 @@ export default function EditImageModal({ isOpen, onClose, image }: EditImageModa
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Image description..."
             rows={3}
-            className="w-full px-4 py-2 bg-gray-900 border-2 border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
+            className="w-full px-4 py-2 bg-[#b0aeab] border-2 border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
           />
         </div>
 

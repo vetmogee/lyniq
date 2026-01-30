@@ -24,7 +24,7 @@ export default function Navbar() {
       {/* Mobile: Hamburger Button */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 text-white focus:outline-none focus:ring-2 focus:ring-gray-900 p-2 bg-black border-2 border-gray-900"
+        className="md:hidden fixed top-4 left-4 z-50 text-white focus:outline-none focus:ring-2 focus:ring-[#b0aeab] p-2 bg-black border-2 border-[#b0aeab]"
         aria-label="Toggle menu"
         aria-expanded={isMenuOpen}
       >
@@ -64,14 +64,14 @@ export default function Navbar() {
       <nav
         className={`
           fixed left-0 top-0 h-full z-40
-          bg-black border-r-2 border-gray-900
+          bg-black border-r-2 border-[#b0aeab]
           w-64 flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
       >
         {/* Logo */}
-        <div className="p-6 border-b-2 border-gray-900">
+        <div className="p-6 border-b-2 border-[#b0aeab]">
           <Link 
             href="/" 
             className="block hover:opacity-80 transition-opacity"
@@ -99,8 +99,8 @@ export default function Navbar() {
                   className={`
                     flex items-center px-4 py-3 text-sm font-medium transition-colors
                     ${isActive(link.href)
-                      ? 'bg-gray-900 text-white border-l-2 border-white'
-                      : 'text-gray-400 hover:bg-gray-900 hover:text-white'
+                      ? 'bg-[#b0aeab] text-white border-l-2 border-white'
+                      : 'text-gray-400 hover:bg-[#b0aeab] hover:text-white'
                     }
                   `}
                 >

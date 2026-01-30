@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-gray-900 bg-black">
+    <footer className="relative border-t-2 border-[#b0aeab] bg-black z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t-2 border-gray-900">
+        <div className="mt-8 pt-8 border-t-2 border-[#b0aeab]">
           <p className="text-sm text-gray-400 text-center">
             © {new Date().getFullYear()} Lyniq Beauty Studio. All rights reserved.
           </p>

@@ -333,7 +333,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
         <button
           onClick={goToPrevious}
           disabled={!canScrollLeft}
-          className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-900 text-white hover:bg-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#b0aeab] text-white hover:bg-[#b0aeab] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           aria-label="Previous reviews"
         >
           <svg
@@ -377,7 +377,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
         <button
           onClick={goToNext}
           disabled={!canScrollRight}
-          className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-900 text-white hover:bg-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#b0aeab] text-white hover:bg-[#b0aeab] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           aria-label="Next reviews"
         >
           <svg

@@ -9,8 +9,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = 'bg-black';
     
     const variants = {
-      default: 'border border-gray-900',
-      bordered: 'border-2 border-gray-900',
+      default: 'border border-[#b0aeab]',
+      bordered: 'border-2 border-[#b0aeab]',
     };
 
     return (
@@ -75,7 +75,7 @@ const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className = '', ...props }, ref) => (
     <div
       ref={ref}
-      className={`p-6 pt-4 border-t border-gray-900 ${className}`}
+      className={`p-6 pt-4 border-t border-[#b0aeab] ${className}`}
       {...props}
     />
   )

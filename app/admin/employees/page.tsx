@@ -122,7 +122,7 @@ export default function AdminEmployeesPage() {
                         <img
                           src={photoUrl}
                           alt={employee.name}
-                          className="w-full h-48 object-cover border-2 border-gray-900"
+                          className="w-full h-48 object-cover border-2 border-[#b0aeab]"
                           onError={(e) => {
                             (e.target as HTMLImageElement).style.display = 'none';
                           }}
@@ -133,7 +133,7 @@ export default function AdminEmployeesPage() {
                   {employee.description && (
                     <p className="text-gray-400 mb-4 text-sm line-clamp-3">{employee.description}</p>
                   )}
-                  <div className="flex items-center justify-end pt-4 border-t-2 border-gray-900">
+                  <div className="flex items-center justify-end pt-4 border-t-2 border-[#b0aeab]">
                     <Button
                       variant="outline"
                       size="sm"

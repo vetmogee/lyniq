@@ -107,7 +107,7 @@ export default function ContactPage() {
                       Message
                     </label>
                     <textarea
-                      className="w-full px-4 py-3 border-2 border-gray-900 bg-black text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 transition-all duration-200"
+                      className="w-full px-4 py-3 border-2 border-[#b0aeab] bg-black text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#b0aeab] focus:ring-offset-2 transition-all duration-200"
                       rows={5}
                       required
                       value={formData.message}

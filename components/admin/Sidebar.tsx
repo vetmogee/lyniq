@@ -50,7 +50,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Fixed Top Navbar - Mobile */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-gray-900 h-16 flex items-center justify-between px-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-[#b0aeab] h-16 flex items-center justify-between px-4">
         <Link 
           href="/" 
           className="text-xl font-bold text-white hover:text-gray-400 transition-colors"
@@ -59,7 +59,7 @@ export default function Sidebar() {
         </Link>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="admin-menu-button p-2 text-white hover:bg-gray-900 transition-colors"
+          className="admin-menu-button p-2 text-white hover:bg-[#b0aeab] transition-colors"
           aria-label="Toggle admin menu"
           aria-expanded={isOpen}
         >
@@ -89,7 +89,7 @@ export default function Sidebar() {
       </div>
 
       {/* Fixed Top Navbar - Desktop */}
-      <div className="hidden lg:flex fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-gray-900 h-16 items-center justify-between px-6">
+      <div className="hidden lg:flex fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-[#b0aeab] h-16 items-center justify-between px-6">
         <Link 
           href="/" 
           className="text-xl font-bold text-white hover:text-gray-400 transition-colors"
@@ -105,8 +105,8 @@ export default function Sidebar() {
                 className={`
                   flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors
                   ${isActive(item.href)
-                    ? 'bg-gray-900 text-white'
-                    : 'text-gray-400 hover:bg-gray-900 hover:text-white'
+                    ? 'bg-[#b0aeab] text-white'
+                    : 'text-gray-400 hover:bg-[#b0aeab] hover:text-white'
                   }
                 `}
               >
@@ -117,7 +117,7 @@ export default function Sidebar() {
           </nav>
           <button
             onClick={handleSignOut}
-            className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:bg-gray-900 hover:text-white transition-colors"
+            className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:bg-[#b0aeab] hover:text-white transition-colors"
           >
             <span>🚪</span>
             Sign Out
@@ -138,13 +138,13 @@ export default function Sidebar() {
       <aside
         className={`
           admin-sidebar lg:hidden fixed right-0 z-40
-          w-64 border-l-2 border-gray-900 bg-black flex flex-col
+          w-64 border-l-2 border-[#b0aeab] bg-black flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0 top-16' : 'translate-x-full top-0'}
           h-[calc(100vh-4rem)]
         `}
       >
-        <div className="p-6 border-b-2 border-gray-900">
+        <div className="p-6 border-b-2 border-[#b0aeab]">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-white">ADMIN PANEL</h2>
             <button
@@ -181,8 +181,8 @@ export default function Sidebar() {
                   className={`
                     flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors
                     ${isActive(item.href)
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-400 hover:bg-gray-900 hover:text-white'
+                      ? 'bg-[#b0aeab] text-white'
+                      : 'text-gray-400 hover:bg-[#b0aeab] hover:text-white'
                     }
                   `}
                 >
@@ -194,10 +194,10 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-        <div className="p-4 border-t-2 border-gray-900">
+        <div className="p-4 border-t-2 border-[#b0aeab]">
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-400 hover:bg-gray-900 hover:text-white transition-colors"
+            className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-400 hover:bg-[#b0aeab] hover:text-white transition-colors"
           >
             <span>🚪</span>
             Sign Out

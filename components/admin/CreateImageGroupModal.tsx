@@ -101,7 +101,7 @@ export default function CreateImageGroupModal({ isOpen, onClose }: CreateImageGr
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Group description..."
             rows={4}
-            className="w-full px-4 py-2 bg-gray-900 border-2 border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
+            className="w-full px-4 py-2 bg-[#b0aeab] border-2 border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
           />
         </div>
 
