@@ -28,7 +28,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [duration, setDuration] = useState('');
-  const [isActive, setIsActive] = useState(true);
+  const [position, setPosition] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -38,7 +38,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
       setDescription(service.description || '');
       setPrice(service.price.toString());
       setDuration(service.duration.toString());
-      setIsActive(service.isActive);
+      setPosition(service.position.toString());
     }
   }, [service]);
 
