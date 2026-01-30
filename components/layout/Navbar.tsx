@@ -63,7 +63,7 @@ export default function Navbar() {
       {/* Sticky Left Sidebar - Desktop & Mobile */}
       <nav
         className={`
-          fixed left-0 top-0 h-full z-40
+          fixed left-0 top-0 h-full z-50
           bg-black border-r-2 border-[#b0aeab]
           w-64 flex flex-col
           transform transition-transform duration-300 ease-in-out
@@ -71,7 +71,7 @@ export default function Navbar() {
         `}
       >
         {/* Logo */}
-        <div className="p-6 border-b-2 border-[#b0aeab]">
+        <div className="p-6 pl-8">
           <Link 
             href="/" 
             className="block hover:opacity-80 transition-opacity"
