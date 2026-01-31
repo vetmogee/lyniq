@@ -3,52 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Instagram, Facebook, MapPin } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { getImageDataUrl } from '@/lib/image-utils';
 
 function Logo({ width, height, className }: { width: number; height: number; className?: string }) {
-  const [logoUrl, setLogoUrl] = useState<string | null>('/lyniq.svg'); // Fallback to static file
-
-  useEffect(() => {
-    async function fetchLogo() {
-      try {
-        const response = await fetch('/api/logo');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.logo) {
-            const dataUrl = getImageDataUrl(data.logo.data);
-            if (dataUrl) {
-              setLogoUrl(dataUrl);
-            }
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch logo:', error);
-        // Keep fallback logo
-      }
-    }
-
-    fetchLogo();
-  }, []);
-
-  // Use img tag for data URLs (SVG from database)
-  if (logoUrl && logoUrl.startsWith('data:')) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={logoUrl}
-        alt="Lyniq Beauty Studio"
-        width={width}
-        height={height}
-        className={className}
-      />
-    );
-  }
-
-  // Fallback to Next Image for static files
   return (
     <Image
-      src={logoUrl || '/lyniq.svg'}
+      src="/lyniq.svg"
       alt="Lyniq Beauty Studio"
       width={width}
       height={height}

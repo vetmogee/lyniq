@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { getImageDataUrl } from '@/lib/image-utils';
 
 const navLinks = [
   { href: '/', label: 'Domů' },
@@ -16,67 +15,11 @@ const navLinks = [
 
 const bookingUrl = 'https://noona.app/cs/lyniqstudio/book';
 
-// Logo Component that fetches from database
+// Logo Component
 function Logo({ width, height, className, priority = false }: { width: number; height: number; className?: string; priority?: boolean }) {
-  const [logoUrl, setLogoUrl] = useState<string | null>('/lyniq.svg'); // Fallback to static file
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchLogo() {
-      try {
-        const response = await fetch('/api/logo');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.logo) {
-            const dataUrl = getImageDataUrl(data.logo.data);
-            if (dataUrl) {
-              setLogoUrl(dataUrl);
-            }
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch logo:', error);
-        // Keep fallback logo
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchLogo();
-  }, []);
-
-  if (isLoading && logoUrl === '/lyniq.svg') {
-    // Show static logo while loading
-    return (
-      <Image
-        src="/lyniq.svg"
-        alt="Lyniq Logo"
-        width={width}
-        height={height}
-        className={className}
-        priority={priority}
-      />
-    );
-  }
-
-  // Use img tag for data URLs (SVG from database)
-  if (logoUrl && logoUrl.startsWith('data:')) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={logoUrl}
-        alt="Lyniq Logo"
-        width={width}
-        height={height}
-        className={className}
-      />
-    );
-  }
-
-  // Fallback to Next Image for static files
   return (
     <Image
-      src={logoUrl || '/lyniq.svg'}
+      src="/lyniq.svg"
       alt="Lyniq Logo"
       width={width}
       height={height}
