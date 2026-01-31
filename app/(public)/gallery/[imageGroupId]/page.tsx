@@ -30,7 +30,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-black">
+    <div className="">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         {/* Header with back button */}
         <div className="mb-8">
@@ -76,7 +76,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
               return (
                 <div
                   key={image.id}
-                  className="border-2 border-[#b0aeab] bg-[#b0aeab] aspect-square relative group overflow-hidden"
+                  className="border-2 border-[#b0aeab] aspect-square relative group overflow-hidden"
                 >
                   {imageUrl ? (
                     <>
@@ -87,7 +87,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
                         className="w-full h-full object-cover"
                       />
                       {(image.title || image.description) && (
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all flex flex-col justify-end p-4">
+                        <div className="absolute inset-0  transition-all flex flex-col justify-end p-4">
                           <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                             {image.title && (
                               <p className="text-lg font-semibold text-white mb-1">{image.title}</p>

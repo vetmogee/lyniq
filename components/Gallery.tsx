@@ -100,6 +100,16 @@ export default function Gallery({ imageGroups }: GalleryProps) {
               <div className="grid grid-cols-2 gap-6">
                 {selectedGroup.images.map((image) => {
                   const imageUrl = getImageDataUrl(image.data);
+                  // Debug logging
+                  if (typeof window !== 'undefined') {
+                    console.log('Image data:', {
+                      id: image.id,
+                      dataType: typeof image.data,
+                      dataLength: typeof image.data === 'string' ? image.data.length : 'N/A',
+                      imageUrl: imageUrl ? 'generated' : 'null',
+                      mimeType: image.mimeType
+                    });
+                  }
                   return (
                     <div
                       key={image.id}
@@ -114,7 +124,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                             className="w-full h-full object-cover"
                           />
                           {(image.title || image.description) && (
-                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all flex flex-col justify-end p-4">
+                            <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-70 transition-all flex flex-col justify-end p-4">
                               <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                                 {image.title && (
                                   <p className="text-lg font-semibold text-white mb-1">{image.title}</p>
