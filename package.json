@@ -10,6 +10,7 @@
     "check-env": "node scripts/check-env.js",
     "create-user": "node scripts/create-user.js",
     "create-admin": "node scripts/create-admin.js",
+    "save-logo": "node scripts/save-logo.js",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",

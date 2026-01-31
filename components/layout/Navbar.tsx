@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { getImageDataUrl } from '@/lib/image-utils';
 
 const navLinks = [
   { href: '/', label: 'Domů' },
@@ -14,6 +15,76 @@ const navLinks = [
 ];
 
 const bookingUrl = 'https://noona.app/cs/lyniqstudio/book';
+
+// Logo Component that fetches from database
+function Logo({ width, height, className, priority = false }: { width: number; height: number; className?: string; priority?: boolean }) {
+  const [logoUrl, setLogoUrl] = useState<string | null>('/lyniq.svg'); // Fallback to static file
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchLogo() {
+      try {
+        const response = await fetch('/api/logo');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.logo) {
+            const dataUrl = getImageDataUrl(data.logo.data);
+            if (dataUrl) {
+              setLogoUrl(dataUrl);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch logo:', error);
+        // Keep fallback logo
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchLogo();
+  }, []);
+
+  if (isLoading && logoUrl === '/lyniq.svg') {
+    // Show static logo while loading
+    return (
+      <Image
+        src="/lyniq.svg"
+        alt="Lyniq Logo"
+        width={width}
+        height={height}
+        className={className}
+        priority={priority}
+      />
+    );
+  }
+
+  // Use img tag for data URLs (SVG from database)
+  if (logoUrl && logoUrl.startsWith('data:')) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={logoUrl}
+        alt="Lyniq Logo"
+        width={width}
+        height={height}
+        className={className}
+      />
+    );
+  }
+
+  // Fallback to Next Image for static files
+  return (
+    <Image
+      src={logoUrl || '/lyniq.svg'}
+      alt="Lyniq Logo"
+      width={width}
+      height={height}
+      className={className}
+      priority={priority}
+    />
+  );
+}
 
 // Mobile Navbar Component
 function MobileNavbar() {
@@ -100,9 +171,7 @@ function MobileNavbar() {
             className="flex-1 flex justify-center"
             onClick={closeMenu}
           >
-            <Image
-              src="/lyniq.svg"
-              alt="Lyniq Logo"
+            <Logo
               width={50}
               height={10}
               className="h-auto w-auto"
@@ -152,9 +221,7 @@ function MobileNavbar() {
             className="block hover:opacity-80 transition-opacity"
             onClick={closeMenu}
           >
-            <Image
-              src="/lyniq.svg"
-              alt="Lyniq Logo"
+            <Logo
               width={20}
               height={20}
               className="h-20 w-20"
@@ -224,9 +291,7 @@ function DesktopNavbar() {
           href="/" 
           className="block hover:opacity-80 transition-opacity"
         >
-          <Image
-            src="/lyniq.svg"
-            alt="Lyniq Logo"
+          <Logo
             width={120}
             height={60}
             className="h-auto w-auto"

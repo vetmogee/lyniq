@@ -131,3 +131,14 @@ model Image {
   @@index([employeeId, order])
   @@map("images")
 }
+
+model Logo {
+  id        String   @id @default(uuid())
+  data      String   @db.Text // Base64 encoded image data as JSON string
+  mimeType  String   // e.g., "image/svg+xml", "image/png"
+  filename  String?  // Original filename
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("logos")
+}
