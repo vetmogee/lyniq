@@ -2,6 +2,9 @@ import { prisma } from '@/lib/prisma';
 import { Card, CardTitle } from '@/components/ui/Card';
 import EmployeePhoto from '@/components/EmployeePhoto';
 
+// Force dynamic rendering to ensure fresh data on each request
+export const dynamic = 'force-dynamic';
+
 export default async function EmployeesPage() {
   // Fetch all employees with their images
   const employees = await prisma.employee.findMany({
