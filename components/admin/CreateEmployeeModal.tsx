@@ -185,7 +185,9 @@ export default function CreateEmployeeModal({ isOpen, onClose }: CreateEmployeeM
           </Button>
         </>
       }
+
     >
+      
       <form onSubmit={handleSubmit} className="space-y-6">
         <Input
           label="Employee Name"
@@ -209,7 +211,7 @@ export default function CreateEmployeeModal({ isOpen, onClose }: CreateEmployeeM
           
           {photoPreview ? (
             <div className="mb-4">
-              <div className="relative w-full h-48 bg-[#b0aeab] border-2 border-gray-800 mb-2">
+              <div className="relative w-full h-48 bg-black border-2 border-gray-800 mb-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photoPreview}
@@ -238,7 +240,7 @@ export default function CreateEmployeeModal({ isOpen, onClose }: CreateEmployeeM
               />
               <label
                 htmlFor="photo-upload"
-                className="block w-full px-4 py-2 bg-[#b0aeab] border-2 border-gray-800 text-white cursor-pointer hover:border-white transition-colors text-center"
+                className="block w-full px-4 py-2 bg-black border-2 border-[#b0aeab] text-white cursor-pointer hover:border-white transition-colors text-center"
               >
                 Choose Photo
               </label>
@@ -266,7 +268,7 @@ export default function CreateEmployeeModal({ isOpen, onClose }: CreateEmployeeM
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Employee description and bio..."
             rows={4}
-            className="w-full px-4 py-2 bg-[#b0aeab] border-2 border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
+            className="w-full px-4 py-2 bg-black border-2 border-[#b0aeab] text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
           />
         </div>
 

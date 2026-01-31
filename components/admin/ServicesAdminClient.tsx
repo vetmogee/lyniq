@@ -73,7 +73,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
           {serviceGroups.map((group) => (
             <div
               key={group.id}
-              className="bg-[#b0aeab] border-2 border-gray-800 p-6"
+              className="bg-black border-2 border-gray-800 p-6"
             >
               <div className="flex items-center justify-between mb-4">
                 <div>

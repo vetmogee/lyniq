@@ -127,7 +127,8 @@ async function extractPlaceId(shareUrl: string): Promise<string> {
  * Fetches Google Maps reviews from SerpAPI and caches them in the database
  * 
  * This function:
- * - Calls SerpAPI Google Maps Reviews API
+ * - Checks the database first for cached reviews
+ * - Only calls SerpAPI if cache is missing or stale (> 24 hours)
  * - Normalizes and upserts reviews into Prisma
  * - Ensures only the 10 latest reviews are kept
  * - Updates the fetchedAt timestamp
@@ -136,6 +137,29 @@ async function extractPlaceId(shareUrl: string): Promise<string> {
  * @returns Promise<number> - Number of reviews cached
  */
 export async function fetchAndCacheGoogleReviews(placeId: string): Promise<number> {
+  // Check database first before making API call
+  const latestCache = await prisma.googleReviewCache.findFirst({
+    where: { placeId },
+    orderBy: { fetchedAt: 'desc' },
+    select: { fetchedAt: true },
+  });
+
+  const now = new Date();
+  const cacheAge = latestCache 
+    ? now.getTime() - latestCache.fetchedAt.getTime()
+    : CACHE_DURATION_MS + 1; // Force refresh if no cache exists
+
+  // If cache is fresh (< 24 hours), skip API call
+  if (cacheAge < CACHE_DURATION_MS) {
+    console.log(`Cache is fresh (age: ${Math.round(cacheAge / (60 * 60 * 1000))} hours). Skipping API call.`);
+    const cachedReviews = await prisma.googleReviewCache.findMany({
+      where: { placeId },
+      orderBy: { reviewCreatedAt: 'desc' },
+      take: MAX_CACHED_REVIEWS,
+    });
+    return cachedReviews.length;
+  }
+
   // Support both SERPAPI_KEY (per spec) and SERPAPI (for compatibility)
   const serpApiKey = process.env.SERPAPI_KEY || process.env.SERPAPI;
   
@@ -144,7 +168,7 @@ export async function fetchAndCacheGoogleReviews(placeId: string): Promise<numbe
   }
 
   try {
-    console.log(`Fetching reviews for place ID: ${placeId}`);
+    console.log(`Cache is stale or missing (age: ${latestCache ? Math.round(cacheAge / (60 * 60 * 1000)) : 'N/A'} hours). Fetching reviews for place ID: ${placeId}`);
 
     // Fetch reviews from SerpAPI using the serpapi package
     const data: SerpAPIResponse = await new Promise((resolve, reject) => {
