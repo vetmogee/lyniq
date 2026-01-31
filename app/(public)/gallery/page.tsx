@@ -1,6 +1,9 @@
 import { prisma } from '@/lib/prisma';
 import Gallery from '@/components/Gallery';
 
+// Force dynamic rendering to ensure fresh data on each request
+export const dynamic = 'force-dynamic';
+
 export default async function GalleryPage() {
   // Fetch all image groups with their images, ordered by creation date and image order
   const imageGroups = await prisma.imageGroup.findMany({

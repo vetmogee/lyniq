@@ -3,6 +3,9 @@ import { getImageDataUrl } from '@/lib/image-utils';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+// Force dynamic rendering to ensure fresh data on each request
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ imageGroupId: string }>;
 }
