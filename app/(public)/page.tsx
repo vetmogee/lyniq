@@ -44,7 +44,7 @@ export default async function HomePage() {
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               PROFESIONÁLNÍ PÉČE O NEHTY
             </h1>
-            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto">
               Zažijte preciznost a umění s našimi moderními službami nehtového studia. Ostré designy, odborné řemeslo a výjimečná péče.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
@@ -123,7 +123,7 @@ export default async function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Připraveni proměnit své nehty?
           </h2>
-          <p className="text-lg text-gray-400 mb-8">
+          <p className="text-lg text-white mb-8">
             Kontaktujte nás ještě dnes a zažijte rozdíl.
           </p>
           <Link href="/contact">

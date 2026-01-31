@@ -77,6 +77,7 @@ export default async function ImageGroupPage({ params }: PageProps) {
                 >
                   {imageUrl ? (
                     <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={imageUrl}
                         alt={image.title || imageGroup.name || 'Gallery image'}

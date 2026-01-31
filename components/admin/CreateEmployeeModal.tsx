@@ -210,6 +210,7 @@ export default function CreateEmployeeModal({ isOpen, onClose }: CreateEmployeeM
           {photoPreview ? (
             <div className="mb-4">
               <div className="relative w-full h-48 bg-[#b0aeab] border-2 border-gray-800 mb-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photoPreview}
                   alt="Preview"

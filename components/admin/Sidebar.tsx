@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const prevPathnameRef = useRef(pathname);
 
   const navItems = [
     { href: '/admin/dashboard', label: 'Dashboard', icon: '📊' },
@@ -22,14 +24,22 @@ export default function Sidebar() {
   const handleSignOut = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push('/admin/login');
+    router.push('/admin');
     router.refresh();
   };
 
   // Close menu when route changes
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+    if (prevPathnameRef.current !== pathname && isOpen) {
+      // Defer state update to avoid synchronous setState
+      const timeoutId = setTimeout(() => {
+        setIsOpen(false);
+      }, 0);
+      prevPathnameRef.current = pathname;
+      return () => clearTimeout(timeoutId);
+    }
+    prevPathnameRef.current = pathname;
+  }, [pathname, isOpen]);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -89,8 +99,16 @@ export default function Sidebar() {
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="p-6 border-b-2 border-[#b0aeab]">
-            <h1 className="text-xl font-bold text-white">Admin Panel</h1>
+          <div className="flex justify-center items-center pt-4">
+            <Link href="/">
+              <Image 
+                src="/lyniq.svg" 
+                alt="Logo" 
+                width={300} 
+                height={300} 
+                className="h-30 w-50" 
+              />
+            </Link>
           </div>
 
           {/* Navigation */}

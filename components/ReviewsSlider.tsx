@@ -42,6 +42,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
   const [containerWidth, setContainerWidth] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const velocityRef = useRef(0);
@@ -86,7 +87,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
 
 
   // Scroll to a specific position
-  const scrollTo = useCallback((position: number, smooth = true) => {
+  const scrollTo = useCallback((position: number) => {
     if (!sliderRef.current) return;
     const sliderWidth = sliderRef.current.scrollWidth;
     const width = containerWidth || containerRef.current?.offsetWidth || 0;
@@ -117,21 +118,25 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
 
   // Check if we can scroll left/right
   const canScrollLeft = scrollPosition > 0;
-  const canScrollRight = (() => {
-    if (!sliderRef.current) return false;
-    const sliderWidth = sliderRef.current.scrollWidth;
-    const width = containerWidth || containerRef.current?.offsetWidth || 0;
-    const maxScroll = Math.max(0, sliderWidth - width);
-    return scrollPosition < maxScroll;
-  })();
+  
+  // Update canScrollRight asynchronously to avoid synchronous setState in effect
+  useEffect(() => {
+    const updateCanScrollRight = () => {
+      if (!sliderRef.current || !containerRef.current) {
+        setCanScrollRight(false);
+        return;
+      }
+      const sliderWidth = sliderRef.current.scrollWidth;
+      const width = containerWidth || containerRef.current.offsetWidth || 0;
+      const maxScroll = Math.max(0, sliderWidth - width);
+      setCanScrollRight(scrollPosition < maxScroll);
+    };
+    
+    // Defer state update to avoid synchronous setState
+    const timeoutId = setTimeout(updateCanScrollRight, 0);
+    return () => clearTimeout(timeoutId);
+  }, [scrollPosition, containerWidth]);
 
-  // Get the X coordinate from mouse or touch event
-  const getClientX = (e: MouseEvent | TouchEvent): number => {
-    if ('touches' in e) {
-      return e.touches[0]?.clientX ?? 0;
-    }
-    return e.clientX;
-  };
 
   // Handle drag start
   const handleDragStart = useCallback((clientX: number) => {
@@ -200,7 +205,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
         const snappedPosition = Math.round(targetPosition / reviewWidth) * reviewWidth;
         const finalPosition = Math.max(0, Math.min(maxScroll, snappedPosition));
       
-      scrollTo(finalPosition, true);
+      scrollTo(finalPosition);
     } else {
       // Snap to nearest review on mobile even without momentum
       if (isMobile && sliderRef.current && containerRef.current && mobileReviewWidth > 0) {
@@ -211,7 +216,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
         const reviewWidth = mobileReviewWidth + gap;
         const snappedPosition = Math.round(scrollPosition / reviewWidth) * reviewWidth;
         const finalPosition = Math.max(0, Math.min(maxScroll, snappedPosition));
-        scrollTo(finalPosition, true);
+        scrollTo(finalPosition);
       }
     }
     
@@ -219,7 +224,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
     velocityRef.current = 0;
     lastMoveTimeRef.current = 0;
     lastMoveXRef.current = 0;
-  }, [isMobile, scrollPosition, containerWidth, dragStart, scrollTo]);
+  }, [isMobile, scrollPosition, containerWidth, dragStart, scrollTo, mobileReviewWidth]);
 
   // Memoized mouse event handlers
   const handleMouseMove = useCallback((e: MouseEvent) => {

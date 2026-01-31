@@ -10,12 +10,14 @@ interface UseMobileReturn {
 }
 
 export function useMobile(): UseMobileReturn {
-  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth;
+    }
+    return 0;
+  });
 
   useEffect(() => {
-    // Set initial width
-    setWindowWidth(window.innerWidth);
-
     // Handle resize
     const handleResize = () => {
       setWindowWidth(window.innerWidth);

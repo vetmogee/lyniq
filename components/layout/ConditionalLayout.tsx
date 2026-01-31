@@ -13,9 +13,8 @@ export default function ConditionalLayout({
   
   // Hide Navbar/Footer for admin routes (admin layout has its own sidebar)
   const isAdminRoute = pathname?.includes('/admin');
-  const isLoginPage = pathname?.includes('/admin/login');
 
-  if (isAdminRoute || isLoginPage) {
+  if (isAdminRoute) {
     return <>{children}</>;
   }
 

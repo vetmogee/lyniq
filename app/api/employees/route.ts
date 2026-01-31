@@ -43,6 +43,9 @@ export async function GET() {
     const employees = await prisma.employee.findMany({
       include: {
         images: {
+          where: {
+            imageGroupId: null,
+          },
           orderBy: { order: 'asc' },
         },
       },

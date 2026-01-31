@@ -27,6 +27,7 @@ export default function EmployeePhoto({ photo, name, isImageData = false }: Empl
 
   return (
     <div className="w-full h-64 md:h-full md:min-h-64 bg-[#b0aeab] overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={imageUrl}
         alt={name}

@@ -34,14 +34,14 @@ export default function AdminLogin() {
 
       router.push('/admin/dashboard');
       router.refresh();
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred');
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black px-4 mt-20 md:mt-0">
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
       <Card variant="bordered" className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl text-center">Admin Login</CardTitle>

@@ -13,6 +13,8 @@ interface Service {
   price: number;
   duration: number;
   position: number;
+  category: string | null;
+  imageUrl: string | null;
   serviceGroupId: string | null;
 }
 
@@ -29,6 +31,8 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
   const [price, setPrice] = useState('');
   const [duration, setDuration] = useState('');
   const [position, setPosition] = useState('');
+  const [category, setCategory] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -39,6 +43,8 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
       setPrice(service.price.toString());
       setDuration(service.duration.toString());
       setPosition(service.position.toString());
+      setCategory(service.category || '');
+      setImageUrl(service.imageUrl || '');
     }
   }, [service]);
 
@@ -74,6 +80,8 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
           price: parseFloat(price),
           duration: parseInt(duration) || 60,
           position: parseInt(position) || 0,
+          category: category.trim() || null,
+          imageUrl: imageUrl.trim() || null,
           serviceGroupId: service.serviceGroupId,
         }),
       });
@@ -185,7 +193,20 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
           />
         </div>
 
+        <Input
+          label="Description (optional)"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Service description"
+        />
+
         <div className="grid grid-cols-2 gap-4">
+          <Input
+            label="Category (optional)"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            placeholder="e.g., Manicure, Pedicure"
+          />
           <Input
             label="Position"
             type="number"
@@ -195,13 +216,15 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
             placeholder="0"
             required
           />
-          <Input
-            label="Description (optional)"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Service description"
-          />
         </div>
+
+        <Input
+          label="Image URL (optional)"
+          type="url"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          placeholder="https://example.com/image.jpg"
+        />
 
         {error && (
           <div className="p-3 bg-red-900 border-2 border-red-600">

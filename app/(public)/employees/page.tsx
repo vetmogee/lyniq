@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardTitle } from '@/components/ui/Card';
 import EmployeePhoto from '@/components/EmployeePhoto';
 
 export default async function EmployeesPage() {
@@ -7,6 +7,9 @@ export default async function EmployeesPage() {
   const employees = await prisma.employee.findMany({
     include: {
       images: {
+        where: {
+          imageGroupId: null,
+        },
         orderBy: { order: 'asc' },
         take: 1, // Get the first/main photo
       },

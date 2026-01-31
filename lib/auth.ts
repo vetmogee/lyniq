@@ -32,7 +32,7 @@ export async function checkAuth() {
 export async function requireAuth() {
   const user = await getUser();
   if (!user) {
-    redirect('/admin/login');
+    redirect('/admin');
   }
   return user;
 }
@@ -43,5 +43,5 @@ export async function requireAuth() {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  redirect('/admin/login');
+  redirect('/admin');
 }

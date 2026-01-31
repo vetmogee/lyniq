@@ -13,7 +13,7 @@ export async function GET() {
         email: user.email,
       },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }

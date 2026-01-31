@@ -1,20 +1,10 @@
-import { requireAuth } from '@/lib/auth';
-import Sidebar from '@/components/admin/Sidebar';
-
-export default async function AdminLayout({
+// This layout applies to all admin routes
+// Protected routes use their own layout in (protected) group
+// Login route in (auth) group has no layout requirement
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Require authentication - will redirect to login if not authenticated
-  await requireAuth();
-
-  return (
-    <div className="flex min-h-screen bg-white">
-      <Sidebar />
-      <main className="flex-1 overflow-auto pt-16 lg:pt-16">
-        {children}
-      </main>
-    </div>
-  );
+  return <>{children}</>;
 }

@@ -22,7 +22,11 @@ export async function PUT(
       );
     }
 
-    const updateData: any = {
+    const updateData: {
+      name: string;
+      description: string | null;
+      position?: number;
+    } = {
       name,
       description: description || null,
     };

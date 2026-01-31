@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Instagram, Facebook, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -45,10 +46,36 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>123 Salon Street</li>
-              <li>City, State 12345</li>
-              <li>Telefon: (555) 123-4567</li>
-              <li>E-mail: info@lyniqbeautystudio.com</li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                <span>Želenická 1627/25/405 02</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 opacity-0" />
+                <span>405 02 Děčín 2-Letná</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Instagram className="w-4 h-4" />
+                <Link 
+                  href="https://www.instagram.com/lyniqstudio/?hl=en" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  lyniqstudio
+                </Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <Facebook className="w-4 h-4" />
+                <Link 
+                  href="https://www.facebook.com/profile.php?id=61576728607438" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  LYNIQ studio
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

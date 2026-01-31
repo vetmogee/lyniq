@@ -8,7 +8,7 @@ export default async function AdminDashboardPage() {
     <div className="p-6 md:p-8 bg-black min-h-screen">
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-white">Dashboard</h1>
-        <p className="text-gray-400 mt-2">Overview of your salon operations</p>
+        <p className="text-gray-400">Overview of your salon operations</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

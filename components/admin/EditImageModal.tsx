@@ -110,11 +110,11 @@ export default function EditImageModal({ isOpen, onClose, image }: EditImageModa
         });
 
         if (!uploadResponse.ok) {
-          const uploadData = await uploadResponse.json();
-          throw new Error(uploadData.error || uploadData.details || 'Failed to upload image');
+          const uploadErrorData = await uploadResponse.json();
+          throw new Error(uploadErrorData.error || uploadErrorData.details || 'Failed to upload image');
         }
 
-        const uploadData = await uploadResponse.json();
+        await uploadResponse.json();
         
         // Update image with new data
         const response = await fetch(`/api/images/${image.id}`, {
@@ -235,6 +235,7 @@ export default function EditImageModal({ isOpen, onClose, image }: EditImageModa
           {(imagePreview || currentImageDataUrl) ? (
             <div className="mb-4">
               <div className="relative w-full h-48 bg-[#b0aeab] border-2 border-gray-800 mb-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={imagePreview || currentImageDataUrl || ''}
                   alt="Preview"

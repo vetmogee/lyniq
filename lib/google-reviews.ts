@@ -207,7 +207,7 @@ export async function fetchAndCacheGoogleReviews(placeId: string): Promise<numbe
           reviewCreatedAt = review.iso_date 
             ? new Date(review.iso_date)
             : new Date(); // Fallback to now if date missing
-        } catch (error) {
+        } catch {
           console.warn(`Invalid ISO date for review ${reviewId}, using current date`);
           reviewCreatedAt = new Date();
         }
