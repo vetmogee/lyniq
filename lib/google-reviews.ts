@@ -169,7 +169,7 @@ export async function fetchAndCacheGoogleReviews(placeId: string): Promise<numbe
 
   try {
     console.log(`Cache is stale or missing (age: ${latestCache ? Math.round(cacheAge / (60 * 60 * 1000)) : 'N/A'} hours). Fetching reviews for place ID: ${placeId}`);
-
+//kokoška
     // Fetch reviews from SerpAPI using the serpapi package
     const data: SerpAPIResponse = await new Promise((resolve, reject) => {
       getJson(
