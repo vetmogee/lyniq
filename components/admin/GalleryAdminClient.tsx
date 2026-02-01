@@ -53,7 +53,7 @@ export default function GalleryAdminClient({ imageGroups }: GalleryAdminClientPr
   };
 
   return (
-    <div className="p-6 md:p-8 bg-black min-h-screen">
+    <div className="p-6 md:p-8 bg-[#202020] min-h-screen">
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-white">Gallery</h1>
@@ -74,7 +74,7 @@ export default function GalleryAdminClient({ imageGroups }: GalleryAdminClientPr
           {imageGroups.map((group) => (
             <div
               key={group.id}
-              className="bg-[#b0aeab] border-2 border-gray-800 p-6"
+              className="bg-[#636362] border-2 border-gray-800 p-6"
             >
               <div className="flex items-center justify-between mb-4">
                 <div>
@@ -114,7 +114,7 @@ export default function GalleryAdminClient({ imageGroups }: GalleryAdminClientPr
                     .map(({ image, imageUrl }) => (
                       <div
                         key={image.id}
-                        className="bg-black border-2 border-gray-700 overflow-hidden hover:border-white transition-colors cursor-pointer group"
+                        className="bg-[#202020] border-2 border-gray-700 overflow-hidden hover:border-white transition-colors cursor-pointer group"
                         onClick={() => handleEditImage(image)}
                       >
                         <div className="aspect-square bg-gray-800 relative overflow-hidden">
@@ -124,7 +124,7 @@ export default function GalleryAdminClient({ imageGroups }: GalleryAdminClientPr
                             alt={image.title || 'Gallery image'}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity flex items-center justify-center">
+                          <div className="absolute inset-0 bg-[#202020] opacity-0 group-hover:opacity-50 transition-opacity flex items-center justify-center">
                             <span className="text-white opacity-0 group-hover:opacity-100 text-sm">
                               Edit
                             </span>

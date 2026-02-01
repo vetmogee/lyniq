@@ -71,7 +71,7 @@ function MobileNavbar() {
       <header
         className={`
           md:hidden fixed top-0 left-0 right-0 z-50
-          bg-black border-b-0
+          bg-[#141414] border-b-0
           transition-transform duration-300 ease-in-out
           ${isVisible ? 'translate-y-0' : '-translate-y-full'}
         `}
@@ -80,7 +80,7 @@ function MobileNavbar() {
           {/* Menu Button */}
           <button
             onClick={toggleMenu}
-            className="text-white p-2 focus:outline-none focus:ring-2 focus:ring-[#b0aeab] rounded"
+            className="text-white p-2 focus:outline-none focus:ring-2 focus:ring-[#677075] rounded"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
@@ -129,9 +129,9 @@ function MobileNavbar() {
             rel="noopener noreferrer"
             className="
               px-4 py-2 text-sm font-medium
-              bg-[#b0aeab] text-white
+              bg-[#677075] text-white
               hover:bg-gray-800 transition-colors duration-200
-              focus:outline-none focus:ring-2 focus:ring-[#b0aeab] rounded
+              focus:outline-none focus:ring-2 focus:ring-[#677075] rounded
             "
           >
             Rezervovat
@@ -142,7 +142,7 @@ function MobileNavbar() {
       {/* Overlay */}
       {isMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 z-40 bg-black bg-opacity-60"
+          className="md:hidden fixed inset-0 z-40 bg-[#141414] bg-opacity-60"
           onClick={closeMenu}
         />
       )}
@@ -151,7 +151,7 @@ function MobileNavbar() {
       <aside
         className={`
           md:hidden fixed left-0 top-0 h-full w-72 z-50
-          bg-black border-r-2 border-[#b0aeab]
+          bg-[#141414]
           flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -184,8 +184,8 @@ function MobileNavbar() {
                   className={`
                     block px-4 py-3 text-base font-medium transition-colors rounded
                     ${isActive(link.href)
-                      ? 'text-white bg-[#b0aeab] bg-opacity-20'
-                      : 'text-gray-400 hover:text-white hover:bg-[#b0aeab] hover:bg-opacity-10'
+                      ? 'text-white bg-[#677075] bg-opacity-20'
+                      : 'text-gray-400 hover:text-white hover:bg-[#677075] hover:bg-opacity-10'
                     }
                   `}
                 >
@@ -197,7 +197,7 @@ function MobileNavbar() {
         </nav>
 
         {/* Rezervovat Button in Menu */}
-        <div className="p-4 border-t border-[#b0aeab]">
+        <div className="p-4 border-t border-[#677075]">
           <Link
             href={bookingUrl}
             target="_blank"
@@ -205,9 +205,9 @@ function MobileNavbar() {
             onClick={closeMenu}
             className="
               block w-full text-center px-6 py-3 text-base font-medium
-              bg-[#b0aeab] text-white
+              bg-[#677075] text-white
               hover:bg-gray-800 transition-colors duration-200
-              focus:outline-none focus:ring-2 focus:ring-[#b0aeab] rounded
+              focus:outline-none focus:ring-2 focus:ring-[#677075] rounded
             "
           >
             Rezervovat
@@ -227,7 +227,7 @@ function DesktopNavbar() {
   };
 
   return (
-    <nav className="hidden md:flex fixed left-0 top-0 h-full w-64 bg-black border-r-2 border-[#b0aeab] z-50 flex-col">
+    <nav className="hidden md:flex fixed left-0 top-0 h-full w-64 bg-[#141414] z-50 flex-col">
       {/* Logo */}
       <div className="p-6 pl-8">
         <Link 
@@ -251,9 +251,9 @@ function DesktopNavbar() {
           rel="noopener noreferrer"
           className="
             block w-full text-center px-6 py-3 text-base font-medium
-            bg-[#b0aeab] text-white
+            bg-[#677075] text-white
             hover:bg-gray-800 transition-colors duration-200
-            focus:outline-none focus:ring-2 focus:ring-[#b0aeab] focus:ring-offset-2 focus:ring-offset-black
+            focus:outline-none focus:ring-2 focus:ring-[#677075] focus:ring-offset-2 focus:ring-offset-black
           "
         >
           Rezervovat
@@ -270,8 +270,8 @@ function DesktopNavbar() {
                 className={`
                   flex items-center justify-center px-4 py-3 text-sm font-medium transition-colors text-center
                   ${isActive(link.href)
-                    ? 'text-white border-b-2 border-[#b0aeab]'
-                    : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#b0aeab]'
+                    ? 'text-white border-b-2 border-[#677075]'
+                    : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#677075]'
                   }
                 `}
               >

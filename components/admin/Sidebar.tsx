@@ -61,7 +61,7 @@ export default function Sidebar() {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="admin-menu-button fixed top-4 left-4 z-50 lg:hidden bg-black text-white p-2 border-2 border-[#b0aeab]"
+        className="admin-menu-button fixed top-4 left-4 z-50 lg:hidden bg-[#202020] text-white p-2 border-2 border-[#636362]"
         aria-label="Toggle menu"
       >
         <svg
@@ -92,7 +92,7 @@ export default function Sidebar() {
       <aside
         className={`
           admin-sidebar
-          fixed top-0 left-0 h-full w-64 bg-black border-r-2 border-[#b0aeab] z-40
+          fixed top-0 left-0 h-full w-64 bg-[#202020] border-r-2 border-[#636362] z-40
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
@@ -122,8 +122,8 @@ export default function Sidebar() {
                       flex items-center px-4 py-3 text-sm font-medium transition-colors
                       ${
                         isActive(item.href)
-                          ? 'text-white bg-[#b0aeab] bg-opacity-20 border-l-2 border-[#b0aeab]'
-                          : 'text-gray-400 hover:text-white hover:bg-[#b0aeab] hover:bg-opacity-10'
+                          ? 'text-white bg-[#636362] bg-opacity-20 border-l-2 border-[#636362]'
+                          : 'text-gray-400 hover:text-white hover:bg-[#636362] hover:bg-opacity-10'
                       }
                     `}
                   >
@@ -136,10 +136,10 @@ export default function Sidebar() {
           </nav>
 
           {/* Sign Out Button */}
-          <div className="p-4 border-t-2 border-[#b0aeab]">
+          <div className="p-4 border-t-2 border-[#636362]">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center justify-center px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-[#b0aeab] hover:bg-opacity-10 transition-colors"
+              className="w-full flex items-center justify-center px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-[#636362] hover:bg-opacity-10 transition-colors"
             >
               <span className="mr-3">🚪</span>
               Sign Out

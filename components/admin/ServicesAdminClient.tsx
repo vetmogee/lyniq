@@ -56,7 +56,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
   };
 
   return (
-    <div className="p-6 md:p-8 bg-black min-h-screen">
+    <div className="p-6 md:p-8 bg-[#202020] min-h-screen">
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-white">Services</h1>
@@ -73,7 +73,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
           {serviceGroups.map((group) => (
             <div
               key={group.id}
-              className="bg-black border-2 border-gray-800 p-6"
+              className="bg-[#202020] border-2 border-gray-800 p-6"
             >
               <div className="flex items-center justify-between mb-4">
                 <div>
@@ -107,11 +107,11 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                   {group.services.map((service) => (
                     <div
                       key={service.id}
-                      className="bg-black border-2 border-gray-700 p-4 hover:border-white transition-colors cursor-pointer"
+                      className="bg-[#202020] border-2 border-gray-700 p-4 hover:border-white transition-colors cursor-pointer"
                       onClick={() => handleEditService(service)}
                     >
                       <h3 className="text-lg font-bold text-white mb-2">{service.name}</h3>
-                      <p className="text-[#b0aeab] text-xl font-semibold mb-2">
+                      <p className="text-[#636362] text-xl font-semibold mb-2">
                         {service.price.toFixed(2)} Kč
                       </p>
                       {service.description && (
@@ -149,7 +149,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
             {ungroupedServices.map((service) => (
               <div
                 key={service.id}
-                className="bg-[#b0aeab] border-2 border-gray-800 p-4 hover:border-white transition-colors cursor-pointer"
+                className="bg-[#636362] border-2 border-gray-800 p-4 hover:border-white transition-colors cursor-pointer"
                 onClick={() => handleEditService(service)}
               >
                 <h3 className="text-lg font-bold text-white mb-2">{service.name}</h3>

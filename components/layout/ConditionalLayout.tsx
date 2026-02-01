@@ -19,10 +19,10 @@ export default function ConditionalLayout({
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow md:ml-64 mt-25 md:mt-0">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }

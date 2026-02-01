@@ -1,40 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    // In production, this would send to an API endpoint
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
-    <div className="bg-black">
+    <div className="bg-[#202020]">
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -46,7 +17,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
+          <div className="space-y-8">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Navštivte nás</CardTitle>
@@ -54,22 +25,47 @@ export default function ContactPage() {
               <CardContent className="space-y-4">
                 <div>
                   <p className="text-sm font-semibold text-white mb-1">Adresa</p>
-                  <p className="text-gray-400">123 Salon Street</p>
-                  <p className="text-gray-400">City, State 12345</p>
+                  <p className="text-gray-400">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Želenická+1627/25/405+02,+405+02+Děčín+2-Letná" target="_blank" rel="noopener noreferrer" className="underline">
+                      Želenická 1627/25/405 02
+                    </a>
+                  </p>
+                  <p className="text-gray-400">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Želenická+1627/25/405+02,+405+02+Děčín+2-Letná" target="_blank" rel="noopener noreferrer" className="underline">
+                      405 02 Děčín 2-Letná
+                    </a>
+                  </p>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-white mb-1">Telefon</p>
-                  <p className="text-gray-400">(555) 123-4567</p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-white mb-1">E-mail</p>
-                  <p className="text-gray-400">info@nailsalon.com</p>
-                </div>
+                
                 <div>
                   <p className="text-sm font-semibold text-white mb-1">Otevírací doba</p>
-                  <p className="text-gray-400">Monday - Friday: 9:00 AM - 7:00 PM</p>
-                  <p className="text-gray-400">Saturday: 10:00 AM - 6:00 PM</p>
                   <p className="text-gray-400">Sunday: Closed</p>
+                  <p className="text-gray-400">Monday: 9 am–7 pm</p>
+                  <p className="text-gray-400">Tuesday: 9 am–7 pm</p>
+                  <p className="text-gray-400">Wednesday: 9 am–7 pm</p>
+                  <p className="text-gray-400">Thursday: 9 am–7 pm</p>
+                  <p className="text-gray-400">Friday: 9 am–7 pm</p>
+                  <p className="text-gray-400">Saturday: 9 am–3 pm</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card variant="bordered">
+              <CardHeader>
+                <CardTitle>Kontaktujte nás</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Telefon</p>
+                  <p className="text-gray-400"><a href="tel:+420775995611" className="underline">+420 775 995 611</a></p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Instagram</p>
+                  <p className="text-gray-400"><a href="https://www.instagram.com/lyniqstudio/?hl=en" target="_blank" rel="noopener noreferrer" className="underline">@lyniqstudio</a></p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Facebook</p>
+                  <p className="text-gray-400"><a href="https://www.facebook.com/profile.php?id=61576728607438" target="_blank" rel="noopener noreferrer" className="underline">LYNIQ studio</a></p>
                 </div>
               </CardContent>
             </Card>
@@ -78,54 +74,19 @@ export default function ContactPage() {
           <div>
             <Card variant="bordered">
               <CardHeader>
-                <CardTitle>Odeslat zprávu</CardTitle>
+                <CardTitle>Mapa</CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input
-                    label="Jméno"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-                  <Input
-                    label="E-mail"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                  <Input
-                    label="Telefon"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">
-                      Zpráva
-                    </label>
-                    <textarea
-                      className="w-full px-4 py-3 border-2 border-[#b0aeab] bg-black text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#b0aeab] focus:ring-offset-2 transition-all duration-200"
-                      rows={5}
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    />
-                  </div>
-                  
-                  {submitStatus === 'success' && (
-                    <p className="text-sm text-green-400">Zpráva byla úspěšně odeslána!</p>
-                  )}
-                  {submitStatus === 'error' && (
-                    <p className="text-sm text-red-400">Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.</p>
-                  )}
-
-                  <Button type="submit" isLoading={isSubmitting} className="w-full">
-                    Odeslat zprávu
-                  </Button>
-                </form>
+                <iframe
+                  src="https://www.google.com/maps/place/?q=place_id:ChIJ3VqQGwCfCUcRpJZDaZ232KU&output=embed"
+                  width="100%"
+                  height="500"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-md"
+                />
               </CardContent>
             </Card>
           </div>

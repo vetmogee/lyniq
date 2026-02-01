@@ -2,21 +2,21 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Bodoni";
-  src: url("/fonts/BodoniFLF-Roman.ttf") format("truetype");
+  font-family: "Times";
+  src: url("/fonts/times.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --background: #000000;
+  --background: #202020;
   --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Bodoni", sans-serif;
+  --font-sans: "Times", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -27,7 +27,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Bodoni", sans-serif;
+  font-family: "Times", sans-serif;
   /* text-transform: uppercase; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,7 +43,7 @@ h6 {
 }
 
 p {
-  font-family: "Bodoni", sans-serif;
+  font-family: "Times", sans-serif;
 }
 
 /* Sharp, angular design - no rounded corners */

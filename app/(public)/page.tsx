@@ -22,7 +22,7 @@ export default async function HomePage() {
     // Continue rendering page even if reviews fail to load
   }
   return (
-    <div className="bg-[#b0aeab]">
+    <div className="bg-[#202020]">
       {/* Sticky Video Background */}
       <video
         autoPlay
@@ -34,10 +34,10 @@ export default async function HomePage() {
         <source src="/intro.mp4" type="video/mp4" />
       </video>
       {/* Overlay for better text readability and tint */}
-      <div className="fixed inset-0 bg-black opacity-30 z-0" />
+      <div className="fixed inset-0 bg-[#141414] opacity-30 z-0" />
       
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center py-20 md:py-32 z-10">
+      <section className="relative w-full flex items-center justify-center py-20 md:py-32 z-10">
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -52,10 +52,10 @@ export default async function HomePage() {
                 <Button size="lg" className="w-full sm:w-auto">Rezervovat</Button>
               </Link>
               <Link href="/services" className="flex">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">Zobrazit služby</Button>
+                <Button size="lg" className="w-full sm:w-auto">Zobrazit služby</Button>
               </Link>
               <Link href="/contact" className="flex">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">Kontaktujte nás</Button>
+                <Button size="lg" className="w-full sm:w-auto">Kontaktujte nás</Button>
               </Link>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default async function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="relative bg-[#b0aeab] py-16 z-10">
+      <section className="relative bg-[#202020] py-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card variant="bordered">
@@ -104,7 +104,7 @@ export default async function HomePage() {
 
       {/* Reviews Section */}
       {reviews.length > 0 && (
-        <section className="relative max-w mx-auto bg-black px-4 sm:px-6 lg:px-8 py-16">
+        <section className="relative max-w mx-auto bg-[#202020] px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-12 ">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Co říkají naši zákazníci

@@ -21,11 +21,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           className={`
             w-full px-4 py-3
-            border-2 border-[#b0aeab]
-            bg-black text-white
+            border-2 border-[#636362]
+            bg-[#141414] text-white
             placeholder-gray-500
-            focus:outline-none focus:ring-2 focus:ring-[#b0aeab] focus:ring-offset-2
-            disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-[#b0aeab]
+            focus:outline-none focus:ring-2 focus:ring-[#636362] focus:ring-offset-2
+            disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-[#636362]
             transition-all duration-200
             ${error ? 'border-red-600 focus:ring-red-600' : ''}
             ${className}

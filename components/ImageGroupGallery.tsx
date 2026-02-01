@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { getImageDataUrl } from '@/lib/image-utils';
-import Button from './ui/Button';
+import Link from 'next/link';
 
 interface Image {
   id: string;
@@ -20,25 +20,14 @@ interface ImageGroup {
   images: Image[];
 }
 
-interface GalleryProps {
-  imageGroups: ImageGroup[];
+interface ImageGroupGalleryProps {
+  imageGroup: ImageGroup;
 }
 
-export default function Gallery({ imageGroups }: GalleryProps) {
-  // Filter to only groups that have images
-  const groupsWithImages = imageGroups.filter(group => group.images.length > 0);
-  
-  // State to track selected gallery group
-  const [selectedGroupId, setSelectedGroupId] = useState<string | null>(
-    groupsWithImages.length > 0 ? groupsWithImages[0].id : null
-  );
-
+export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps) {
   // State for lightbox
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
-
-  const selectedGroup = groupsWithImages.find(group => group.id === selectedGroupId);
-  const currentImages = selectedGroup?.images || [];
 
   const openLightbox = (imageIndex: number) => {
     setLightboxImageIndex(imageIndex);
@@ -50,16 +39,16 @@ export default function Gallery({ imageGroups }: GalleryProps) {
   };
 
   const handleNextImage = useCallback(() => {
-    if (currentImages.length > 0) {
-      setLightboxImageIndex((prev) => (prev + 1) % currentImages.length);
+    if (imageGroup.images.length > 0) {
+      setLightboxImageIndex((prev) => (prev + 1) % imageGroup.images.length);
     }
-  }, [currentImages.length]);
+  }, [imageGroup.images.length]);
 
   const handlePreviousImage = useCallback(() => {
-    if (currentImages.length > 0) {
-      setLightboxImageIndex((prev) => (prev - 1 + currentImages.length) % currentImages.length);
+    if (imageGroup.images.length > 0) {
+      setLightboxImageIndex((prev) => (prev - 1 + imageGroup.images.length) % imageGroup.images.length);
     }
-  }, [currentImages.length]);
+  }, [imageGroup.images.length]);
 
   // Handle keyboard navigation in lightbox and body scroll lock
   useEffect(() => {
@@ -88,120 +77,87 @@ export default function Gallery({ imageGroups }: GalleryProps) {
     };
   }, [lightboxOpen, handleNextImage, handlePreviousImage]);
 
-  const currentLightboxImage = currentImages[lightboxImageIndex];
-
-  if (groupsWithImages.length === 0) {
-    return (
-      <div className="bg-[#202020]">
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              GALERIE
-            </h1>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Prohlédněte si naše portfolio úžasných designů nehtů a transformací.
-            </p>
-          </div>
-          <div className="text-center py-12">
-            <p className="text-gray-400">Zatím nejsou k dispozici žádné skupiny obrázků.</p>
-          </div>
-        </section>
-      </div>
-    );
-  }
+  const currentLightboxImage = imageGroup.images[lightboxImageIndex];
 
   return (
     <div className="bg-[#202020]">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            GALERIE
-          </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Prohlédněte si naše portfolio úžasných designů nehtů a transformací.
-          </p>
-        </div>
-
-        {/* Gallery Group Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {groupsWithImages.map((group) => (
-            <Button
-              key={group.id}
-              variant={selectedGroupId === group.id ? 'primary' : 'outline'}
-              onClick={() => setSelectedGroupId(group.id)}
-              className="min-w-[120px]"
+        {/* Header with back button */}
+        <div className="mb-8">
+          <Link
+            href="/gallery"
+            className="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-4"
+          >
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              {group.name}
-            </Button>
-          ))}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Zpět do galerie
+          </Link>
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              {imageGroup.name}
+            </h1>
+            {imageGroup.description && (
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                {imageGroup.description}
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* Selected Group Images */}
-        {selectedGroup && (
-          <div>
-            {selectedGroup.description && (
-              <div className="text-center mb-8">
-                <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                  {selectedGroup.description}
-                </p>
-              </div>
-            )}
-
-            {selectedGroup.images.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-6">
-                {selectedGroup.images.map((image, index) => {
-                  const imageUrl = getImageDataUrl(image.data);
-                  // Debug logging
-                  if (typeof window !== 'undefined') {
-                    console.log('Image data:', {
-                      id: image.id,
-                      dataType: typeof image.data,
-                      dataLength: typeof image.data === 'string' ? image.data.length : 'N/A',
-                      imageUrl: imageUrl ? 'generated' : 'null',
-                      mimeType: image.mimeType
-                    });
-                  }
-                  return (
-                    <div
-                      key={image.id}
-                      className="border-2 border-[#677075] bg-[#677075] aspect-square relative group overflow-hidden cursor-pointer"
-                      onClick={() => openLightbox(index)}
-                    >
-                      {imageUrl ? (
-                        <>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={imageUrl}
-                            alt={image.title || selectedGroup.name || 'Gallery image'}
-                            className="w-full h-full object-cover"
-                          />
-                          {(image.title || image.description) && (
-                            <div className="absolute inset-0 bg-[#141414] opacity-10 group-hover:opacity-70 transition-all flex flex-col justify-end p-4">
-                              <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                                {image.title && (
-                                  <p className="text-lg font-semibold text-white mb-1">{image.title}</p>
-                                )}
-                                {image.description && (
-                                  <p className="text-sm text-gray-300 line-clamp-2">{image.description}</p>
-                                )}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <p className="text-gray-500">Obrázek není k dispozici</p>
+        {imageGroup.images.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {imageGroup.images.map((image, index) => {
+              const imageUrl = getImageDataUrl(image.data);
+              return (
+                <div
+                  key={image.id}
+                  className="border-2 border-[#677075] aspect-square relative group overflow-hidden cursor-pointer"
+                  onClick={() => openLightbox(index)}
+                >
+                  {imageUrl ? (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imageUrl}
+                        alt={image.title || imageGroup.name || 'Gallery image'}
+                        className="w-full h-full object-cover"
+                      />
+                      {(image.title || image.description) && (
+                        <div className="absolute inset-0 transition-all flex flex-col justify-end p-4">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                            {image.title && (
+                              <p className="text-lg font-semibold text-white mb-1">{image.title}</p>
+                            )}
+                            {image.description && (
+                              <p className="text-sm text-gray-300 line-clamp-2">{image.description}</p>
+                            )}
+                          </div>
                         </div>
                       )}
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <p className="text-gray-500">Obrázek není k dispozici</p>
                     </div>
-                  );
-                })}
-              </div>
-            )}
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </section>
@@ -235,7 +191,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
             </button>
 
             {/* Navigation buttons */}
-            {currentImages.length > 1 && (
+            {imageGroup.images.length > 1 && (
               <>
                 <button
                   onClick={(e) => {
@@ -291,7 +247,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                 return lightboxImageUrl ? (
                   <img
                     src={lightboxImageUrl}
-                    alt={currentLightboxImage.title || selectedGroup?.name || 'Gallery image'}
+                    alt={currentLightboxImage.title || imageGroup.name || 'Gallery image'}
                     className="max-w-full max-h-full object-contain"
                     onClick={(e) => e.stopPropagation()}
                   />
@@ -314,9 +270,9 @@ export default function Gallery({ imageGroups }: GalleryProps) {
             )}
 
             {/* Image counter */}
-            {currentImages.length > 1 && (
+            {imageGroup.images.length > 1 && (
               <div className="mt-2 text-center text-white text-sm">
-                {lightboxImageIndex + 1} / {currentImages.length}
+                {lightboxImageIndex + 1} / {imageGroup.images.length}
               </div>
             )}
           </div>

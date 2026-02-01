@@ -18,7 +18,7 @@ function Logo({ width, height, className }: { width: number; height: number; cla
 
 export default function Footer() {
   return (
-    <footer className="relative border-t-2 border-[#b0aeab] bg-black z-10 md:ml-64">
+    <footer className="relative bg-[#202020] z-10 md:ml-64">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -92,7 +92,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t-2 border-[#b0aeab]">
+        <div className="mt-8 pt-8 border-t-2 border-[#636362]">
           <p className="text-sm text-gray-400 text-center">
             © {new Date().getFullYear()} Lyniq Beauty Studio. Všechna práva vyhrazena.
           </p>

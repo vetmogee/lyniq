@@ -40,7 +40,7 @@ export default function EmployeesAdminClient({ employees }: EmployeesAdminClient
   };
 
   return (
-    <div className="p-6 md:p-8 bg-black min-h-screen">
+    <div className="p-6 md:p-8 bg-[#202020] min-h-screen">
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-white">Employees</h1>
@@ -64,7 +64,7 @@ export default function EmployeesAdminClient({ employees }: EmployeesAdminClient
             return (
               <div
                 key={employee.id}
-                className="bg-[#b0aeab] border-2 border-gray-800 w-100 p-4 hover:border-white transition-colors cursor-pointer"
+                className="bg-[#636362] border-2 border-gray-800 w-100 p-4 hover:border-white transition-colors cursor-pointer"
                 onClick={() => handleEdit(employee)}
               >
                 {photoUrl && (
