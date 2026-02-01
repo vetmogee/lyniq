@@ -1,8 +1,36 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
 export default function ContactPage() {
+  const [apiKey, setApiKey] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchApiKey = async () => {
+      try {
+        const response = await fetch('/api/google-maps-key');
+        const data = await response.json();
+        
+        if (response.ok && data.apiKey) {
+          setApiKey(data.apiKey);
+        } else {
+          console.error('Failed to fetch API key:', data.error);
+        }
+      } catch (error) {
+        console.error('Error fetching API key:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchApiKey();
+  }, []);
+
+  const mapSrc = apiKey 
+    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=place_id:ChIJ3VqQGwCfCUcRpJZDaZ232KU`
+    : '';
 
   return (
     <div className="bg-[#202020]">
@@ -77,16 +105,26 @@ export default function ContactPage() {
                 <CardTitle>Mapa</CardTitle>
               </CardHeader>
               <CardContent>
-                <iframe
-                  src="https://www.google.com/maps/place/?q=place_id:ChIJ3VqQGwCfCUcRpJZDaZ232KU&output=embed"
-                  width="100%"
-                  height="500"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-md"
-                />
+                {isLoading ? (
+                  <div className="flex items-center justify-center h-[500px] text-gray-400">
+                    Načítání mapy...
+                  </div>
+                ) : apiKey ? (
+                  <iframe
+                    src={mapSrc}
+                    width="100%"
+                    height="500"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-md"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-[500px] text-gray-400">
+                    Nepodařilo se načíst mapu
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

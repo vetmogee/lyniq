@@ -13,9 +13,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#636362] disabled:opacity-50 disabled:cursor-not-allowed';
     
     const variants = {
-      primary: 'bg-[#636362] text-white hover:bg-[#3a3f41] focus:ring-[#88949b]',
-      secondary: 'bg-gray-800 text-white hover:bg-[#3a3f41] focus:ring-[#88949b]',
-      outline: 'border-2 border-[#636362] bg-transparent text-white hover:bg-[#636362] hover:text-white focus:ring-[#636362]',
+      primary: 'bg-[#636362] text-white hover:bg-[#3a3f41]',
+      secondary: 'bg-gray-800 text-white hover:bg-[#3a3f41]',
+      outline: 'border-2 border-[#636362] bg-transparent text-white hover:bg-[#636362] hover:text-white',
       ghost: 'bg-transparent text-white hover:bg-[#636362] focus:ring-[#636362]',
     };
 

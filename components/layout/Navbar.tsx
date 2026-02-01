@@ -129,9 +129,8 @@ function MobileNavbar() {
             rel="noopener noreferrer"
             className="
               px-4 py-2 text-sm font-medium
-              bg-[#677075] text-white
+              bg-[#3a3f41] text-white
               hover:bg-gray-800 transition-colors duration-200
-              focus:outline-none focus:ring-2 focus:ring-[#677075] rounded
             "
           >
             Rezervovat
