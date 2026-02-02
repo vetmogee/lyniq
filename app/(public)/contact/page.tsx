@@ -29,7 +29,7 @@ export default function ContactPage() {
   }, []);
 
   const mapSrc = apiKey 
-    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=place_id:ChIJ3VqQGwCfCUcRpJZDaZ232KU`
+    ? `https://www.google.com/maps/embed/v1/place?key=AIzaSyAV_0ohWRAt0ILMsF1hLgkk-xqFICQnla0&q=place_id:ChIJ3VqQGwCfCUcRpJZDaZ232KU`
     : '';
 
   return (
@@ -51,29 +51,33 @@ export default function ContactPage() {
                 <CardTitle>Navštivte nás</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <p className="text-sm font-semibold text-white mb-1">Adresa</p>
+                <div className="pb-3">
+                  <p className="text-xl font-semibold text-white mb-1">Adresa</p>
                   <p className="text-gray-400">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Želenická+1627/25/405+02,+405+02+Děčín+2-Letná" target="_blank" rel="noopener noreferrer" className="underline">
+                    <a href="https://maps.app.goo.gl/LjDxHHrtcxPfdSgX7" target="_blank" rel="noopener noreferrer" className="underline">
                       Želenická 1627/25/405 02
                     </a>
                   </p>
                   <p className="text-gray-400">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Želenická+1627/25/405+02,+405+02+Děčín+2-Letná" target="_blank" rel="noopener noreferrer" className="underline">
+                    <a href="https://maps.app.goo.gl/LjDxHHrtcxPfdSgX7" target="_blank" rel="noopener noreferrer" className="underline">
                       405 02 Děčín 2-Letná
                     </a>
                   </p>
                 </div>
                 
-                <div>
-                  <p className="text-sm font-semibold text-white mb-1">Otevírací doba</p>
-                  <p className="text-gray-400">Sunday: Closed</p>
-                  <p className="text-gray-400">Monday: 9 am–7 pm</p>
-                  <p className="text-gray-400">Tuesday: 9 am–7 pm</p>
-                  <p className="text-gray-400">Wednesday: 9 am–7 pm</p>
-                  <p className="text-gray-400">Thursday: 9 am–7 pm</p>
-                  <p className="text-gray-400">Friday: 9 am–7 pm</p>
-                  <p className="text-gray-400">Saturday: 9 am–3 pm</p>
+                <div className="grid grid-cols-2 gap-4 text-md">
+                  <div>
+                  <p className="text-xl font-semibold text-white mb-1">Otevírací doba</p>
+                  <p className="text-gray-400">Pondělí - Pátek</p>
+                  <p className="text-gray-400">Sobota</p>
+                  <p className="text-gray-400">Neděle</p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-semibold text-white mb-1 invisible">Otevírací doba</p>
+                    <p className="text-gray-400">09:00 - 19:00</p>
+                    <p className="text-gray-400">09:00 - 15:00</p>
+                    <p className="text-gray-400">Zavřeno</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -84,16 +88,16 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Telefon</p>
-                  <p className="text-gray-400"><a href="tel:+420775995611" className="underline">+420 775 995 611</a></p>
+                  <p className="text-xl font-semibold text-white mb-1">Telefon</p>
+                  <p className="text-gray-400 text-md"><a href="tel:+420775995611" className="underline">+420 775 995 611</a></p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Instagram</p>
-                  <p className="text-gray-400"><a href="https://www.instagram.com/lyniqstudio/?hl=en" target="_blank" rel="noopener noreferrer" className="underline">@lyniqstudio</a></p>
+                  <p className="text-xl font-semibold text-white mb-1">Instagram</p>
+                  <p className="text-gray-400 text-md"><a href="https://www.instagram.com/lyniqstudio/?hl=en" target="_blank" rel="noopener noreferrer" className="underline">@lyniqstudio</a></p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Facebook</p>
-                  <p className="text-gray-400"><a href="https://www.facebook.com/profile.php?id=61576728607438" target="_blank" rel="noopener noreferrer" className="underline">LYNIQ studio</a></p>
+                  <p className="text-xl font-semibold text-white mb-1">Facebook</p>
+                  <p className="text-gray-400 text-md"><a href="https://www.facebook.com/profile.php?id=61576728607438" target="_blank" rel="noopener noreferrer" className="underline">LYNIQ studio</a></p>
                 </div>
               </CardContent>
             </Card>

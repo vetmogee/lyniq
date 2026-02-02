@@ -42,7 +42,7 @@ const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingEleme
   ({ className = '', ...props }, ref) => (
     <h3
       ref={ref}
-      className={`text-xl font-semibold text-white ${className}`}
+      className={`text-2xl font-semibold text-white ${className}`}
       {...props}
     />
   )

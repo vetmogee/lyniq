@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, Facebook, MapPin } from 'lucide-react';
+import { Instagram, Facebook, MapPin, Phone } from 'lucide-react';
 
 function Logo({ width, height, className }: { width: number; height: number; className?: string }) {
   return (
@@ -65,6 +65,15 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 opacity-0" />
                 <span>405 02 Děčín 2-Letná</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <Link 
+                  href="tel:+420775995611"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  +420 775 995 611
+                </Link>
               </li>
               <li className="flex items-center gap-2">
                 <Instagram className="w-4 h-4" />

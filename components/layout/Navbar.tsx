@@ -130,7 +130,7 @@ function MobileNavbar() {
             className="
               px-4 py-2 text-sm font-medium
               bg-[#3a3f41] text-white
-              hover:bg-gray-800 transition-colors duration-200
+              hover:bg-[#636362] transition-colors duration-200
             "
           >
             Rezervovat
@@ -141,7 +141,7 @@ function MobileNavbar() {
       {/* Overlay */}
       {isMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 z-40 bg-[#141414] bg-opacity-60"
+          className="md:hidden fixed inset-0 z-40 bg-[#636362] bg-opacity-60"
           onClick={closeMenu}
         />
       )}
@@ -205,8 +205,7 @@ function MobileNavbar() {
             className="
               block w-full text-center px-6 py-3 text-base font-medium
               bg-[#677075] text-white
-              hover:bg-gray-800 transition-colors duration-200
-              focus:outline-none focus:ring-2 focus:ring-[#677075] rounded
+              hover:bg-[#3a3f41] transition-colors duration-200 rounded
             "
           >
             Rezervovat
@@ -251,8 +250,8 @@ function DesktopNavbar() {
           className="
             block w-full text-center px-6 py-3 text-base font-medium
             bg-[#677075] text-white
-            hover:bg-gray-800 transition-colors duration-200
-            focus:outline-none focus:ring-2 focus:ring-[#677075] focus:ring-offset-2 focus:ring-offset-black
+            hover:bg-[#3a3f41] transition-colors duration-200
+            
           "
         >
           Rezervovat
@@ -267,7 +266,7 @@ function DesktopNavbar() {
               <Link
                 href={link.href}
                 className={`
-                  flex items-center justify-center px-4 py-3 text-sm font-medium transition-colors text-center
+                  flex items-center justify-center px-4 py-3 text-md font-medium transition-colors text-center
                   ${isActive(link.href)
                     ? 'text-white border-b-2 border-[#677075]'
                     : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#677075]'

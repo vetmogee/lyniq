@@ -71,7 +71,7 @@ export default async function HomePage() {
                 <CardTitle>Odborní technici</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-400">
+                <p className="text-gray-400 text-xl">
                   Náš tým se skládá z certifikovaných profesionálů s mnohaletými zkušenostmi v nehtovém umění a péči.
                 </p>
               </CardContent>
@@ -82,18 +82,18 @@ export default async function HomePage() {
                 <CardTitle>Prémiové produkty</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-400">
+                <p className="text-gray-400 text-xl">
                   Používáme pouze nejkvalitnější produkty a nástroje, abychom zajistili trvalé výsledky.
                 </p>
               </CardContent>
             </Card>
 
             <Card variant="bordered">
-              <CardHeader className="text-center">
+              <CardHeader className="text-center ">
                 <CardTitle>Moderní techniky</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-400">
+                <p className="text-gray-400 text-xl">
                   Zůstaňte vpředu s nejnovějšími trendy a technikami v designu a péči o nehty.
                 </p>
               </CardContent>
