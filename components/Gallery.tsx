@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getImageDataUrl } from '@/lib/image-utils';
 import Button from './ui/Button';
+import Image from 'next/image';
 
 interface Image {
   id: string;
@@ -94,8 +95,17 @@ export default function Gallery({ imageGroups }: GalleryProps) {
     return (
       <div className="bg-[#202020]">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-12 relative">
+            <Image
+              src="/lyniq.svg"
+              alt=""
+              width={150}
+              height={150}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 opacity-40 pointer-events-none"
+              style={{ transform: 'translate(calc(-50% + 6rem), calc(-50% - 3rem))' }}
+              aria-hidden="true"
+            />
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
               GALERIE
             </h1>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -113,8 +123,17 @@ export default function Gallery({ imageGroups }: GalleryProps) {
   return (
     <div className="bg-[#202020]">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-12 relative">
+          <Image
+            src="/lyniq.svg"
+            alt=""
+            width={190}
+            height={190}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 opacity-40 pointer-events-none"
+            style={{ transform: 'translate(calc(-50% + 6rem), calc(-50% - 3rem))' }}
+            aria-hidden="true"
+          />
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
             GALERIE
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -127,7 +146,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
           {groupsWithImages.map((group) => (
             <Button
               key={group.id}
-              variant={selectedGroupId === group.id ? 'primary' : 'outline'}
+              variant={selectedGroupId === group.id ? 'outline' : 'primary'}
               onClick={() => setSelectedGroupId(group.id)}
               className="min-w-[120px]"
             >

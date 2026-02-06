@@ -68,7 +68,7 @@ export default function EmployeesAdminClient({ employees }: EmployeesAdminClient
                 onClick={() => handleEdit(employee)}
               >
                 {photoUrl && (
-                  <div className="w-full h-90 bg-gray-800 mb-3 overflow-hidden">
+                  <div className="w-full aspect-square bg-gray-800 mb-3 overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={photoUrl}

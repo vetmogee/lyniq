@@ -258,7 +258,7 @@ export default function EditEmployeeModal({ isOpen, onClose, employee }: EditEmp
           
           {(photoPreview || currentPhotoUrl) ? (
             <div className="mb-4">
-              <div className="relative w-full h-48 bg-[#636362] border-2 border-gray-800 mb-2">
+              <div className="relative w-full aspect-square bg-[#636362] border-2 border-gray-800 mb-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photoPreview || currentPhotoUrl || ''}

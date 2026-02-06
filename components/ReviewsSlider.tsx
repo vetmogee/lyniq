@@ -61,7 +61,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
     return () => window.removeEventListener('resize', updateViewport);
   }, []);
 
-  const reviewsPerView = isMobile ? 1 : 2;
+  const reviewsPerView = isMobile ? 1 : 8; // 1 on mobile, 8 (2x4 grid) on desktop
   const gap = 24; // 1.5rem = 24px
 
   // Calculate review width for mobile (90% of viewport width)
@@ -301,23 +301,27 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
     }
   }, [containerWidth]);
 
-  // Update scroll position visually with smooth transitions
+  // Update scroll position visually with smooth transitions (mobile only)
   useEffect(() => {
-    if (sliderRef.current) {
+    if (sliderRef.current && isMobile) {
       sliderRef.current.style.transform = `translateX(-${scrollPosition}px)`;
       // Add smooth transition when not dragging
       if (!isDragging) {
         sliderRef.current.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
       }
     }
-  }, [scrollPosition, isDragging]);
+  }, [scrollPosition, isDragging, isMobile]);
 
   if (reviews.length === 0) {
     return null;
   }
 
+  // On desktop, show only first 8 reviews (no slider)
+  // On mobile, show all reviews with slider
+  const displayedReviews = isMobile ? reviews : reviews.slice(0, 8);
+
   // Calculate total pages for indicators
-  const totalPages = Math.ceil(reviews.length / reviewsPerView);
+  const totalPages = Math.ceil(displayedReviews.length / reviewsPerView);
   
   // Calculate which page is currently visible based on scroll position
   // On mobile, use review width + gap, on desktop use container width
@@ -329,116 +333,46 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
     : 0;
   
   // Show page indicators on mobile at the bottom
-  const showMobileIndicators = isMobile && reviews.length > 1;
+  const showMobileIndicators = isMobile && displayedReviews.length > 1;
 
   return (
     <div className="relative">
-      {/* Navigation Buttons - Hidden on mobile for cleaner swipe experience */}
-      <div className={`flex items-center justify-between mb-6 ${isMobile ? 'hidden' : ''}`}>
-        <button
-          onClick={goToPrevious}
-          disabled={!canScrollLeft}
-          className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#636362] text-white hover:bg-[#636362] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-          aria-label="Previous reviews"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-
-        <div className="flex gap-2">
-          {Array.from({ length: totalPages }).map((_, idx) => {
-            const isActive = currentPage === idx;
-            
-            return (
-              <button
-                key={idx}
-                onClick={() => {
-                  const width = containerWidth || containerRef.current?.offsetWidth || 800;
-                  scrollTo(width * idx);
-                }}
-                className={`h-2 rounded-full transition-all duration-200 ${
-                  isActive
-                    ? 'bg-white w-8'
-                    : 'bg-gray-600 hover:bg-gray-500 w-2'
-                }`}
-                aria-label={`Go to page ${idx + 1}`}
-              />
-            );
-          })}
-        </div>
-
-        <button
-          onClick={goToNext}
-          disabled={!canScrollRight}
-          className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#636362] text-white hover:bg-[#636362] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-          aria-label="Next reviews"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
-
       {/* Reviews Container */}
       <div 
         ref={containerRef}
-        className="overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y md:touch-pan-x"
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        style={{
+        className={isMobile ? "overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y" : ""}
+        onMouseDown={isMobile ? handleMouseDown : undefined}
+        onTouchStart={isMobile ? handleTouchStart : undefined}
+        onTouchMove={isMobile ? handleTouchMove : undefined}
+        onTouchEnd={isMobile ? handleTouchEnd : undefined}
+        style={isMobile ? {
           touchAction: 'pan-y pinch-zoom', // Allow vertical scrolling but handle horizontal
           WebkitOverflowScrolling: 'touch', // Smooth scrolling on iOS
-        }}
+        } : undefined}
       >
         <div
           ref={sliderRef}
-          className="flex gap-6"
-          style={{
+          className={isMobile ? "flex gap-6" : "grid grid-cols-4 grid-rows-2 gap-6"}
+          style={isMobile ? {
             transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             willChange: 'transform',
             touchAction: 'none', // Prevent default touch behavior on slider
-            paddingLeft: isMobile && mobileCenterPadding > 0 ? `${mobileCenterPadding}px` : '0',
-            paddingRight: isMobile && mobileCenterPadding > 0 ? `${mobileCenterPadding}px` : '0',
-          }}
+            paddingRight: mobileCenterPadding > 0 ? `${mobileCenterPadding}px` : '0',
+          } : undefined}
         >
-          {reviews.map((review) => (
+          {displayedReviews.map((review) => (
             <div
               key={review.id}
-              className="flex-shrink-0 md:w-[calc((100%-1.5rem)/2)]"
+              className={isMobile ? "flex-shrink-0" : ""}
               style={{
-                minWidth: isMobile && mobileReviewWidth > 0 ? `${mobileReviewWidth}px` : 'calc((100% - 1.5rem) / 2)',
-                maxWidth: isMobile && mobileReviewWidth > 0 ? `${mobileReviewWidth}px` : 'none',
-                width: isMobile && mobileReviewWidth > 0 ? `${mobileReviewWidth}px` : 'calc((100% - 1.5rem) / 2)',
+                minWidth: isMobile && mobileReviewWidth > 0 ? `${mobileReviewWidth}px` : undefined,
+                maxWidth: isMobile && mobileReviewWidth > 0 ? `${mobileReviewWidth}px` : undefined,
+                width: isMobile && mobileReviewWidth > 0 ? `${mobileReviewWidth}px` : undefined,
               }}
             >
               <Card variant="bordered">
                 <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start justify-between mb-2 ">
                     <CardTitle className="text-lg">{review.authorName}</CardTitle>
                     <span className="text-sm text-gray-500">{review.relativeTime}</span>
                   </div>
@@ -466,7 +400,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
       {/* Mobile Page Indicators */}
       {showMobileIndicators && (
         <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: reviews.length }).map((_, idx) => {
+          {Array.from({ length: displayedReviews.length }).map((_, idx) => {
             const isActive = Math.round(scrollPosition / pageWidth) === idx;
             return (
               <div

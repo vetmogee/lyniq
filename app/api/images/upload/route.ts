@@ -157,6 +157,12 @@ export async function POST(request: NextRequest) {
             { status: 404 }
           );
         }
+
+        // Detach any existing images from this employee before linking the new one
+        await prisma.image.updateMany({
+          where: { employeeId: employeeId },
+          data: { employeeId: null },
+        });
       } catch (dbError) {
         console.error('Database error while checking employee:', dbError);
         const errorInfo = handlePrismaError(dbError);

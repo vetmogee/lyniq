@@ -136,7 +136,7 @@ async function extractPlaceId(shareUrl: string): Promise<string> {
  * @param placeId - Google Place ID
  * @returns Promise<number> - Number of reviews cached
  */
-export async function fetchAndCacheGoogleReviews(placeId: string): Promise<number> {
+export async function fetchAndCacheGoogleReviews(placeId: string, forceRefresh: boolean = false): Promise<number> {
   // Check database first before making API call
   const latestCache = await prisma.googleReviewCache.findFirst({
     where: { placeId },
@@ -149,8 +149,8 @@ export async function fetchAndCacheGoogleReviews(placeId: string): Promise<numbe
     ? now.getTime() - latestCache.fetchedAt.getTime()
     : CACHE_DURATION_MS + 1; // Force refresh if no cache exists
 
-  // If cache is fresh (< 24 hours), skip API call
-  if (cacheAge < CACHE_DURATION_MS) {
+  // If cache is fresh and not forcing refresh, skip API call
+  if (!forceRefresh && cacheAge < CACHE_DURATION_MS) {
     console.log(`Cache is fresh (age: ${Math.round(cacheAge / (60 * 60 * 1000))} hours). Skipping API call.`);
     const cachedReviews = await prisma.googleReviewCache.findMany({
       where: { placeId },
@@ -295,6 +295,31 @@ export async function fetchAndCacheGoogleReviews(placeId: string): Promise<numbe
     }
 
     console.log(`Successfully cached ${cachedCount} reviews for place ${placeId}`);
+    
+    // Store place info if available
+    if (data.place_info) {
+      await prisma.googlePlaceInfo.upsert({
+        where: { placeId },
+        create: {
+          placeId,
+          title: data.place_info.title || null,
+          address: data.place_info.address || null,
+          rating: data.place_info.rating || null,
+          reviewCount: data.place_info.reviews || null,
+          fetchedAt: now,
+          updatedAt: now,
+        },
+        update: {
+          title: data.place_info.title || null,
+          address: data.place_info.address || null,
+          rating: data.place_info.rating || null,
+          reviewCount: data.place_info.reviews || null,
+          updatedAt: now,
+        },
+      });
+      console.log(`Updated place info for ${placeId}: rating ${data.place_info.rating}, reviews ${data.place_info.reviews}`);
+    }
+    
     return cachedCount;
   } catch (error) {
     console.error('Error fetching and caching Google reviews:', error);
@@ -341,19 +366,25 @@ export async function getCachedGoogleReviews(placeId?: string): Promise<Array<{
       select: { fetchedAt: true },
     });
 
+    // Also check if place info exists
+    const placeInfoExists = await prisma.googlePlaceInfo.findUnique({
+      where: { placeId: resolvedPlaceId },
+      select: { id: true },
+    });
+
     const now = new Date();
     const cacheAge = latestCache 
       ? now.getTime() - latestCache.fetchedAt.getTime()
       : CACHE_DURATION_MS + 1; // Force refresh if no cache exists
 
-    const needsRefresh = cacheAge >= CACHE_DURATION_MS;
+    const needsRefresh = cacheAge >= CACHE_DURATION_MS || !placeInfoExists;
 
     if (needsRefresh) {
-      console.log(`Cache is ${Math.round(cacheAge / (60 * 60 * 1000))} hours old. Refreshing...`);
+      console.log(`Cache is ${Math.round(cacheAge / (60 * 60 * 1000))} hours old${!placeInfoExists ? ' or place info missing' : ''}. Refreshing...`);
       
       try {
         // Attempt to refresh cache
-        await fetchAndCacheGoogleReviews(resolvedPlaceId);
+        await fetchAndCacheGoogleReviews(resolvedPlaceId, !placeInfoExists);
         console.log('Cache refreshed successfully');
       } catch (error) {
         console.error('Failed to refresh cache:', error);
@@ -381,6 +412,34 @@ export async function getCachedGoogleReviews(placeId?: string): Promise<Array<{
   } catch (error) {
     console.error('Error getting cached Google reviews:', error);
     throw error;
+  }
+}
+
+/**
+ * Gets cached Google Place info (rating and review count)
+ * 
+ * @param placeId - Optional place ID. If not provided, will resolve from configured URL
+ * @returns Promise<{rating: number | null, reviewCount: number | null} | null>
+ */
+export async function getCachedGooglePlaceInfo(placeId?: string): Promise<{rating: number | null, reviewCount: number | null} | null> {
+  try {
+    const resolvedPlaceId = placeId || await getGooglePlaceId();
+    
+    const placeInfo = await prisma.googlePlaceInfo.findUnique({
+      where: { placeId: resolvedPlaceId },
+      select: {
+        rating: true,
+        reviewCount: true,
+      },
+    });
+
+    return placeInfo ? {
+      rating: placeInfo.rating,
+      reviewCount: placeInfo.reviewCount,
+    } : null;
+  } catch (error) {
+    console.error('Error getting cached Google place info:', error);
+    return null;
   }
 }
 

@@ -98,6 +98,19 @@ model GoogleReviewCache {
   @@map("google_review_cache")
 }
 
+model GooglePlaceInfo {
+  id           String   @id @default(uuid())
+  placeId      String   @unique
+  title        String?
+  address      String?
+  rating       Float?
+  reviewCount  Int?
+  fetchedAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("google_place_info")
+}
+
 model ImageGroup {
   id          String   @id @default(uuid())
   name        String
