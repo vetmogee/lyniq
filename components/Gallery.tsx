@@ -38,6 +38,36 @@ export default function Gallery({ imageGroups }: GalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
 
+  // State for animations - separate states for initial elements and changing content
+  const [initialMounted, setInitialMounted] = useState(false);
+  const [contentMounted, setContentMounted] = useState(false);
+  const [triggerAnimation, setTriggerAnimation] = useState(0);
+
+  // Trigger initial animation on component mount (for header and buttons)
+  useEffect(() => {
+    setInitialMounted(true);
+    // Also trigger content animation on initial mount
+    setTriggerAnimation(prev => prev + 1);
+  }, []);
+
+  // Trigger content animation when selected group changes
+  useEffect(() => {
+    setTriggerAnimation(prev => prev + 1);
+  }, [selectedGroupId]);
+
+  // Handle content animation whenever trigger changes
+  useEffect(() => {
+    if (triggerAnimation === 0) return; // Skip initial render
+    
+    // Reset animation
+    setContentMounted(false);
+    // Delay to ensure animation resets before triggering again
+    const timer = setTimeout(() => {
+      setContentMounted(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [triggerAnimation]);
+
   const selectedGroup = groupsWithImages.find(group => group.id === selectedGroupId);
   const currentImages = selectedGroup?.images || [];
 
@@ -95,16 +125,14 @@ export default function Gallery({ imageGroups }: GalleryProps) {
     return (
       <div className="bg-[#202020]">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-          <div className="text-center mb-12 relative">
-            <Image
-              src="/lyniq.svg"
-              alt=""
-              width={150}
-              height={150}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 opacity-40 pointer-events-none"
-              style={{ transform: 'translate(calc(-50% + 6rem), calc(-50% - 3rem))' }}
-              aria-hidden="true"
-            />
+          <div 
+            className="text-center mb-12 relative"
+            style={{
+              opacity: initialMounted ? 1 : 0,
+              transform: initialMounted ? 'translateY(0)' : 'translateY(-20px)',
+              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+            }}
+          >
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
               GALERIE
             </h1>
@@ -123,17 +151,15 @@ export default function Gallery({ imageGroups }: GalleryProps) {
   return (
     <div className="bg-[#202020]">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="text-center mb-12 relative">
-          <Image
-            src="/lyniq.svg"
-            alt=""
-            width={190}
-            height={190}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 opacity-40 pointer-events-none"
-            style={{ transform: 'translate(calc(-50% + 6rem), calc(-50% - 3rem))' }}
-            aria-hidden="true"
-          />
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
+        <div 
+          className="text-center mb-12 relative"
+          style={{
+            opacity: initialMounted ? 1 : 0,
+            transform: initialMounted ? 'translateY(0)' : 'translateY(-20px)',
+            transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+          }}
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             GALERIE
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -143,12 +169,17 @@ export default function Gallery({ imageGroups }: GalleryProps) {
 
         {/* Gallery Group Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {groupsWithImages.map((group) => (
+          {groupsWithImages.map((group, index) => (
             <Button
               key={group.id}
               variant={selectedGroupId === group.id ? 'outline' : 'primary'}
               onClick={() => setSelectedGroupId(group.id)}
               className="min-w-[120px]"
+              style={{
+                opacity: initialMounted ? 1 : 0,
+                transform: initialMounted ? 'translateY(0)' : 'translateY(-20px)',
+                transition: `opacity 0.6s ease-out ${(index + 1) * 0.1}s, transform 0.6s ease-out ${(index + 1) * 0.1}s`
+              }}
             >
               {group.name}
             </Button>
@@ -157,39 +188,66 @@ export default function Gallery({ imageGroups }: GalleryProps) {
 
         {/* Selected Group Images */}
         {selectedGroup && (
-          <div>
-            {selectedGroup.description && (
-              <div className="text-center mb-8">
-                <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                  {selectedGroup.description}
-                </p>
-              </div>
-            )}
+          <div 
+            style={{
+              maxHeight: contentMounted ? '10000px' : '0',
+              opacity: contentMounted ? 1 : 0,
+              overflow: 'hidden',
+              transition: 'max-height 0.8s ease-out, opacity 0.6s ease-out'
+            }}
+          >
+            <div
+              style={{
+                transform: contentMounted ? 'translateY(0)' : 'translateY(-40px)',
+                transition: 'transform 0.7s ease-out'
+              }}
+            >
+              {selectedGroup.description && (
+                <div 
+                  className="text-center mb-8"
+                  style={{
+                    opacity: contentMounted ? 1 : 0,
+                    transform: contentMounted ? 'translateY(0)' : 'translateY(-30px)',
+                    transition: 'opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s'
+                  }}
+                >
+                  <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                    {selectedGroup.description}
+                  </p>
+                </div>
+              )}
 
-            {selectedGroup.images.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-6">
-                {selectedGroup.images.map((image, index) => {
-                  const imageUrl = getImageDataUrl(image.data);
-                  // Debug logging
-                  if (typeof window !== 'undefined') {
-                    console.log('Image data:', {
-                      id: image.id,
-                      dataType: typeof image.data,
-                      dataLength: typeof image.data === 'string' ? image.data.length : 'N/A',
-                      imageUrl: imageUrl ? 'generated' : 'null',
-                      mimeType: image.mimeType
-                    });
-                  }
-                  return (
-                    <div
-                      key={image.id}
-                      className="border-2 border-[#677075] bg-[#677075] aspect-square relative group overflow-hidden cursor-pointer"
-                      onClick={() => openLightbox(index)}
-                    >
+              {selectedGroup.images.length === 0 ? (
+                <div className="text-center py-12">
+                  <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-6">
+                  {selectedGroup.images.map((image, index) => {
+                    const descriptionOffset = selectedGroup.description ? 1 : 0;
+                    const imageIndex = descriptionOffset + index;
+                    const imageUrl = getImageDataUrl(image.data);
+                    // Debug logging
+                    if (typeof window !== 'undefined') {
+                      console.log('Image data:', {
+                        id: image.id,
+                        dataType: typeof image.data,
+                        dataLength: typeof image.data === 'string' ? image.data.length : 'N/A',
+                        imageUrl: imageUrl ? 'generated' : 'null',
+                        mimeType: image.mimeType
+                      });
+                    }
+                    return (
+                      <div
+                        key={image.id}
+                        className="border-2 border-[#677075] bg-[#677075] aspect-square relative group overflow-hidden cursor-pointer"
+                        onClick={() => openLightbox(index)}
+                        style={{
+                          opacity: contentMounted ? 1 : 0,
+                          transform: contentMounted ? 'translateY(0)' : 'translateY(-30px)',
+                          transition: `opacity 0.6s ease-out ${0.2 + imageIndex * 0.08}s, transform 0.6s ease-out ${0.2 + imageIndex * 0.08}s`
+                        }}
+                      >
                       {imageUrl ? (
                         <>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -221,6 +279,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                 })}
               </div>
             )}
+            </div>
           </div>
         )}
       </section>
