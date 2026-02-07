@@ -262,6 +262,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                             src={imageUrl}
                             alt={image.title || selectedGroup.name || 'Gallery image'}
                             className="w-full h-full object-cover"
+                            loading="lazy"
                           />
                           {(image.title || image.description) && (
                             <div className="absolute inset-0 bg-[#141414] opacity-10 group-hover:opacity-70 transition-all flex flex-col justify-end p-4">
@@ -378,6 +379,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                     src={lightboxImageUrl}
                     alt={currentLightboxImage.title || selectedGroup?.name || 'Gallery image'}
                     className="max-w-full max-h-full object-contain"
+                    loading="lazy"
                     onClick={(e) => e.stopPropagation()}
                   />
                 ) : (

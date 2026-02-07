@@ -74,6 +74,7 @@ export default function EmployeesAdminClient({ employees }: EmployeesAdminClient
                       src={photoUrl}
                       alt={employee.name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 )}

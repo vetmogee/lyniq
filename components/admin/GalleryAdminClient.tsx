@@ -123,6 +123,7 @@ export default function GalleryAdminClient({ imageGroups }: GalleryAdminClientPr
                             src={imageUrl}
                             alt={image.title || 'Gallery image'}
                             className="w-full h-full object-cover"
+                            loading="lazy"
                           />
                           <div className="absolute inset-0 bg-[#202020] opacity-0 group-hover:opacity-50 transition-opacity flex items-center justify-center">
                             <span className="text-white opacity-0 group-hover:opacity-100 text-sm">

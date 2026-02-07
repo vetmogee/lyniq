@@ -35,7 +35,7 @@ export default function ContactPage() {
   return (
     <div className="bg-[#202020]">
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-[slideDown_0.6s_ease-out]">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             KONTAKTUJTE NÁS
           </h1>
@@ -45,7 +45,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="order-1 lg:order-none">
+          <div className="order-1 lg:order-none animate-[slideDown_0.6s_ease-out_0.2s_both]">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Kontaktujte nás</CardTitle>
@@ -67,7 +67,7 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          <div className="order-2 lg:order-none">
+          <div className="order-2 lg:order-none animate-[slideDown_0.6s_ease-out_0.4s_both]">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Navštivte nás</CardTitle>
@@ -105,7 +105,7 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          <div className="order-3 lg:order-none lg:col-span-1 lg:row-span-2">
+          <div className="order-3 lg:order-none lg:col-span-1 lg:row-span-2 animate-[slideDown_0.6s_ease-out_0.6s_both]">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Mapa</CardTitle>
