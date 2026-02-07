@@ -45,7 +45,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="order-1 lg:order-none animate-[slideDown_0.6s_ease-out_0.2s_both]">
+          <div className="order-1 lg:order-1 animate-[slideDown_0.6s_ease-out_0.2s_both]">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Kontaktujte nás</CardTitle>
@@ -67,7 +67,7 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          <div className="order-2 lg:order-none animate-[slideDown_0.6s_ease-out_0.4s_both]">
+          <div className="order-2 lg:order-3 animate-[slideDown_0.6s_ease-out_0.4s_both]">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Navštivte nás</CardTitle>
@@ -105,7 +105,7 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          <div className="order-3 lg:order-none lg:col-span-1 lg:row-span-2 animate-[slideDown_0.6s_ease-out_0.6s_both]">
+          <div className="order-3 lg:order-2 lg:col-span-1 lg:row-span-2 animate-[slideDown_0.6s_ease-out_0.6s_both]">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Mapa</CardTitle>

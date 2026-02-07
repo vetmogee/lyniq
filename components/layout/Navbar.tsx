@@ -205,11 +205,11 @@ function MobileNavbar() {
                   href={link.href}
                   onClick={closeMenu}
                   className={`
-                    block w-2/3 mx-auto px-4 py-3 text-base font-medium transition-all duration-300 text-center
+                    block w-2/3 mx-auto px-4 py-3 font-medium transition-all duration-300 text-center
                     hover:pb-5 hover:scale-105
                     ${isActive(link.href)
-                      ? 'text-white border-b-2 border-[#677075]'
-                      : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#677075] focus:border-b-2 focus:border-[#677075]'
+                      ? 'text-white border-b-2 border-[#677075] text-lg'
+                      : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#677075] focus:border-b-2 focus:border-[#677075] text-base'
                     }
                   `}
                 >
@@ -353,11 +353,11 @@ function DesktopNavbar() {
               <Link
                 href={link.href}
                 className={`
-                  flex items-center justify-center px-4 py-3 text-md font-medium transition-all duration-300 text-center
+                  flex items-center justify-center px-4 py-3 font-medium transition-all duration-300 text-center
                   hover:pb-5 hover:scale-105
                   ${isActive(link.href)
-                    ? 'text-white border-b-2 border-[#677075]'
-                    : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#677075]'
+                    ? 'text-white border-b-2 border-[#677075] text-lg'
+                    : 'text-gray-400 hover:text-white hover:border-b-2 hover:border-[#677075] text-md'
                   }
                 `}
               >
