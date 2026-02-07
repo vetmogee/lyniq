@@ -1,5 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import GalleryAdminClient from '@/components/admin/GalleryAdminClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Gallery Admin - Lyniq',
+  description: 'Manage gallery images and groups',
+};
 
 export default async function AdminGalleryPage() {
   const imageGroups = await prisma.imageGroup.findMany({

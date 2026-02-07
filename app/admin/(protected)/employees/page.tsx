@@ -1,5 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import EmployeesAdminClient from '@/components/admin/EmployeesAdminClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Employees Admin - Lyniq',
+  description: 'Manage employees and team members',
+};
 
 export default async function AdminEmployeesPage() {
   const employees = await prisma.employee.findMany({

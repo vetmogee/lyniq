@@ -1,6 +1,12 @@
 import { prisma } from '@/lib/prisma';
 import EmployeeCards from '@/components/EmployeeCards';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Employees - Lyniq',
+  description: 'Poznejte náš talentovaný tým profesionálních nehtových techniků a umělců',
+};
 
 // Force dynamic rendering to ensure fresh data on each request
 export const dynamic = 'force-dynamic';

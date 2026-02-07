@@ -33,8 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: "Nail Salon - Professional Nail Care",
-    description: "Modern nail salon with professional services",
+    title: "Lyniq",
+    description: "Profesionální péče o nehty s moderním, ostrým estetickým designem.",
     icons: {
       icon: iconUrl,
       shortcut: iconUrl,

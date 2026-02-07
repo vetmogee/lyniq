@@ -59,15 +59,17 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">Kontakt</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Želenická 1627/25/405 02</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 opacity-0" />
-                  <span>405 02 Děčín 2-Letná</span>
-                </li>
-                <li className="flex items-center gap-2">
+                <a href="https://maps.app.goo.gl/LjDxHHrtcxPfdSgX7" target="_blank" rel="noopener noreferrer" className="group">
+                  <li className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-gray-400 group-hover:text-white transition-colors">Želenická 1627/25/405 02</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 opacity-0" />
+                    <span className="text-gray-400 group-hover:text-white transition-colors">405 02 Děčín 2-Letná</span>
+                  </li>
+                </a>
+                <li className="flex items-center gap-2 mt-2">
                   <Phone className="w-4 h-4" />
                   <Link 
                     href="tel:+420775995611"

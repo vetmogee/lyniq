@@ -1,5 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import ServicesAdminClient from '@/components/admin/ServicesAdminClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Services Admin - Lyniq',
+  description: 'Manage services and service groups',
+};
 
 export default async function AdminServicesPage() {
   // Fetch service groups with their services

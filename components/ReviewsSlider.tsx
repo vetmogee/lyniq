@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { ExternalLink } from 'lucide-react';
 
 interface Review {
   id: string;
@@ -416,6 +417,19 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
           })}
         </div>
       )}
+
+      {/* View All Reviews Link */}
+      <div className="flex justify-center mt-8">
+        <a
+          href="https://www.google.com/maps/place/LYNIQ+STUDIO/@50.7593947,14.1895123,984m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47099f001b905add:0xa5d8b79d694396a4!8m2!3d50.7593947!4d14.1895123!16s%2Fg%2F11xgsgtq8g?hl=en-CZ&entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200 text-lg font-medium group"
+        >
+          <span>Zobrazit všechny recenze</span>
+          <ExternalLink className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+        </a>
+      </div>
     </div>
   );
 }

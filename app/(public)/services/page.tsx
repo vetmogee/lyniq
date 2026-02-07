@@ -1,6 +1,12 @@
 import { prisma } from '@/lib/prisma';
 import ServiceCards from '@/components/ServiceCards';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Services - Lyniq',
+  description: 'Prozkoumejte náš komplexní sortiment profesionálních služeb péče o nehty',
+};
 
 export default async function ServicesPage() {
   // Fetch service groups with their services

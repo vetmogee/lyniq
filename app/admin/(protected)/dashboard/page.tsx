@@ -1,5 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Dashboard - Lyniq',
+  description: 'Admin dashboard for Lyniq nail salon',
+};
 
 export default async function AdminDashboardPage() {
   const servicesCount = await prisma.service.count();

@@ -3,6 +3,12 @@ import Button from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { getCachedGoogleReviews, getCachedGooglePlaceInfo } from '@/lib/google-reviews';
 import ReviewsSlider from '@/components/ReviewsSlider';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home - Lyniq',
+  description: 'Profesionální péče o nehty - Zažijte preciznost a umění s našimi moderními službami nehtového studia',
+};
 
 export default async function HomePage() {
   // Fetch reviews (server-side)

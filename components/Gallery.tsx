@@ -71,6 +71,19 @@ export default function Gallery({ imageGroups }: GalleryProps) {
   const selectedGroup = groupsWithImages.find(group => group.id === selectedGroupId);
   const currentImages = selectedGroup?.images || [];
 
+  // Function to handle image group change with animation reset
+  const handleGroupChange = (groupId: string) => {
+    // Do nothing if clicking on already selected group
+    if (groupId === selectedGroupId) return;
+    
+    // Reset animation state
+    setContentMounted(false);
+    // Small delay to ensure animation resets
+    setTimeout(() => {
+      setSelectedGroupId(groupId);
+    }, 100);
+  };
+
   const openLightbox = (imageIndex: number) => {
     setLightboxImageIndex(imageIndex);
     setLightboxOpen(true);
@@ -173,7 +186,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
             <Button
               key={group.id}
               variant={selectedGroupId === group.id ? 'outline' : 'primary'}
-              onClick={() => setSelectedGroupId(group.id)}
+              onClick={() => handleGroupChange(group.id)}
               className="min-w-[120px]"
               style={{
                 opacity: initialMounted ? 1 : 0,
@@ -190,25 +203,19 @@ export default function Gallery({ imageGroups }: GalleryProps) {
         {selectedGroup && (
           <div 
             style={{
-              maxHeight: contentMounted ? '10000px' : '0',
               opacity: contentMounted ? 1 : 0,
-              overflow: 'hidden',
-              transition: 'max-height 0.8s ease-out, opacity 0.6s ease-out'
+              transform: contentMounted ? 'translateY(0)' : 'translateY(-60px)',
+              transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
             }}
           >
-            <div
-              style={{
-                transform: contentMounted ? 'translateY(0)' : 'translateY(-40px)',
-                transition: 'transform 0.7s ease-out'
-              }}
-            >
+            <div>
               {selectedGroup.description && (
                 <div 
                   className="text-center mb-8"
                   style={{
                     opacity: contentMounted ? 1 : 0,
-                    transform: contentMounted ? 'translateY(0)' : 'translateY(-30px)',
-                    transition: 'opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s'
+                    transform: contentMounted ? 'translateY(0)' : 'translateY(-40px)',
+                    transition: 'opacity 0.5s ease-out 0.15s, transform 0.6s ease-out 0.15s'
                   }}
                 >
                   <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -244,8 +251,8 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                         onClick={() => openLightbox(index)}
                         style={{
                           opacity: contentMounted ? 1 : 0,
-                          transform: contentMounted ? 'translateY(0)' : 'translateY(-30px)',
-                          transition: `opacity 0.6s ease-out ${0.2 + imageIndex * 0.08}s, transform 0.6s ease-out ${0.2 + imageIndex * 0.08}s`
+                          transform: contentMounted ? 'translateY(0)' : 'translateY(-50px)',
+                          transition: `opacity 0.5s ease-out ${0.2 + imageIndex * 0.08}s, transform 0.6s ease-out ${0.2 + imageIndex * 0.08}s`
                         }}
                       >
                       {imageUrl ? (
