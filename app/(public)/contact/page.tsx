@@ -45,7 +45,29 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="space-y-8">
+          <div className="order-1 lg:order-none">
+            <Card variant="bordered">
+              <CardHeader>
+                <CardTitle>Kontaktujte nás</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <p className="text-xl font-semibold text-white mb-1">Telefon</p>
+                  <p className="text-gray-400 text-md"><a href="tel:+420775995611" className="underline">+420 775 995 611</a></p>
+                </div>
+                <div>
+                  <p className="text-xl font-semibold text-white mb-1">Instagram</p>
+                  <p className="text-gray-400 text-md"><a href="https://www.instagram.com/lyniqstudio/?hl=en" target="_blank" rel="noopener noreferrer" className="underline">@lyniqstudio</a></p>
+                </div>
+                <div>
+                  <p className="text-xl font-semibold text-white mb-1">Facebook</p>
+                  <p className="text-gray-400 text-md"><a href="https://www.facebook.com/profile.php?id=61576728607438" target="_blank" rel="noopener noreferrer" className="underline">LYNIQ studio</a></p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="order-2 lg:order-none">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Navštivte nás</CardTitle>
@@ -81,29 +103,9 @@ export default function ContactPage() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card variant="bordered">
-              <CardHeader>
-                <CardTitle>Kontaktujte nás</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="text-xl font-semibold text-white mb-1">Telefon</p>
-                  <p className="text-gray-400 text-md"><a href="tel:+420775995611" className="underline">+420 775 995 611</a></p>
-                </div>
-                <div>
-                  <p className="text-xl font-semibold text-white mb-1">Instagram</p>
-                  <p className="text-gray-400 text-md"><a href="https://www.instagram.com/lyniqstudio/?hl=en" target="_blank" rel="noopener noreferrer" className="underline">@lyniqstudio</a></p>
-                </div>
-                <div>
-                  <p className="text-xl font-semibold text-white mb-1">Facebook</p>
-                  <p className="text-gray-400 text-md"><a href="https://www.facebook.com/profile.php?id=61576728607438" target="_blank" rel="noopener noreferrer" className="underline">LYNIQ studio</a></p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
-          <div>
+          <div className="order-3 lg:order-none lg:col-span-1 lg:row-span-2">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Mapa</CardTitle>
