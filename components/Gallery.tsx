@@ -185,9 +185,9 @@ export default function Gallery({ imageGroups }: GalleryProps) {
           {groupsWithImages.map((group, index) => (
             <Button
               key={group.id}
-              variant={selectedGroupId === group.id ? 'outline' : 'primary'}
+              variant={selectedGroupId === group.id ? 'primary' : 'ghost'}
               onClick={() => handleGroupChange(group.id)}
-              className="min-w-[120px]"
+              className={`min-w-[120px] ${selectedGroupId === group.id ? 'border-2 border-white' : ''}`}
               style={{
                 opacity: initialMounted ? 1 : 0,
                 transform: initialMounted ? 'translateY(0)' : 'translateY(-20px)',

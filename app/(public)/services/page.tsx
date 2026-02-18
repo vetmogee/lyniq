@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description: 'Prozkoumejte náš komplexní sortiment profesionálních služeb péče o nehty',
 };
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+
 export default async function ServicesPage() {
   // Fetch service groups with their services
   const serviceGroups = await prisma.serviceGroup.findMany({

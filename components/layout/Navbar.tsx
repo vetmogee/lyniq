@@ -91,21 +91,12 @@ function MobileNavbar() {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
+                <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M4 6h16M4 12h16M4 18h16"
                   />
-                )}
               </svg>
             </button>
           </div>
@@ -132,7 +123,7 @@ function MobileNavbar() {
               target="_blank"
               rel="noopener noreferrer"
               className="
-                text-sm font-medium px-4 py-2 rounded
+                text-sm font-medium px-4 py-2
                 bg-gray-500 text-white
                 hover:bg-[#636362] hover:pb-3 hover:scale-105 transition-all duration-300
               "
@@ -161,10 +152,10 @@ function MobileNavbar() {
           ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}
         `}
       >
-        {/* Logo in Menu */}
+        {/* Close Button and Logo in Menu */}
         <div 
           className={`
-            p-6 grid justify-center
+            grid grid-cols-3 items-center px-4 py-2
             transform transition-all duration-500 ease-out
             ${isMenuOpen 
               ? 'translate-x-0 opacity-100' 
@@ -172,16 +163,45 @@ function MobileNavbar() {
             }
           `}
         >
-          <Link 
-            href="/"
-          >
-            <Logo
-              width={30}
-              height={20}
-              className="h-20 w-50"
-              priority
-            />
-          </Link>
+          {/* Close Button */}
+          <div>
+            <button
+              onClick={closeMenu}
+              className="text-white p-2 hover:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-[#677075]"
+              aria-label="Close menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          
+          {/* Logo */}
+          <div className="flex justify-center items-center">
+            <Link 
+              href="/"
+            >
+              <Logo
+                width={30}
+                height={20}
+                className="h-20 w-50"
+                priority
+              />
+            </Link>
+          </div>
+          
+          {/* Empty space for grid balance */}
+          <div></div>
         </div>
 
         {/* Navigation Links */}
@@ -242,7 +262,7 @@ function MobileNavbar() {
             className="
               block w-full text-center px-6 py-3 text-base font-medium
               bg-gray-500 text-white
-              hover:bg-[#3a3f41] hover:pb-5 hover:scale-105 transition-all duration-300 rounded
+              hover:bg-[#3a3f41] hover:pb-5 hover:scale-105 transition-all duration-300
             "
           >
             Rezervovat
