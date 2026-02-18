@@ -7,6 +7,17 @@ import EditServiceModal from './EditServiceModal';
 import EditServiceGroupModal from './EditServiceGroupModal';
 import AddServiceToGroupModal from './AddServiceToGroupModal';
 
+// Helper function to format description with line breaks
+function formatDescription(text: string) {
+  const parts = text.split('/br');
+  return parts.map((part, index) => (
+    <span key={index}>
+      {part}
+      {index < parts.length - 1 && <br />}
+    </span>
+  ));
+}
+
 interface Service {
   id: string;
   name: string;
@@ -92,7 +103,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                 <div>
                   <h2 className="text-2xl font-bold text-white">{group.name}</h2>
                   {group.description && (
-                    <p className="text-gray-300 text-sm">{group.description}</p>
+                    <p className="text-gray-300 text-sm">{formatDescription(group.description)}</p>
                   )}
                 </div>
                 <div className="flex gap-2">
@@ -116,7 +127,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
               {group.services.length === 0 ? (
                 <p className="text-gray-400 text-sm">No services in this group</p>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-row gap-4">
                   {group.services.map((service) => (
                     <div
                       key={service.id}
@@ -129,7 +140,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                       </p>
                       {service.description && (
                         <p className="text-gray-400 text-sm line-clamp-2 mb-2">
-                          {service.description}
+                          {formatDescription(service.description)}
                         </p>
                       )}
                       <div className="flex items-center justify-between text-xs text-gray-500">
@@ -158,7 +169,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
       {ungroupedServices.length > 0 && (
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-white mb-4">Ungrouped Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-row gap-4">
             {ungroupedServices.map((service) => (
               <div
                 key={service.id}
@@ -171,7 +182,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                 </p>
                 {service.description && (
                   <p className="text-gray-300 text-sm line-clamp-2 mb-2">
-                    {service.description}
+                    {formatDescription(service.description)}
                   </p>
                 )}
                 <div className="flex items-center justify-between text-xs text-gray-400">

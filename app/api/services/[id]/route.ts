@@ -26,7 +26,7 @@ export async function PUT(
       name: string;
       description: string | null;
       price: number;
-      duration: number;
+      duration: number | null;
       category: string | null;
       imageUrl: string | null;
       serviceGroupId: string | null;
@@ -35,7 +35,7 @@ export async function PUT(
       name,
       description: description || null,
       price: parseFloat(price.toString()),
-      duration: duration ? parseInt(duration.toString()) : 60,
+      duration: duration ? parseInt(duration.toString()) : null,
       category: category || null,
       imageUrl: imageUrl || null,
       serviceGroupId: serviceGroupId || null,

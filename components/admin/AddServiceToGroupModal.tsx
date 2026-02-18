@@ -51,7 +51,7 @@ export default function AddServiceToGroupModal({ isOpen, onClose, serviceGroupId
           name: name.trim(),
           description: description.trim() || null,
           price: parseFloat(price),
-          duration: parseInt(duration) || 60,
+          duration: duration ? parseInt(duration) : null,
           position: position ? parseInt(position) : undefined,
         }),
       });
@@ -123,24 +123,24 @@ export default function AddServiceToGroupModal({ isOpen, onClose, serviceGroupId
             min="1"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
-            placeholder="60"
+            placeholder="(optional) Leave empty if not applicable"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <Input
-            label="Position (optional)"
+            label="Position"
             type="number"
             min="0"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
-            placeholder="Auto"
+            placeholder="(optional) Auto"
           />
           <Input
-            label="Description (optional)"
+            label="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Service description"
+            placeholder="(optional) Service description"
           />
         </div>
 

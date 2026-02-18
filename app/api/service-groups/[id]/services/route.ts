@@ -51,7 +51,7 @@ export async function POST(
         name,
         description: description || null,
         price: parseFloat(price.toString()),
-        duration: duration ? parseInt(duration.toString()) : 60,
+        duration: duration ? parseInt(duration.toString()) : null,
         position: nextPosition,
         serviceGroupId: id,
       },

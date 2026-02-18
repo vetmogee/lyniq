@@ -30,11 +30,11 @@ export async function POST(request: NextRequest) {
         description: serviceGroupDescription || null,
         position: nextPosition,
         services: {
-          create: services.map((service: { name: string; price: number; description?: string; duration?: number; position?: number }, index: number) => ({
+          create: services.map((service: { name: string; price: number; description?: string; duration?: number | null; position?: number }, index: number) => ({
             name: service.name,
             price: parseFloat(service.price.toString()),
             description: service.description || null,
-            duration: service.duration || 60,
+            duration: service.duration ?? null,
             position: service.position ?? index,
           })),
         },

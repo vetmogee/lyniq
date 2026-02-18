@@ -75,7 +75,7 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
             name: s.name.trim(),
             price: parseFloat(s.price),
             description: s.description?.trim() || undefined,
-            duration: s.duration ? parseInt(s.duration) : 60,
+            duration: s.duration ? parseInt(s.duration) : null,
             position: s.position ? parseInt(s.position) : index,
           })),
         }),
@@ -133,10 +133,10 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
         />
 
         <Input
-          label="Service Group Description (optional)"
+          label="Service Group Description"
           value={serviceGroupDescription}
           onChange={(e) => setServiceGroupDescription(e.target.value)}
-          placeholder="Describe this service group"
+          placeholder="(optional) Describe this service group"
         />
 
         <div>
@@ -200,9 +200,9 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
                     label="Duration (minutes)"
                     type="number"
                     min="1"
-                    value={service.duration || '60'}
+                    value={service.duration || ''}
                     onChange={(e) => updateService(index, 'duration', e.target.value)}
-                    placeholder="60"
+                    placeholder="(optional) Leave empty if not applicable"
                   />
                   <Input
                     label="Position"
@@ -214,10 +214,10 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
                   />
                 </div>
                 <Input
-                  label="Description (optional)"
+                  label="Description"
                   value={service.description || ''}
                   onChange={(e) => updateService(index, 'description', e.target.value)}
-                  placeholder="Service description"
+                  placeholder="(optional) Service description"
                 />
               </div>
             ))}

@@ -8,9 +8,20 @@ interface Service {
   name: string;
   description: string | null;
   price: number;
-  duration: number;
+  duration: number | null;
   category: string | null;
   position: number;
+}
+
+// Helper function to format description with line breaks
+function formatDescription(text: string) {
+  const parts = text.split('/br');
+  return parts.map((part, index) => (
+    <span key={index}>
+      {part}
+      {index < parts.length - 1 && <br />}
+    </span>
+  ));
 }
 
 interface ServiceGroup {
@@ -87,7 +98,7 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                 <div className="flex-1 text-center">
                   <h2 className="text-2xl md:text-3xl font-bold text-white">{group.name}</h2>
                   {group.description && (
-                    <p className="text-gray-400 mt-2">{group.description}</p>
+                    <p className="text-gray-400 mt-2">{formatDescription(group.description)}</p>
                   )}
                 </div>
                 <svg
@@ -129,7 +140,7 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                           <div className="mb-4">
                             <p className="text-gray-400">
                               {isServiceExpanded || !hasLongDescription
-                                ? service.description
+                                ? formatDescription(service.description)
                                 : `${service.description.substring(0, 150)}...`}
                             </p>
                             {hasLongDescription && (
@@ -145,7 +156,9 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                         <div className="flex items-center justify-center pt-4 border-t-2 border-[#636362]">
                           <div>
                             <p className="text-2xl font-bold text-white">{service.price} Kč</p>
-                            <p className="text-sm text-gray-400">{service.duration} minut</p>
+                            {service.duration && (
+                              <p className="text-sm text-gray-400">{service.duration} minut</p>
+                            )}
                           </div>
                         </div>
                       </CardContent>
@@ -211,7 +224,7 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                         <div className="mb-4">
                           <p className="text-gray-400">
                             {isServiceExpanded || !hasLongDescription
-                              ? service.description
+                              ? formatDescription(service.description)
                               : `${service.description.substring(0, 150)}...`}
                           </p>
                           {hasLongDescription && (
@@ -227,7 +240,9 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                       <div className="flex items-center justify-center pt-4 border-t-2 border-[#636362]">
                         <div>
                           <p className="text-2xl font-bold text-white">{service.price} Kč</p>
-                          <p className="text-sm text-gray-400">{service.duration} minut</p>
+                          {service.duration && (
+                            <p className="text-sm text-gray-400">{service.duration} minut</p>
+                          )}
                         </div>
                       </div>
                     </CardContent>
