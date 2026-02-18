@@ -43,16 +43,29 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
   const handleEditService = (service: Service) => {
     setSelectedService(service);
     setIsEditServiceModalOpen(true);
+    // Close other modals to prevent wrong form submission (Edit vs Add)
+    setIsAddServiceModalOpen(false);
+    setSelectedServiceGroup(null);
+    setIsCreateModalOpen(false);
+    setIsEditGroupModalOpen(false);
   };
 
   const handleEditGroup = (group: ServiceGroup) => {
     setSelectedServiceGroup(group);
     setIsEditGroupModalOpen(true);
+    setIsEditServiceModalOpen(false);
+    setSelectedService(null);
+    setIsAddServiceModalOpen(false);
+    setIsCreateModalOpen(false);
   };
 
   const handleAddServiceToGroup = (group: ServiceGroup) => {
     setSelectedServiceGroup(group);
     setIsAddServiceModalOpen(true);
+    setIsEditServiceModalOpen(false);
+    setSelectedService(null);
+    setIsCreateModalOpen(false);
+    setIsEditGroupModalOpen(false);
   };
 
   return (

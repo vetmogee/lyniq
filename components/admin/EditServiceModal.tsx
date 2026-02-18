@@ -50,7 +50,10 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!service) return;
+    if (!service?.id) {
+      setError('Cannot save: service not loaded. Please close and try again.');
+      return;
+    }
 
     setError('');
     setIsSubmitting(true);
@@ -144,6 +147,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
       footer={
         <>
           <Button
+            type="button"
             variant="outline"
             onClick={handleDelete}
             disabled={isSubmitting}
@@ -152,10 +156,10 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
             Delete
           </Button>
           <div className="flex gap-2">
-            <Button variant="outline" onClick={onClose} disabled={isSubmitting}>
+            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit} isLoading={isSubmitting}>
+            <Button type="button" onClick={handleSubmit} isLoading={isSubmitting}>
               Save Changes
             </Button>
           </div>
