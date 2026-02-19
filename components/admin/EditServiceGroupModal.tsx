@@ -58,6 +58,7 @@ export default function EditServiceGroupModal({ isOpen, onClose, serviceGroup }:
         body: JSON.stringify({
           name: name.trim(),
           description: description.trim() || null,
+          position: parseInt(position) || 0,
         }),
       });
 

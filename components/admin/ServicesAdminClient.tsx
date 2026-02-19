@@ -23,7 +23,8 @@ interface Service {
   name: string;
   description: string | null;
   price: number;
-  duration: number;
+  from: boolean;
+  duration: number | null;
   position: number;
   category: string | null;
   imageUrl: string | null;
@@ -136,7 +137,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                     >
                       <h3 className="text-lg font-bold text-white mb-2">{service.name}</h3>
                       <p className="text-[#636362] text-xl font-semibold mb-2">
-                        {service.price.toFixed(2)} Kč
+                        {service.from ? 'od ' : ''}{service.price.toFixed(2)} Kč
                       </p>
                       {service.description && (
                         <p className="text-gray-400 text-sm line-clamp-2 mb-2">
@@ -144,7 +145,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                         </p>
                       )}
                       <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>{service.duration} min</span>
+                        <span>{service.duration != null ? `${service.duration} min` : '—'}</span>
                         {service.category && <span>{service.category}</span>}
                       </div>
                       <button
@@ -178,7 +179,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
               >
                 <h3 className="text-lg font-bold text-white mb-2">{service.name}</h3>
                 <p className="text-black text-xl font-semibold mb-2">
-                  {service.price.toFixed(2)} Kč
+                  {service.from ? 'od ' : ''}{service.price.toFixed(2)} Kč
                 </p>
                 {service.description && (
                   <p className="text-gray-300 text-sm line-clamp-2 mb-2">
@@ -186,7 +187,7 @@ export default function ServicesAdminClient({ serviceGroups, ungroupedServices }
                   </p>
                 )}
                 <div className="flex items-center justify-between text-xs text-gray-400">
-                  <span>{service.duration} min</span>
+                  <span>{service.duration != null ? `${service.duration} min` : '—'}</span>
                   {service.category && <span>{service.category}</span>}
                 </div>
                 <button

@@ -50,6 +50,7 @@ model Service {
   name           String
   description    String?
   price          Float
+  from           Boolean       @default(false) // When true, display "od" before price (e.g. "od xxx Kč")
   duration       Int? // Duration in minutes (optional)
   category       String? // e.g., "Manicure", "Pedicure", "Nail Art"
   imageUrl       String?

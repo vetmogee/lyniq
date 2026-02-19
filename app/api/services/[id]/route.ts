@@ -13,7 +13,7 @@ export async function PUT(
     await requireAuth();
 
     const body = await request.json();
-    const { name, description, price, duration, position, category, imageUrl, serviceGroupId } = body;
+    const { name, description, price, duration, position, category, imageUrl, serviceGroupId, from } = body;
 
     if (!name || price === undefined) {
       return NextResponse.json(
@@ -26,6 +26,7 @@ export async function PUT(
       name: string;
       description: string | null;
       price: number;
+      from: boolean;
       duration: number | null;
       category: string | null;
       imageUrl: string | null;
@@ -35,6 +36,7 @@ export async function PUT(
       name,
       description: description || null,
       price: parseFloat(price.toString()),
+      from: from === true,
       duration: duration ? parseInt(duration.toString()) : null,
       category: category || null,
       imageUrl: imageUrl || null,

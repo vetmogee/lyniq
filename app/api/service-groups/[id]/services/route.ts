@@ -13,7 +13,7 @@ export async function POST(
     await requireAuth();
 
     const body = await request.json();
-    const { name, description, price, duration, position } = body;
+    const { name, description, price, duration, position, from } = body;
 
     if (!name || price === undefined) {
       return NextResponse.json(
@@ -51,6 +51,7 @@ export async function POST(
         name,
         description: description || null,
         price: parseFloat(price.toString()),
+        from: from === true,
         duration: duration ? parseInt(duration.toString()) : null,
         position: nextPosition,
         serviceGroupId: id,

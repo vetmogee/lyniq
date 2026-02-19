@@ -11,6 +11,7 @@ interface Service {
   name: string;
   description: string | null;
   price: number;
+  from: boolean;
   duration: number | null;
   position: number;
   category: string | null;
@@ -29,6 +30,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [from, setFrom] = useState(false);
   const [duration, setDuration] = useState('');
   const [position, setPosition] = useState('');
   const [category, setCategory] = useState('');
@@ -41,6 +43,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
       setName(service.name);
       setDescription(service.description || '');
       setPrice(service.price.toString());
+      setFrom(service.from ?? false);
       setDuration(service.duration ? service.duration.toString() : '');
       setPosition(service.position.toString());
       setCategory(service.category || '');
@@ -81,6 +84,7 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
           name: name.trim(),
           description: description.trim() || null,
           price: parseFloat(price),
+          from,
           duration: duration ? parseInt(duration) : null,
           position: parseInt(position) || 0,
           category: category.trim() || null,
@@ -194,6 +198,19 @@ export default function EditServiceModal({ isOpen, onClose, service }: EditServi
             onChange={(e) => setDuration(e.target.value)}
             placeholder="(optional) Leave empty if not applicable"
           />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="from"
+            checked={from}
+            onChange={(e) => setFrom(e.target.checked)}
+            className="w-4 h-4 rounded border-gray-600 bg-[#202020] text-white focus:ring-white"
+          />
+          <label htmlFor="from" className="text-sm text-white cursor-pointer">
+            Price from (od) — display &quot;od xxx Kč&quot;
+          </label>
         </div>
 
         <Input

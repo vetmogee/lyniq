@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 interface Service {
   name: string;
   price: string;
+  from?: boolean;
   description?: string;
   duration?: string;
   position?: string;
@@ -23,12 +24,12 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
   const router = useRouter();
   const [serviceGroupName, setServiceGroupName] = useState('');
   const [serviceGroupDescription, setServiceGroupDescription] = useState('');
-  const [services, setServices] = useState<Service[]>([{ name: '', price: '' }]);
+  const [services, setServices] = useState<Service[]>([{ name: '', price: '', from: false }]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   const addService = () => {
-    setServices([...services, { name: '', price: '' }]);
+    setServices([...services, { name: '', price: '', from: false }]);
   };
 
   const removeService = (index: number) => {
@@ -37,7 +38,7 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
     }
   };
 
-  const updateService = (index: number, field: keyof Service, value: string) => {
+  const updateService = (index: number, field: keyof Service, value: string | boolean) => {
     const updated = [...services];
     updated[index] = { ...updated[index], [field]: value };
     setServices(updated);
@@ -74,6 +75,7 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
           services: validServices.map((s, index) => ({
             name: s.name.trim(),
             price: parseFloat(s.price),
+            from: s.from === true,
             description: s.description?.trim() || undefined,
             duration: s.duration ? parseInt(s.duration) : null,
             position: s.position ? parseInt(s.position) : index,
@@ -89,7 +91,7 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
       // Reset form
       setServiceGroupName('');
       setServiceGroupDescription('');
-      setServices([{ name: '', price: '' }]);
+      setServices([{ name: '', price: '', from: false }]);
       setError('');
       
       // Close modal first, then refresh
@@ -193,6 +195,18 @@ export default function CreateServiceModal({ isOpen, onClose }: CreateServiceMod
                     placeholder="0.00"
                     required
                   />
+                </div>
+                <div className="flex items-center gap-2 mb-3">
+                  <input
+                    type="checkbox"
+                    id={`from-${index}`}
+                    checked={service.from ?? false}
+                    onChange={(e) => updateService(index, 'from', e.target.checked)}
+                    className="w-4 h-4 rounded border-gray-600 bg-[#202020] text-white focus:ring-white"
+                  />
+                  <label htmlFor={`from-${index}`} className="text-sm text-white cursor-pointer">
+                    Price from (od) — display &quot;od xxx Kč&quot;
+                  </label>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 mb-3">

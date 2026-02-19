@@ -8,6 +8,7 @@ interface Service {
   name: string;
   description: string | null;
   price: number;
+  from: boolean;
   duration: number | null;
   category: string | null;
   position: number;
@@ -155,7 +156,7 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                         )}
                         <div className="flex items-center justify-center pt-4 border-t-2 border-[#636362]">
                           <div>
-                            <p className="text-2xl font-bold text-white">{service.price} Kč</p>
+                            <p className="text-2xl font-bold text-white">{service.from ? 'od ' : ''}{service.price} Kč</p>
                             {service.duration && (
                               <p className="text-sm text-gray-400">{service.duration} minut</p>
                             )}
@@ -239,7 +240,7 @@ export default function ServiceCards({ serviceGroups, ungroupedServices }: Servi
                       )}
                       <div className="flex items-center justify-center pt-4 border-t-2 border-[#636362]">
                         <div>
-                          <p className="text-2xl font-bold text-white">{service.price} Kč</p>
+                          <p className="text-2xl font-bold text-white">{service.from ? 'od ' : ''}{service.price} Kč</p>
                           {service.duration && (
                             <p className="text-sm text-gray-400">{service.duration} minut</p>
                           )}
