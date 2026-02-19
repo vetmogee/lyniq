@@ -26,10 +26,14 @@ export default async function AdminServicesPage() {
     orderBy: { position: 'asc' },
   });
 
+  // Serialize for client - Prisma Date objects are not RSC-serializable
+  const serializedGroups = JSON.parse(JSON.stringify(serviceGroups));
+  const serializedUngrouped = JSON.parse(JSON.stringify(ungroupedServices));
+
   return (
     <ServicesAdminClient 
-      serviceGroups={serviceGroups} 
-      ungroupedServices={ungroupedServices}
+      serviceGroups={serializedGroups} 
+      ungroupedServices={serializedUngrouped}
     />
   );
 }

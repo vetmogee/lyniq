@@ -34,6 +34,10 @@ export default async function ServicesPage() {
   const filteredServiceGroups = serviceGroups.filter(group => group.services.length > 0);
   const hasServices = filteredServiceGroups.length > 0 || ungroupedServices.length > 0;
 
+  // Serialize for client - Prisma Date objects are not RSC-serializable
+  const serializedGroups = JSON.parse(JSON.stringify(filteredServiceGroups));
+  const serializedUngrouped = JSON.parse(JSON.stringify(ungroupedServices));
+
   return (
     <div className="bg-[#202020]">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
@@ -52,8 +56,8 @@ export default async function ServicesPage() {
           </div>
         ) : (
           <ServiceCards 
-            serviceGroups={filteredServiceGroups} 
-            ungroupedServices={ungroupedServices}
+            serviceGroups={serializedGroups} 
+            ungroupedServices={serializedUngrouped}
           />
         )}
       </section>
