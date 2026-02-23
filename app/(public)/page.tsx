@@ -40,13 +40,13 @@ export default async function HomePage() {
         playsInline
         className="fixed inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/intro.mp4" type="video/mp4" />
+        <source src="/lyniq.mp4" type="video/mp4" />
       </video>
       {/* Overlay for better text readability and tint */}
       <div className="fixed inset-0 bg-[#141414] opacity-30 z-0" />
       
       {/* Hero Section */}
-      <section className="relative w-full flex items-center justify-center py-20 md:py-32 z-10">
+      <section className="relative w-full flex items-center justify-center py-30 md:py-50 z-10">
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
