@@ -125,7 +125,7 @@ function MobileNavbar() {
               className="
                 text-sm font-medium px-4 py-2
                 bg-gray-500 text-white
-                hover:bg-[#636362] hover:pb-3 hover:scale-105 transition-all duration-300
+                hover:bg-[#636362] hover:scale-200 transition-all duration-300
               "
             >
               Rezervovat
@@ -262,7 +262,7 @@ function MobileNavbar() {
             className="
               block w-full text-center px-6 py-3 text-base font-medium
               bg-gray-500 text-white
-              hover:bg-[#3a3f41] hover:pb-5 hover:scale-105 transition-all duration-300
+              hover:bg-[#3a3f41] hover:scale-105 transition-all duration-300
             "
           >
             Rezervovat
@@ -357,7 +357,7 @@ function DesktopNavbar() {
           className="
             block w-full text-center px-6 py-3 text-base font-medium
             bg-gray-500 text-white
-            hover:bg-[#3a3f41] hover:pb-5 hover:scale-105 transition-all duration-300
+            hover:bg-[#3a3f41] hover:scale-105 transition-all duration-300
             
           "
         >
