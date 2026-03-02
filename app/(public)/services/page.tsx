@@ -1,6 +1,7 @@
+import { Suspense } from 'react';
 import { prisma } from '@/lib/prisma';
-import ServiceCards from '@/components/ServiceCards';
-import Image from 'next/image';
+import ServiceGroupClient from '@/components/ServiceGroupClient';
+import ServiceGroupSkeleton from '@/components/ServiceGroupSkeleton';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,32 +12,55 @@ export const metadata: Metadata = {
 // Force dynamic rendering to always fetch fresh data
 export const dynamic = 'force-dynamic';
 
-export default async function ServicesPage() {
-  // Fetch service groups with their services
-  const serviceGroups = await prisma.serviceGroup.findMany({
+/** Async server component that fetches and renders a single service group */
+async function ServiceGroupSection({ groupId }: { groupId: string }) {
+  const group = await prisma.serviceGroup.findUnique({
+    where: { id: groupId },
     include: {
       services: {
         orderBy: { position: 'asc' },
       },
     },
-    orderBy: { position: 'asc' },
   });
 
-  // Also get ungrouped services (for backward compatibility)
+  if (!group || group.services.length === 0) return null;
+
+  const serialized = JSON.parse(JSON.stringify(group));
+  return <ServiceGroupClient group={serialized} />;
+}
+
+/** Async server component that fetches and renders ungrouped services */
+async function UngroupedServicesSection() {
   const ungroupedServices = await prisma.service.findMany({
-    where: {
-      serviceGroupId: null,
-    },
+    where: { serviceGroupId: null },
     orderBy: { position: 'asc' },
   });
 
-  // Filter to only groups with active services
-  const filteredServiceGroups = serviceGroups.filter(group => group.services.length > 0);
-  const hasServices = filteredServiceGroups.length > 0 || ungroupedServices.length > 0;
+  if (ungroupedServices.length === 0) return null;
 
-  // Serialize for client - Prisma Date objects are not RSC-serializable
-  const serializedGroups = JSON.parse(JSON.stringify(filteredServiceGroups));
-  const serializedUngrouped = JSON.parse(JSON.stringify(ungroupedServices));
+  const serialized = JSON.parse(JSON.stringify(ungroupedServices));
+
+  // Wrap ungrouped services as a virtual group for the client component
+  const virtualGroup = {
+    id: 'ungrouped',
+    name: 'Další služby',
+    description: null,
+    position: 999,
+    services: serialized,
+  };
+
+  return <ServiceGroupClient group={virtualGroup} label="Další služby" />;
+}
+
+export default async function ServicesPage() {
+  // Lightweight query: only fetch group IDs and positions for the shell
+  const groups = await prisma.serviceGroup.findMany({
+    select: { id: true, position: true },
+    orderBy: { position: 'asc' },
+  });
+
+  const hasGroups = groups.length > 0;
+  // We also check for ungrouped services via its own Suspense boundary
 
   return (
     <div className="bg-[#202020]">
@@ -50,16 +74,19 @@ export default async function ServicesPage() {
           </p>
         </div>
 
-        {!hasServices ? (
-          <div className="text-center py-12">
-            <p className="text-gray-400">V tuto chvíli nejsou k dispozici žádné služby.</p>
-          </div>
-        ) : (
-          <ServiceCards 
-            serviceGroups={serializedGroups} 
-            ungroupedServices={serializedUngrouped}
-          />
-        )}
+        <div className="space-y-12">
+          {/* Each service group loads independently — first loaded = first rendered */}
+          {groups.map((group) => (
+            <Suspense key={group.id} fallback={<ServiceGroupSkeleton />}>
+              <ServiceGroupSection groupId={group.id} />
+            </Suspense>
+          ))}
+
+          {/* Ungrouped services also stream independently */}
+          <Suspense fallback={<ServiceGroupSkeleton />}>
+            <UngroupedServicesSection />
+          </Suspense>
+        </div>
       </section>
     </div>
   );
