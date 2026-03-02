@@ -40,6 +40,7 @@ export default async function HomePage() {
         playsInline
         className="fixed inset-0 w-full h-full object-cover z-0"
       >
+        <source src="/lyniq.webm" type="video/webm" />
         <source src="/lyniq.mp4" type="video/mp4" />
       </video>
       {/* Overlay for better text readability and tint */}
