@@ -1,0 +1,103 @@
+{
+  "Metadata": {
+    "description": "Professionelle Nagelpflege mit modernem, klarem Design.",
+    "homeTitle": "Startseite - Lyniq",
+    "homeDescription": "Professionelle Nagelpflege - Erleben Sie Präzision und Kunstfertigkeit mit den modernen Leistungen unseres Nagelstudios",
+    "servicesTitle": "Leistungen - Lyniq",
+    "servicesDescription": "Entdecken Sie unser umfassendes Angebot an professioneller Nagelpflege",
+    "employeesTitle": "Team - Lyniq",
+    "employeesDescription": "Lernen Sie unser talentiertes Team professioneller Nageldesignerinnen kennen",
+    "galleryTitle": "Galerie - Lyniq",
+    "galleryDescription": "Entdecken Sie unser Portfolio an Nageldesigns und Nail Art",
+    "galleryGroupDescription": "Sehen Sie sich unser Portfolio {name} an",
+    "contactTitle": "Kontakt - Lyniq",
+    "contactDescription": "Kontaktieren Sie uns bei allen Fragen"
+  },
+  "Common": {
+    "book": "Termin buchen",
+    "loading": "Wird geladen...",
+    "imageUnavailable": "Bild nicht verfügbar",
+    "galleryImage": "Galeriebild",
+    "closeLightbox": "Vorschau schließen",
+    "previousImage": "Vorheriges Bild",
+    "nextImage": "Nächstes Bild",
+    "noImagesInGroup": "In dieser Gruppe gibt es noch keine Bilder."
+  },
+  "Nav": {
+    "home": "Startseite",
+    "services": "Leistungen & Preise",
+    "team": "Team",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "toggleMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "phone": "Telefon",
+    "language": "Sprache"
+  },
+  "Footer": {
+    "tagline": "Professionelle Nagelpflege mit modernem, klarem Design.",
+    "quickLinks": "Schnellzugriff",
+    "services": "Leistungen",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "rights": "© {year} Lyniq Beauty Studio. Alle Rechte vorbehalten."
+  },
+  "Home": {
+    "heroTitle": "PROFESSIONELLE NAGELPFLEGE",
+    "heroText": "Erleben Sie Präzision und Kunstfertigkeit mit den modernen Leistungen unseres Nagelstudios. Klare Designs, fachkundiges Handwerk und außergewöhnliche Pflege.",
+    "viewServices": "Leistungen ansehen",
+    "contactUs": "Kontakt aufnehmen",
+    "expertsTitle": "Erfahrene Fachkräfte",
+    "expertsText": "Unser Team besteht aus zertifizierten Profis mit langjähriger Erfahrung in Nail Art und Nagelpflege.",
+    "productsTitle": "Premium-Produkte",
+    "productsText": "Wir verwenden nur hochwertigste Produkte und Werkzeuge für langanhaltende Ergebnisse.",
+    "techniquesTitle": "Moderne Techniken",
+    "techniquesText": "Bleiben Sie mit den neuesten Trends und Techniken in Nageldesign und -pflege immer einen Schritt voraus.",
+    "reviewsTitle": "Was unsere Kunden sagen",
+    "reviewCount": "({count, plural, one {# Bewertung} other {# Bewertungen}})",
+    "reviewsSource": "Echte Bewertungen von Google Maps",
+    "ctaTitle": "Bereit für neue Nägel?",
+    "ctaText": "Kontaktieren Sie uns noch heute und erleben Sie den Unterschied.",
+    "ctaButton": "Jetzt starten"
+  },
+  "Reviews": {
+    "noText": "Kein Bewertungstext vorhanden",
+    "viewAll": "Alle Bewertungen ansehen"
+  },
+  "Services": {
+    "title": "UNSERE LEISTUNGEN",
+    "subtitle": "Entdecken Sie unser umfassendes Angebot an professioneller Nagelpflege.",
+    "otherServices": "Weitere Leistungen",
+    "showLess": "weniger anzeigen",
+    "showMore": "mehr anzeigen",
+    "price": "{from, select, true {ab } other {}}{price} CZK",
+    "duration": "{minutes} Minuten"
+  },
+  "Employees": {
+    "title": "UNSER TEAM",
+    "subtitle": "Lernen Sie unser talentiertes Team professioneller Nageldesignerinnen kennen.",
+    "empty": "Derzeit sind keine Teammitglieder verfügbar."
+  },
+  "Gallery": {
+    "title": "GALERIE",
+    "subtitle": "Entdecken Sie unser Portfolio atemberaubender Nageldesigns und Verwandlungen.",
+    "noGroups": "Es sind noch keine Bildergruppen vorhanden.",
+    "backToGallery": "Zurück zur Galerie"
+  },
+  "Contact": {
+    "title": "KONTAKT",
+    "subtitle": "Kontaktieren Sie uns bei allen Fragen.",
+    "contactUs": "Kontakt",
+    "phone": "Telefon",
+    "visitUs": "Besuchen Sie uns",
+    "address": "Adresse",
+    "openingHours": "Öffnungszeiten",
+    "weekdays": "Montag - Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag",
+    "closed": "Geschlossen",
+    "map": "Karte",
+    "mapLoading": "Karte wird geladen...",
+    "mapError": "Karte konnte nicht geladen werden"
+  }
+}

@@ -1,6 +1,6 @@
 'use client';
 
-export default function Loading() {
+export default function Loading({ label = 'Načítání...' }: { label?: string }) {
   return (
     <div className="flex items-center justify-center min-h-[60vh] w-full">
       <div className="flex flex-col items-center gap-6">
@@ -14,7 +14,7 @@ export default function Loading() {
         </div>
         {/* Text */}
         <p className="text-white/50 text-sm tracking-widest uppercase font-sans">
-          Načítání...
+          {label}
         </p>
       </div>
     </div>

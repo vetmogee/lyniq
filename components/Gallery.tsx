@@ -1,31 +1,20 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { getImageDataUrl } from '@/lib/image-utils';
 import Button from './ui/Button';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
-interface Image {
-  id: string;
-  data: string;
-  mimeType: string;
-  title: string | null;
-  description: string | null;
-  order: number;
-}
-
-interface ImageGroup {
-  id: string;
-  name: string;
-  description: string | null;
-  images: Image[];
-}
+import type { GalleryGroup } from '@/lib/content';
 
 interface GalleryProps {
-  imageGroups: ImageGroup[];
+  imageGroups: GalleryGroup[];
 }
 
 export default function Gallery({ imageGroups }: GalleryProps) {
+  const t = useTranslations('Gallery');
+  const tCommon = useTranslations('Common');
+
   // Filter to only groups that have images
   const groupsWithImages = imageGroups.filter(group => group.images.length > 0);
   
@@ -147,14 +136,14 @@ export default function Gallery({ imageGroups }: GalleryProps) {
             }}
           >
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
-              GALERIE
+              {t('title')}
             </h1>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Prohlédněte si naše portfolio úžasných designů nehtů a transformací.
+              {t('subtitle')}
             </p>
           </div>
           <div className="text-center py-12">
-            <p className="text-gray-400">Zatím nejsou k dispozici žádné skupiny obrázků.</p>
+            <p className="text-gray-400">{t('noGroups')}</p>
           </div>
         </section>
       </div>
@@ -173,10 +162,10 @@ export default function Gallery({ imageGroups }: GalleryProps) {
           }}
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            GALERIE
+            {t('title')}
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Prohlédněte si naše portfolio úžasných designů nehtů a transformací.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -226,24 +215,14 @@ export default function Gallery({ imageGroups }: GalleryProps) {
 
               {selectedGroup.images.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
+                  <p className="text-gray-400">{tCommon('noImagesInGroup')}</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-6">
                   {selectedGroup.images.map((image, index) => {
                     const descriptionOffset = selectedGroup.description ? 1 : 0;
                     const imageIndex = descriptionOffset + index;
-                    const imageUrl = getImageDataUrl(image.data);
-                    // Debug logging
-                    if (typeof window !== 'undefined') {
-                      console.log('Image data:', {
-                        id: image.id,
-                        dataType: typeof image.data,
-                        dataLength: typeof image.data === 'string' ? image.data.length : 'N/A',
-                        imageUrl: imageUrl ? 'generated' : 'null',
-                        mimeType: image.mimeType
-                      });
-                    }
+                    const imageUrl = image.src;
                     return (
                       <div
                         key={image.id}
@@ -260,7 +239,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={imageUrl}
-                            alt={image.title || selectedGroup.name || 'Gallery image'}
+                            alt={image.title || selectedGroup.name || tCommon('galleryImage')}
                             className="w-full h-full object-cover"
                             loading="lazy"
                           />
@@ -279,7 +258,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                         </>
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
-                          <p className="text-gray-500">Obrázek není k dispozici</p>
+                          <p className="text-gray-500">{tCommon('imageUnavailable')}</p>
                         </div>
                       )}
                     </div>
@@ -303,7 +282,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 z-10 text-white hover:text-gray-400 transition-colors bg-black bg-opacity-50 rounded-full p-2"
-              aria-label="Close lightbox"
+              aria-label={tCommon('closeLightbox')}
             >
               <svg
                 className="w-8 h-8"
@@ -329,7 +308,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                     handlePreviousImage();
                   }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-gray-400 transition-colors bg-black bg-opacity-50 rounded-full p-3"
-                  aria-label="Previous image"
+                  aria-label={tCommon('previousImage')}
                 >
                   <svg
                     className="w-6 h-6"
@@ -351,7 +330,7 @@ export default function Gallery({ imageGroups }: GalleryProps) {
                     handleNextImage();
                   }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-gray-400 transition-colors bg-black bg-opacity-50 rounded-full p-3"
-                  aria-label="Next image"
+                  aria-label={tCommon('nextImage')}
                 >
                   <svg
                     className="w-6 h-6"
@@ -373,17 +352,17 @@ export default function Gallery({ imageGroups }: GalleryProps) {
             {/* Image */}
             <div className="flex-1 flex items-center justify-center overflow-hidden">
               {(() => {
-                const lightboxImageUrl = getImageDataUrl(currentLightboxImage.data);
+                const lightboxImageUrl = currentLightboxImage.src;
                 return lightboxImageUrl ? (
                   <img
                     src={lightboxImageUrl}
-                    alt={currentLightboxImage.title || selectedGroup?.name || 'Gallery image'}
+                    alt={currentLightboxImage.title || selectedGroup?.name || tCommon('galleryImage')}
                     className="max-w-full max-h-full object-contain"
                     loading="lazy"
                     onClick={(e) => e.stopPropagation()}
                   />
                 ) : (
-                  <div className="text-white">Obrázek není k dispozici</div>
+                  <div className="text-white">{tCommon('imageUnavailable')}</div>
                 );
               })()}
             </div>

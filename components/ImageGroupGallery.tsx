@@ -1,30 +1,19 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { getImageDataUrl } from '@/lib/image-utils';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
-interface Image {
-  id: string;
-  data: string;
-  mimeType: string;
-  title: string | null;
-  description: string | null;
-  order: number;
-}
-
-interface ImageGroup {
-  id: string;
-  name: string;
-  description: string | null;
-  images: Image[];
-}
+import type { GalleryGroup } from '@/lib/content';
 
 interface ImageGroupGalleryProps {
-  imageGroup: ImageGroup;
+  imageGroup: GalleryGroup;
 }
 
 export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps) {
+  const t = useTranslations('Gallery');
+  const tCommon = useTranslations('Common');
+
   // State for lightbox
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
@@ -101,7 +90,7 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Zpět do galerie
+            {t('backToGallery')}
           </Link>
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -117,12 +106,12 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
 
         {imageGroup.images.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400">V této skupině zatím nejsou žádné obrázky.</p>
+            <p className="text-gray-400">{tCommon('noImagesInGroup')}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {imageGroup.images.map((image, index) => {
-              const imageUrl = getImageDataUrl(image.data);
+              const imageUrl = image.src;
               return (
                 <div
                   key={image.id}
@@ -134,7 +123,7 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={imageUrl}
-                        alt={image.title || imageGroup.name || 'Gallery image'}
+                        alt={image.title || imageGroup.name || tCommon('galleryImage')}
                         className="w-full h-full object-cover"
                       />
                       {(image.title || image.description) && (
@@ -152,7 +141,7 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
                     </>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <p className="text-gray-500">Obrázek není k dispozici</p>
+                      <p className="text-gray-500">{tCommon('imageUnavailable')}</p>
                     </div>
                   )}
                 </div>
@@ -173,7 +162,7 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 z-10 text-white hover:text-gray-400 transition-colors bg-black bg-opacity-50 rounded-full p-2"
-              aria-label="Close lightbox"
+              aria-label={tCommon('closeLightbox')}
             >
               <svg
                 className="w-8 h-8"
@@ -199,7 +188,7 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
                     handlePreviousImage();
                   }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-gray-400 transition-colors bg-black bg-opacity-50 rounded-full p-3"
-                  aria-label="Previous image"
+                  aria-label={tCommon('previousImage')}
                 >
                   <svg
                     className="w-6 h-6"
@@ -221,7 +210,7 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
                     handleNextImage();
                   }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-gray-400 transition-colors bg-black bg-opacity-50 rounded-full p-3"
-                  aria-label="Next image"
+                  aria-label={tCommon('nextImage')}
                 >
                   <svg
                     className="w-6 h-6"
@@ -243,16 +232,16 @@ export default function ImageGroupGallery({ imageGroup }: ImageGroupGalleryProps
             {/* Image */}
             <div className="flex-1 flex items-center justify-center overflow-hidden">
               {(() => {
-                const lightboxImageUrl = getImageDataUrl(currentLightboxImage.data);
+                const lightboxImageUrl = currentLightboxImage.src;
                 return lightboxImageUrl ? (
                   <img
                     src={lightboxImageUrl}
-                    alt={currentLightboxImage.title || imageGroup.name || 'Gallery image'}
+                    alt={currentLightboxImage.title || imageGroup.name || tCommon('galleryImage')}
                     className="max-w-full max-h-full object-contain"
                     onClick={(e) => e.stopPropagation()}
                   />
                 ) : (
-                  <div className="text-white">Obrázek není k dispozici</div>
+                  <div className="text-white">{tCommon('imageUnavailable')}</div>
                 );
               })()}
             </div>

@@ -1,0 +1,508 @@
+{
+  "source": "https://noona.app/cs/lyniqstudio/book",
+  "scrapedAt": "2026-10-02",
+  "company": {
+    "name": "LYNIQ STUDIO",
+    "description": "✨Krása, styl a preciznost na jednom místě\n\n• Manikúra • Pedikúra • Prodlužování a lifting řas\nModerní design | Profesionální péče | Elegantní prostředí",
+    "email": "lyniqstudio@gmail.com",
+    "phone": "+420 775995611",
+    "address": "Želenická 25, Letná, Česko",
+    "country": "Česko",
+    "currency": "CZK",
+    "openingHours": [
+      {
+        "day": "Pondělí",
+        "closed": false,
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "day": "Úterý",
+        "closed": false,
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "day": "Středa",
+        "closed": false,
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "day": "Čtvrtek",
+        "closed": false,
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "day": "Pátek",
+        "closed": false,
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "day": "Sobota",
+        "closed": false,
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "day": "Neděle",
+        "closed": true,
+        "opens": null,
+        "closes": null
+      }
+    ],
+    "bookingRules": {
+      "maxDaysAhead": 84,
+      "minCancelNoticeHours": 3,
+      "minMoveNoticeHours": 2,
+      "multipleServices": true
+    }
+  },
+  "serviceGroups": [
+    {
+      "title": "Manikúra",
+      "description": "Profesionální ošetření, které zahrnuje úpravu nehtů, odstranění kůžičky, pilování, masáž rukou a často i lakování nebo výživu nehtů. \nZanechá vaše ruce jemné, upravené a elegantní. Dokonalý pocit čistoty a krásy. ✨",
+      "services": [
+        {
+          "title": "Klasická mokrá manikúra",
+          "description": "💧 Dezinfekci a přípravu rukou – ruce jsou očištěny a dezinfikovány pro hygienickou a bezpečnou práci.\n📏 Úpravu nehtů – zkrácení, zapilování a tvarování nehtů podle vašeho přání.\n🌸 Ošetření kůžičky – změkčení, zatlačení nebo odstranění přebytečné kůžičky pro dokonale čistý vzhled.\n🧴  Masáž rukou – masáž hydratuje a zrelaxuje ruce.",
+          "durationMinutes": 20,
+          "price": 250
+        },
+        {
+          "title": "Mokrá Manikura s gellakem",
+          "description": "📏 Úpravu nehtů – zkrácenpí, zapilování a tvarování nehtů podle vašeho přání.\n💧 Dezinfekci a přípravu rukou – ruce jsou očištěny a dezinfikovány pro hygienickou a bezpečnou práci, namáčíme do vlažné vody pro změkčení kůžiček\n🌸 Ošetření kůžičky – změkčení, zatlačení nebo odstranění přebytečné kůžičky pro dokonale čistý vzhled.\n💅 Lakování nehtů – Base, Gellak a Top coat nebo jen výživným olejíčkem pro přirozený vzhled.\n🧴 Masáž rukou – masáž hydratuje a zrelaxuje ruce.",
+          "durationMinutes": 55,
+          "price": 500
+        },
+        {
+          "title": "Mokrá Francouzská manikura",
+          "description": "💧 Dezinfekci a přípravu rukou – ruce jsou očištěny a dezinfikovány pro hygienickou a bezpečnou práci.\n📏 Úpravu nehtů – zkrácení, zapilování a tvarování nehtů podle vašeho přání.\n🌸 Ošetření kůžičky – změkčení, zatlačení nebo odstranění přebytečné kůžičky pro dokonale čistý vzhled.\n🧴 masáž rukou – masáž hydratuje a zrelaxuje ruce.\n🎨 Lakování nehtů –  Gellak nanášíme na nehet, s ručně kreslenou francii zvýrazníme jemnost rukou.",
+          "durationMinutes": 45,
+          "price": 590
+        },
+        {
+          "title": "Gellak na nehty",
+          "description": "",
+          "durationMinutes": 30,
+          "price": 380
+        },
+        {
+          "title": "Francouzská manikúra gellak",
+          "description": "💧 Dezinfekci a přípravu rukou – ruce jsou očištěny a dezinfikovány pro hygienickou a bezpečnou práci.\n📏 Úpravu nehtů – zkrácení, zapilování a tvarování nehtů podle vašeho přání.\n🌸 Ošetření kůžičky – změkčení, zatlačení nebo odstranění přebytečné kůžičky pro dokonale čistý vzhled.\n🎨 Lakování nehtů – podkladový base top, nude pink gellak, ručně nakreslená fracie 🩶\n🧴 Masáž rukou – masáž hydratuje a zrelaxuje ruce.",
+          "durationMinutes": 45,
+          "price": 400
+        }
+      ]
+    },
+    {
+      "title": "Pedikúra",
+      "description": "Profesionální ošetření nohou, které zahrnuje úpravu nehtů, odstranění ztvrdlé kůže a hydratační péči.\nZajišťuje zdravé, hladké a upravené nohy, které vypadají skvěle a cítí se ještě lépe. ✨",
+      "services": [
+        {
+          "title": "Lyniq pedi set ",
+          "description": "Jednorázové nástroje pro péči a udržování hygieny. \n\nObsah setu: \n1 pilník na nehty\n1 blok na leštění nehtů\n1 dřívko na zatlačení kůžiček\n1 kamenná pemza na odstranění odumřelé kůže \n1 pár separátoru na oddělení prstů na nohy",
+          "durationMinutes": 5,
+          "price": 30
+        },
+        {
+          "title": "Klasická pedikúra bez lakovaní",
+          "description": "",
+          "durationMinutes": 30,
+          "price": 400
+        },
+        {
+          "title": "Gellak na nohou",
+          "description": "",
+          "durationMinutes": 30,
+          "price": 380
+        },
+        {
+          "title": "Pedikúra s gellakem",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 600
+        },
+        {
+          "title": "Footlogix medicinální pedikúra ",
+          "description": "Představujeme vám naší zdravotní pedikúru od Značky FOOTLOGIX 🩶\n\nFOOTLOGIX® – Snoubení medicíny s pedikúrou.\nMedicinální pedikúra s komplexní řadou profesionálních přípravků v péči o nohy.\n\nFootlogix Pediceuticals je revoluční a inovativní řada produktů pro péči o nohy, která byla vyvinuta tak, aby poskytovala účinnou a obnovující péči pro různá onemocnění pokožky nohou – od prosté suché pleti nohou až po závažnější kožní problémy způsobené cukrovkou.\n\n✅ Footlogix Pediceuticals obsahují Dermal Infusion Technology, která neobsahuje syntetické oleje (které blokují vstup do pokožky), a proto pěna okamžitě proniká do vrstev epidermis, aniž by zanechala mastný film na kuži.",
+          "durationMinutes": 45,
+          "price": 650
+        },
+        {
+          "title": "Footlogix medicinální pedikúra s Gellakem",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 800
+        },
+        {
+          "title": "Lyniq pedikúra DELUXE",
+          "description": "",
+          "durationMinutes": 95,
+          "price": 900
+        },
+        {
+          "title": "Odstranení gellaku a úprava",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 100
+        }
+      ]
+    },
+    {
+      "title": "Modeláž akrylových nehtů",
+      "description": "Při této technice se kombinuje akrylový prášek a tekutina (monomer), které vytvoří odolný materiál přímo na nehtu.\nVýsledkem jsou pevné, perfektně tvarované nehty, které vydrží i náročné podmínky a stále vypadají skvěle. ✨",
+      "services": [
+        {
+          "title": "Nové akrylové bez barvy",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 450
+        },
+        {
+          "title": "Doplnění akrylové bez barvy  ",
+          "description": "",
+          "durationMinutes": 45,
+          "price": 400
+        },
+        {
+          "title": "Nové akrylové s barvou",
+          "description": "",
+          "durationMinutes": 60,
+          "price": 500
+        },
+        {
+          "title": "Doplnění akrylové s gellakem",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 450
+        },
+        {
+          "title": "Nové akrylové s ombré/franie",
+          "description": "",
+          "durationMinutes": 60,
+          "price": 600
+        },
+        {
+          "title": "Doplnění akrylové s ombré/ Francie",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 550
+        },
+        {
+          "title": "Oprava 1 nehtu",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 50
+        },
+        {
+          "title": "Oprava 2 nehtů",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 80
+        },
+        {
+          "title": "Odstranění modeláže",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 200
+        }
+      ]
+    },
+    {
+      "title": "Modeláž Gelových nehtů",
+      "description": "Při modelaci se na přírodní nehet nanáší speciální gel, který se vytvrdí v UV/LED lampě. Výsledkem jsou pevné, elegantní a krásně tvarované nehty, které si udrží svůj vzhled i několik týdnů. ✨",
+      "services": [
+        {
+          "title": "Nové gelové nehty s gellakem",
+          "description": "",
+          "durationMinutes": 60,
+          "price": 550
+        },
+        {
+          "title": "Doplnění gelových nehtů s barvou",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 500
+        },
+        {
+          "title": "Nové gelové nehty ombré/ francouzské ",
+          "description": "",
+          "durationMinutes": 60,
+          "price": 650
+        },
+        {
+          "title": "Doplnění gelových nehtů ombré/ francouzské ",
+          "description": "",
+          "durationMinutes": 55,
+          "price": 600
+        }
+      ]
+    },
+    {
+      "title": "Extra zdobení",
+      "services": [
+        {
+          "title": "Oprava 1 nehtu",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 50
+        },
+        {
+          "title": "Extra dlouhé M",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 50
+        },
+        {
+          "title": "Extra dlouhé L",
+          "description": "",
+          "durationMinutes": 12,
+          "price": 70
+        },
+        {
+          "title": "Extra dlouhé XL",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 100
+        },
+        {
+          "title": "Extra dlouhé XXL",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 120
+        },
+        {
+          "title": "Extra Dlouhé XXXL",
+          "description": "",
+          "durationMinutes": 20,
+          "price": 200
+        },
+        {
+          "title": "Matný efekt ",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 80
+        },
+        {
+          "title": "Chromový efekt",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 100
+        },
+        {
+          "title": "Cat eye efekt ",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 100
+        },
+        {
+          "title": "Třpytky komplet",
+          "description": "",
+          "durationMinutes": 5,
+          "price": 80
+        },
+        {
+          "title": "3D modelace kytky",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 50
+        },
+        {
+          "title": "3D modelace komplet",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 100
+        },
+        {
+          "title": "Lyniq zdobení 10",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 10
+        },
+        {
+          "title": "Lyniq zdobení 15",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 15
+        },
+        {
+          "title": "Lyniq zdobení 30",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 30
+        },
+        {
+          "title": "Lyniq zdobení 50",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 50
+        },
+        {
+          "title": "Lyniq zdobení 70",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 70
+        },
+        {
+          "title": "Lyniq zdobení 100",
+          "description": "",
+          "durationMinutes": 20,
+          "price": 100
+        },
+        {
+          "title": "Lyniq zdobení 150",
+          "description": "",
+          "durationMinutes": 30,
+          "price": 150
+        },
+        {
+          "title": "Lyniq zdobení 200",
+          "description": "",
+          "durationMinutes": 30,
+          "price": 200
+        }
+      ]
+    },
+    {
+      "title": "Úprava obočí",
+      "description": "Precizní tvarování, barvení a péče pro dokonale upravené obočí, které zvýrazní vaše rysy a dodá tváři harmonii. Přirozené, elegantní a vždy perfektní. ✨",
+      "services": [
+        {
+          "title": "Laminace obočí",
+          "description": "",
+          "durationMinutes": 50,
+          "price": 700
+        },
+        {
+          "title": "Úprava obočí",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 100
+        },
+        {
+          "title": "Permanentní  Barva na obočí ",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 100
+        },
+        {
+          "title": "Combo úprava a barvení obočí",
+          "description": "",
+          "durationMinutes": 20,
+          "price": 200
+        }
+      ]
+    },
+    {
+      "title": "Prodlužování řas",
+      "description": "Precizní technika, při které se na každou přírodní řasu aplikuje jemná umělá řasa pro dokonale hustý a výrazný efekt.Bez řasenky, bez starostí, jen krásné, dlouhé řasy každý den. ✨",
+      "services": [
+        {
+          "title": "Nové klasické prodlužování řas",
+          "description": "",
+          "durationMinutes": 90,
+          "price": 700
+        },
+        {
+          "title": "Doplnění klasické řasy",
+          "description": "",
+          "durationMinutes": 75,
+          "price": 600
+        },
+        {
+          "title": "Nové volum prodlužování řas",
+          "description": "",
+          "durationMinutes": 90,
+          "price": 900
+        },
+        {
+          "title": "Doplnění volum řasy",
+          "description": "",
+          "durationMinutes": 75,
+          "price": 700
+        },
+        {
+          "title": "Nové hybrid prodlužování řas",
+          "description": "",
+          "durationMinutes": 75,
+          "price": 850
+        },
+        {
+          "title": "Doplnění hybrid řas",
+          "description": "",
+          "durationMinutes": 75,
+          "price": 750
+        },
+        {
+          "title": "Wispy set",
+          "description": "",
+          "durationMinutes": 10,
+          "price": 100
+        },
+        {
+          "title": "LYNIQ LASHES DESIGN",
+          "description": "",
+          "durationMinutes": 90,
+          "price": 900
+        },
+        {
+          "title": "Nové mega volum prodlužování řas",
+          "description": "",
+          "durationMinutes": 90,
+          "price": 1100
+        },
+        {
+          "title": "Doplnění mega volume řasy",
+          "description": "",
+          "durationMinutes": 90,
+          "price": 900
+        },
+        {
+          "title": "Odstranění řas",
+          "description": "",
+          "durationMinutes": 15,
+          "price": 200
+        },
+        {
+          "title": "Trvalá na řasy",
+          "description": "",
+          "durationMinutes": 60,
+          "price": 700
+        }
+      ]
+    },
+    {
+      "title": "Head Spa",
+      "description": "Luxusní ošetření spojující masáž hlavy, čištění vlasové pokožky a intenzivní výživu vlasů. \nZbavuje stresu, podporuje růst vlasů a přináší pocit dokonalého uvolnění. ✨",
+      "services": [
+        {
+          "title": "LYNIQ H-Spa clean",
+          "description": "1. Komunikační Diagnostika vlasů a pokožky hlavy 👄\n\t•\tZjištění typu pokožky (suchá, mastná, citlivá).\n\t•\tPosouzení vhodné péče.\n\n2. Oplach a příprava 💧\n\t•\tJemné opláchnutí vlasů vlažnou vodou.\n\t•\tCílem je otevřít póry a uvolnit pokožku.\n\n3. Čištění a peeling pokožky hlavy 🧴\n\t•\tAplikace peelingového nebo čistícího produktu.\n\t•\tOdstranění nečistot, mazu a zbytků stylingu.\n\n4. Aromaterapie a relaxace 🌸\n\t•\tNavození klidné atmosféry (hudba, světlo).\n\n5. Mytí vlasů a hloubková masáž 👐\n\t•\tJemný šampon, napěnění a pomalá masáž hlavy.\n\t•\tStimuluje krevní oběh, podporuje růst vlasů.\n\n6. Hydratace a maska na vlasy 🥥\n\t•\tAplikace vyživující masky nebo kondicionéru.\n\t•\tPůsobení pod teplem/ručníkem pro lepší vstřebání.\n\n7. Masáž hlavy 🌊\n\t•\tPodpora celkové relaxace.\n\n8. Oplach a závěrečná péče ✨\n\t•\tDůkladné opláchnutí vlažnou vodou.\n\t•\tNanesení tonika nebo séra na pokožku hlavy.\n\n9. Úprava vlasů 🌬️\n\t•\tJemné vysušení",
+          "durationMinutes": 45,
+          "price": 690
+        },
+        {
+          "title": "LYNIQ H-Spa Class",
+          "description": "1. Komunikační Diagnostika vlasů a pokožky hlavy 👄 \n   • Zjištění typu pokožky (suchá, mastná, citlivá). \n   • Posouzení vhodné péče.  \n2. Oplach a příprava 💧 \n   • Jemné opláchnutí vlasů vlažnou vodou. \n   • Cílem je otevřít póry a uvolnit pokožku.  3. Čištění a peeling pokožky hlavy 🧴 \n   • Aplikace peelingového nebo čistícího produktu. \n   • Odstranění nečistot, mazu a zbytků stylingu.  \n4. Aromaterapie a relaxace 🌸 \n   • Navození klidné atmosféry (hudba, světlo).  \n5. Mytí vlasů a hloubková masáž 👐 \n   • Jemný šampon, napěnění a pomalá masáž hlavy. \n   • Stimuluje krevní oběh, podporuje růst vlasů. \n 6. Hydratace a maska na vlasy 🥥\n   • Aplikace vyživující masky nebo kondicionéru. \n   • Působení pod teplem/ručníkem pro lepší vstřebání.  \n7. Masáž šíje a ramen 🌊 \n   • Uvolnění napětí v oblasti krční páteře. \n   • Podpora celkové relaxace.  \n8. Oplach a závěrečná péče ✨ \n   • Důkladné opláchnutí vlažnou vodou. \n   • Nanesení tonika nebo séra na pokožku hlavy.  \n9. Úprava vlasů 🌬️ \n   • Jemné vysušení a případný styling.",
+          "durationMinutes": 90,
+          "price": 999
+        },
+        {
+          "title": "LYNIQ H-Spa Premium ",
+          "description": "•\tJemnou diagnostiku vlasů a pokožky hlavy\n\t•\tHloubkové čištění a peeling pro odstranění nečistot a odumřelých buněk\n\t•\tAromaterapeutické mytí vlasů s masáží v pohodlném spa křesle\n\t•\tRegenerační masku nebo sérum na míru potřebám vašich vlasů\n\t•\tUvolňující masáž hlavy, šíje a ramen pro odstranění napětí\n\t•\tZávěrečnou péči s profesionální kosmetikou a úpravu vlasů\n\nČištění pleti – jemný čisticí gel/pěnu, aby se odstranily nečistoty, pot a make-up.\nMaska na obličej- hydratace pleti, dodá vitamíny C+\n Tonizace – tonikum vyrovná pH pleti a připraví ji na další péči.\nHydratace – lehký krém dodá pleti potřebnou vlhkost.",
+          "durationMinutes": 90,
+          "price": 1100
+        },
+        {
+          "title": "Lyniq H-Spa All inclusive ",
+          "description": "\t•\tJemnou diagnostiku vlasů a pokožky hlavy\n\t•\tHloubkové čištění a peeling pro odstranění nečistot a odumřelých buněk\n\t•\tAromaterapeutické mytí vlasů s masáží v pohodlném spa křesle\n\t•\tRegenerační masku nebo sérum na míru potřebám vašich vlasů\n\t•\tUvolňující masáž hlavy, šíje a ramen pro odstranění napětí\n\t•\tZávěrečnou péči s profesionální kosmetikou a úpravu vlasů\n\nČištění pleti – jemný čisticí gel/pěnu, aby se odstranily nečistoty, pot a make-up.\nMaska na obličej- dodá hydratace peti, vytamín C+ \n Tonizace – tonikum vyrovná pH pleti a připraví ji na další péči.\nHydratace – lehký krém dodá pleti potřebnou vlhkost.\nOchrana –  SPF chrání pleť před předčasným stárnutím.\nPára na obličej a kořínky vlasů - Teplá pára změkčuje pokožku a uvolňuje póry a vlasové kořínky",
+          "durationMinutes": 105,
+          "price": 1500
+        }
+      ]
+    }
+  ]
+}

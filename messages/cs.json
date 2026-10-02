@@ -1,0 +1,103 @@
+{
+  "Metadata": {
+    "description": "Profesionální péče o nehty s moderním, ostrým estetickým designem.",
+    "homeTitle": "Domů - Lyniq",
+    "homeDescription": "Profesionální péče o nehty - Zažijte preciznost a umění s našimi moderními službami nehtového studia",
+    "servicesTitle": "Služby - Lyniq",
+    "servicesDescription": "Prozkoumejte náš komplexní sortiment profesionálních služeb péče o nehty",
+    "employeesTitle": "Tým - Lyniq",
+    "employeesDescription": "Poznejte náš talentovaný tým profesionálních nehtových techniků a umělců",
+    "galleryTitle": "Galerie - Lyniq",
+    "galleryDescription": "Prozkoumejte naše portfolio nehtového designu a umění",
+    "galleryGroupDescription": "Prohlédněte si naše portfolio {name}",
+    "contactTitle": "Kontakt - Lyniq",
+    "contactDescription": "Kontaktujte nás s jakýmikoli dotazy"
+  },
+  "Common": {
+    "book": "Rezervovat",
+    "loading": "Načítání...",
+    "imageUnavailable": "Obrázek není k dispozici",
+    "galleryImage": "Obrázek z galerie",
+    "closeLightbox": "Zavřít náhled",
+    "previousImage": "Předchozí obrázek",
+    "nextImage": "Další obrázek",
+    "noImagesInGroup": "V této skupině zatím nejsou žádné obrázky."
+  },
+  "Nav": {
+    "home": "Domů",
+    "services": "Služby a ceník",
+    "team": "Tým",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "toggleMenu": "Otevřít menu",
+    "closeMenu": "Zavřít menu",
+    "phone": "Telefon",
+    "language": "Jazyk"
+  },
+  "Footer": {
+    "tagline": "Profesionální péče o nehty s moderním, ostrým estetickým designem.",
+    "quickLinks": "Rychlé odkazy",
+    "services": "Služby",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "rights": "© {year} Lyniq Beauty Studio. Všechna práva vyhrazena."
+  },
+  "Home": {
+    "heroTitle": "PROFESIONÁLNÍ PÉČE O NEHTY",
+    "heroText": "Zažijte preciznost a umění s našimi moderními službami nehtového studia. Ostré designy, odborné řemeslo a výjimečná péče.",
+    "viewServices": "Zobrazit služby",
+    "contactUs": "Kontaktujte nás",
+    "expertsTitle": "Odborní technici",
+    "expertsText": "Náš tým se skládá z certifikovaných profesionálů s mnohaletými zkušenostmi v nehtovém umění a péči.",
+    "productsTitle": "Prémiové produkty",
+    "productsText": "Používáme pouze nejkvalitnější produkty a nástroje, abychom zajistili trvalé výsledky.",
+    "techniquesTitle": "Moderní techniky",
+    "techniquesText": "Zůstaňte vpředu s nejnovějšími trendy a technikami v designu a péči o nehty.",
+    "reviewsTitle": "Co říkají naši zákazníci",
+    "reviewCount": "({count, plural, one {# recenze} few {# recenze} other {# recenzí}})",
+    "reviewsSource": "Skutečné recenze z Google Maps",
+    "ctaTitle": "Připraveni proměnit své nehty?",
+    "ctaText": "Kontaktujte nás ještě dnes a zažijte rozdíl.",
+    "ctaButton": "Začít"
+  },
+  "Reviews": {
+    "noText": "Recenze neobsahuje text",
+    "viewAll": "Zobrazit všechny recenze"
+  },
+  "Services": {
+    "title": "NAŠE SLUŽBY",
+    "subtitle": "Prozkoumejte náš komplexní sortiment profesionálních služeb péče o nehty.",
+    "otherServices": "Další služby",
+    "showLess": "zobrazit méně",
+    "showMore": "zobrazit více",
+    "price": "{from, select, true {od } other {}}{price} Kč",
+    "duration": "{minutes} minut"
+  },
+  "Employees": {
+    "title": "NÁŠ TÝM",
+    "subtitle": "Poznejte náš talentovaný tým profesionálních nehtových techniků a umělců.",
+    "empty": "V tuto chvíli nejsou k dispozici žádní členové týmu."
+  },
+  "Gallery": {
+    "title": "GALERIE",
+    "subtitle": "Prohlédněte si naše portfolio úžasných designů nehtů a transformací.",
+    "noGroups": "Zatím nejsou k dispozici žádné skupiny obrázků.",
+    "backToGallery": "Zpět do galerie"
+  },
+  "Contact": {
+    "title": "KONTAKTUJTE NÁS",
+    "subtitle": "Kontaktujte nás s jakýmikoli dotazy.",
+    "contactUs": "Kontaktujte nás",
+    "phone": "Telefon",
+    "visitUs": "Navštivte nás",
+    "address": "Adresa",
+    "openingHours": "Otevírací doba",
+    "weekdays": "Pondělí - Pátek",
+    "saturday": "Sobota",
+    "sunday": "Neděle",
+    "closed": "Zavřeno",
+    "map": "Mapa",
+    "mapLoading": "Načítání mapy...",
+    "mapError": "Nepodařilo se načíst mapu"
+  }
+}

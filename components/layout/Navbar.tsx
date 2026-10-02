@@ -2,16 +2,18 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import { Link as LocaleLink, usePathname } from '@/i18n/navigation';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const navLinks = [
-  { href: '/', label: 'Domů' },
-  { href: '/services', label: 'Služby a ceník' },
-  { href: '/employees', label: 'Tým' },
-  { href: '/gallery', label: 'Galerie' },
-  { href: '/contact', label: 'Kontakt' },
-];
+  { href: '/', key: 'home' },
+  { href: '/services', key: 'services' },
+  { href: '/employees', key: 'team' },
+  { href: '/gallery', key: 'gallery' },
+  { href: '/contact', key: 'contact' },
+] as const;
 
 const bookingUrl = 'https://noona.app/cs/lyniqstudio/book';
 
@@ -31,6 +33,8 @@ function Logo({ width, height, className, priority = false }: { width: number; h
 
 // Mobile Navbar Component
 function MobileNavbar() {
+  const t = useTranslations('Nav');
+  const tCommon = useTranslations('Common');
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -82,7 +86,7 @@ function MobileNavbar() {
             <button
               onClick={toggleMenu}
               className="text-white p-2 focus:outline-none focus:ring-2 focus:ring-[#677075] rounded"
-              aria-label="Toggle menu"
+              aria-label={t('toggleMenu')}
               aria-expanded={isMenuOpen}
             >
               <svg
@@ -103,7 +107,7 @@ function MobileNavbar() {
 
           {/* Logo */}
           <div className="animate-[slideDown_0.8s_ease-out_0.1s_both]">
-            <Link
+            <LocaleLink
               href="/"
               onClick={closeMenu}
             >
@@ -113,7 +117,7 @@ function MobileNavbar() {
                 className="h-20 w-50"
                 priority
               />
-            </Link>
+            </LocaleLink>
           </div>
 
           {/* Rezervovat Button */}
@@ -128,7 +132,7 @@ function MobileNavbar() {
                 hover:bg-[#636362] hover:scale-200 transition-all duration-300
               "
             >
-              Rezervovat
+              {tCommon('book')}
             </Link>
           </div>
         </div>
@@ -168,7 +172,7 @@ function MobileNavbar() {
             <button
               onClick={closeMenu}
               className="text-white p-2 hover:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-[#677075]"
-              aria-label="Close menu"
+              aria-label={t('closeMenu')}
             >
               <svg
                 className="w-6 h-6"
@@ -188,7 +192,7 @@ function MobileNavbar() {
           
           {/* Logo */}
           <div className="flex justify-center items-center">
-            <Link 
+            <LocaleLink 
               href="/"
             >
               <Logo
@@ -197,7 +201,7 @@ function MobileNavbar() {
                 className="h-20 w-50"
                 priority
               />
-            </Link>
+            </LocaleLink>
           </div>
           
           {/* Empty space for grid balance */}
@@ -221,7 +225,7 @@ function MobileNavbar() {
                   transitionDelay: isMenuOpen ? `${index * 100}ms` : '0ms'
                 }}
               >
-                <Link
+                <LocaleLink
                   href={link.href}
                   onClick={closeMenu}
                   className={`
@@ -233,12 +237,29 @@ function MobileNavbar() {
                     }
                   `}
                 >
-                  {link.label}
-                </Link>
+                  {t(link.key)}
+                </LocaleLink>
               </li>
             ))}
           </ul>
         </nav>
+
+        {/* Language Switcher in Menu */}
+        <div
+          className={`
+            pb-2
+            transform transition-all duration-600 ease-out
+            ${isMenuOpen
+              ? 'translate-x-0 opacity-100'
+              : '-translate-x-full opacity-0'
+            }
+          `}
+          style={{
+            transitionDelay: isMenuOpen ? `${navLinks.length * 100}ms` : '0ms'
+          }}
+        >
+          <LanguageSwitcher onSelect={closeMenu} />
+        </div>
 
         {/* Rezervovat Button in Menu */}
         <div 
@@ -265,7 +286,7 @@ function MobileNavbar() {
               hover:bg-[#3a3f41] hover:scale-105 transition-all duration-300
             "
           >
-            Rezervovat
+            {tCommon('book')}
           </Link>
         </div>
 
@@ -311,7 +332,7 @@ function MobileNavbar() {
             href="tel:+420123456789"
             onClick={closeMenu}
             className="text-gray-400 hover:text-white transition-colors duration-300"
-            aria-label="Phone"
+            aria-label={t('phone')}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -325,6 +346,8 @@ function MobileNavbar() {
 
 // Desktop Navbar Component
 function DesktopNavbar() {
+  const t = useTranslations('Nav');
+  const tCommon = useTranslations('Common');
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -335,7 +358,7 @@ function DesktopNavbar() {
     <nav className="hidden md:flex fixed left-0 top-0 h-full w-64 bg-[#141414] z-50 flex-col">
       {/* Logo */}
       <div className="p-6 pl-8 animate-[slideDown_0.8s_ease-out]">
-        <Link 
+        <LocaleLink 
           href="/" 
           className="block hover:opacity-80 transition-opacity"
         >
@@ -345,7 +368,7 @@ function DesktopNavbar() {
             className="h-auto w-auto"
             priority
           />
-        </Link>
+        </LocaleLink>
       </div>
 
       {/* Rezervovat Button */}
@@ -361,7 +384,7 @@ function DesktopNavbar() {
             
           "
         >
-          Rezervovat
+          {tCommon('book')}
         </Link>
       </div>
 
@@ -370,7 +393,7 @@ function DesktopNavbar() {
         <ul className="space-y-2">
           {navLinks.map((link, index) => (
             <li key={link.href} className="animate-[slideDown_0.8s_ease-out_both]" style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
-              <Link
+              <LocaleLink
                 href={link.href}
                 className={`
                   flex items-center justify-center px-4 py-3 font-medium transition-all duration-300 text-center
@@ -381,12 +404,17 @@ function DesktopNavbar() {
                   }
                 `}
               >
-                {link.label}
-              </Link>
+                {t(link.key)}
+              </LocaleLink>
             </li>
           ))}
         </ul>
       </nav>
+
+      {/* Language Switcher */}
+      <div className="pb-4 animate-[slideDown_0.8s_ease-out_both]" style={{ animationDelay: `${0.4 + navLinks.length * 0.1}s` }}>
+        <LanguageSwitcher />
+      </div>
 
       {/* Social Icons */}
       <div className="flex justify-center items-center gap-6 py-6 border-t border-gray-700 animate-[slideDown_0.8s_ease-out_both]" style={{ animationDelay: `${0.4 + navLinks.length * 0.1}s` }}>
@@ -415,7 +443,7 @@ function DesktopNavbar() {
         <Link
           href="tel:+420123456789"
           className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-300"
-          aria-label="Phone"
+          aria-label={t('phone')}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>

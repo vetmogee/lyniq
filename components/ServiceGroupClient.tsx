@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
 interface Service {
@@ -15,7 +16,7 @@ interface Service {
 }
 
 function formatDescription(text: string) {
-  const parts = text.split('/br');
+  const parts = text.split(/\n|\/br/);
   return parts.map((part, index) => (
     <span key={index}>
       {part}
@@ -38,6 +39,7 @@ interface ServiceGroupClientProps {
 }
 
 export default function ServiceGroupClient({ group, label }: ServiceGroupClientProps) {
+  const t = useTranslations('Services');
   const [mounted, setMounted] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [expandedServices, setExpandedServices] = useState<Set<string>>(new Set());
@@ -124,7 +126,7 @@ export default function ServiceGroupClient({ group, label }: ServiceGroupClientP
                           onClick={() => toggleService(service.id)}
                           className="text-white hover:text-gray-300 text-sm mt-2 underline"
                         >
-                          {isServiceExpanded ? 'zobrazit méně' : 'zobrazit více'}
+                          {isServiceExpanded ? t('showLess') : t('showMore')}
                         </button>
                       )}
                     </div>
@@ -132,10 +134,10 @@ export default function ServiceGroupClient({ group, label }: ServiceGroupClientP
                   <div className="flex items-center justify-center pt-4 border-t-2 border-[#636362]">
                     <div>
                       <p className="text-2xl font-bold text-white">
-                        {service.from ? 'od ' : ''}{service.price} Kč
+                        {t('price', { from: String(service.from), price: service.price })}
                       </p>
                       {service.duration && (
-                        <p className="text-sm text-gray-400">{service.duration} minut</p>
+                        <p className="text-sm text-gray-400">{t('duration', { minutes: service.duration })}</p>
                       )}
                     </div>
                   </div>

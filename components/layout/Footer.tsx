@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { Link as LocaleLink } from '@/i18n/navigation';
 import { Instagram, Facebook, MapPin, Phone } from 'lucide-react';
 
 function Logo({ width, height, className }: { width: number; height: number; className?: string }) {
@@ -17,6 +19,8 @@ function Logo({ width, height, className }: { width: number; height: number; cla
 }
 
 export default function Footer() {
+  const t = useTranslations('Footer');
+
   return (
     <footer className="relative bg-[#202020] z-10 md:ml-64">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,34 +34,34 @@ export default function Footer() {
               />
             </div>
             <p className="text-base lg:text-lg text-gray-400">
-              Profesionální péče o nehty s moderním, ostrým estetickým designem.
+              {t('tagline')}
             </p>
           </div>
           
           <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">
             <div>
-              <h4 className="text-lg lg:text-xl font-semibold text-white mb-4">Rychlé odkazy</h4>
+              <h4 className="text-lg lg:text-xl font-semibold text-white mb-4">{t('quickLinks')}</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/services" className="text-base lg:text-lg text-gray-400 hover:text-white transition-colors">
-                    Služby
-                  </Link>
+                  <LocaleLink href="/services" className="text-base lg:text-lg text-gray-400 hover:text-white transition-colors">
+                    {t('services')}
+                  </LocaleLink>
                 </li>
                 <li>
-                  <Link href="/gallery" className="text-base lg:text-lg text-gray-400 hover:text-white transition-colors">
-                    Galerie
-                  </Link>
+                  <LocaleLink href="/gallery" className="text-base lg:text-lg text-gray-400 hover:text-white transition-colors">
+                    {t('gallery')}
+                  </LocaleLink>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-base lg:text-lg text-gray-400 hover:text-white transition-colors">
-                    Kontakt
-                  </Link>
+                  <LocaleLink href="/contact" className="text-base lg:text-lg text-gray-400 hover:text-white transition-colors">
+                    {t('contact')}
+                  </LocaleLink>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg lg:text-xl font-semibold text-white mb-4">Kontakt</h4>
+              <h4 className="text-lg lg:text-xl font-semibold text-white mb-4">{t('contact')}</h4>
               <ul className="space-y-2 text-base lg:text-lg text-gray-400">
                 <a href="https://maps.app.goo.gl/LjDxHHrtcxPfdSgX7" target="_blank" rel="noopener noreferrer" className="group">
                   <li className="flex items-center gap-2">
@@ -107,7 +111,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t-2 border-[#636362]">
           <p className="text-base lg:text-lg text-gray-400 text-center">
-            © {new Date().getFullYear()} Lyniq Beauty Studio. Všechna práva vyhrazena.
+            {t('rights', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

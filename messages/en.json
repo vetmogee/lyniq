@@ -1,0 +1,103 @@
+{
+  "Metadata": {
+    "description": "Professional nail care with a modern, sharp aesthetic.",
+    "homeTitle": "Home - Lyniq",
+    "homeDescription": "Professional nail care - Experience precision and artistry with our modern nail studio services",
+    "servicesTitle": "Services - Lyniq",
+    "servicesDescription": "Explore our comprehensive range of professional nail care services",
+    "employeesTitle": "Team - Lyniq",
+    "employeesDescription": "Meet our talented team of professional nail technicians and artists",
+    "galleryTitle": "Gallery - Lyniq",
+    "galleryDescription": "Explore our portfolio of nail design and art",
+    "galleryGroupDescription": "Browse our {name} portfolio",
+    "contactTitle": "Contact - Lyniq",
+    "contactDescription": "Get in touch with us with any questions"
+  },
+  "Common": {
+    "book": "Book now",
+    "loading": "Loading...",
+    "imageUnavailable": "Image not available",
+    "galleryImage": "Gallery image",
+    "closeLightbox": "Close lightbox",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "noImagesInGroup": "There are no images in this group yet."
+  },
+  "Nav": {
+    "home": "Home",
+    "services": "Services & prices",
+    "team": "Team",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "toggleMenu": "Toggle menu",
+    "closeMenu": "Close menu",
+    "phone": "Phone",
+    "language": "Language"
+  },
+  "Footer": {
+    "tagline": "Professional nail care with a modern, sharp aesthetic.",
+    "quickLinks": "Quick links",
+    "services": "Services",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "rights": "© {year} Lyniq Beauty Studio. All rights reserved."
+  },
+  "Home": {
+    "heroTitle": "PROFESSIONAL NAIL CARE",
+    "heroText": "Experience precision and artistry with our modern nail studio services. Sharp designs, expert craftsmanship and exceptional care.",
+    "viewServices": "View services",
+    "contactUs": "Contact us",
+    "expertsTitle": "Expert technicians",
+    "expertsText": "Our team consists of certified professionals with years of experience in nail art and care.",
+    "productsTitle": "Premium products",
+    "productsText": "We use only the highest quality products and tools to ensure long-lasting results.",
+    "techniquesTitle": "Modern techniques",
+    "techniquesText": "Stay ahead with the latest trends and techniques in nail design and care.",
+    "reviewsTitle": "What our clients say",
+    "reviewCount": "({count, plural, one {# review} other {# reviews}})",
+    "reviewsSource": "Real reviews from Google Maps",
+    "ctaTitle": "Ready to transform your nails?",
+    "ctaText": "Contact us today and experience the difference.",
+    "ctaButton": "Get started"
+  },
+  "Reviews": {
+    "noText": "No review text available",
+    "viewAll": "View all reviews"
+  },
+  "Services": {
+    "title": "OUR SERVICES",
+    "subtitle": "Explore our comprehensive range of professional nail care services.",
+    "otherServices": "Other services",
+    "showLess": "show less",
+    "showMore": "show more",
+    "price": "{from, select, true {from } other {}}{price} CZK",
+    "duration": "{minutes} minutes"
+  },
+  "Employees": {
+    "title": "OUR TEAM",
+    "subtitle": "Meet our talented team of professional nail technicians and artists.",
+    "empty": "No team members are available at the moment."
+  },
+  "Gallery": {
+    "title": "GALLERY",
+    "subtitle": "Browse our portfolio of stunning nail designs and transformations.",
+    "noGroups": "No image groups are available yet.",
+    "backToGallery": "Back to gallery"
+  },
+  "Contact": {
+    "title": "CONTACT US",
+    "subtitle": "Get in touch with us with any questions.",
+    "contactUs": "Contact us",
+    "phone": "Phone",
+    "visitUs": "Visit us",
+    "address": "Address",
+    "openingHours": "Opening hours",
+    "weekdays": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed",
+    "map": "Map",
+    "mapLoading": "Loading map...",
+    "mapError": "Failed to load the map"
+  }
+}

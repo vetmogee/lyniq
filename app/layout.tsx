@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { prisma } from "@/lib/prisma";
+import { getLocale } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,43 +13,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  // Try to fetch logo from database, fallback to static file
-  let iconUrl = "/lyniq.svg";
-  
-  try {
-    const logos = await prisma.logo.findMany({
-      orderBy: { createdAt: 'desc' },
-      take: 1,
-    });
-    
-    if (logos.length > 0) {
-      // Use the API route that serves the logo as an image
-      iconUrl = "/api/logo/icon";
-    }
-  } catch (error) {
-    // Fallback to static file if database fetch fails
-    console.error('Failed to fetch logo for metadata:', error);
-  }
+export const metadata: Metadata = {
+  title: "Lyniq",
+  description: "Profesionální péče o nehty s moderním, ostrým estetickým designem.",
+};
 
-  return {
-    title: "Lyniq",
-    description: "Profesionální péče o nehty s moderním, ostrým estetickým designem.",
-    icons: {
-      icon: iconUrl,
-      shortcut: iconUrl,
-      apple: iconUrl,
-    },
-  };
-}
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Locale comes from the next-intl proxy; non-localized routes fall back to the default
+  const locale = await getLocale();
+
   return (
-    <html lang="cs">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-[#202020]`}
       >

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { ExternalLink } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface Review {
   id: string;
@@ -36,6 +37,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
+  const t = useTranslations('Reviews');
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
@@ -389,7 +391,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
                       {review.text}
                     </p>
                   ) : (
-                    <p className="text-gray-500 italic">No review text available</p>
+                    <p className="text-gray-500 italic">{t('noText')}</p>
                   )}
                 </CardContent>
               </Card>
@@ -426,7 +428,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200 text-lg font-medium group"
         >
-          <span>Zobrazit všechny recenze</span>
+          <span>{t('viewAll')}</span>
           <ExternalLink className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
         </a>
       </div>
