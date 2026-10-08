@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import ImageGroupGallery from '@/components/ImageGroupGallery';
 import { getGalleryGroup } from '@/lib/content';
 import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/gallery/[imageGroupId]'>): Promise<Metadata> {
@@ -13,13 +14,20 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/gallery/
   if (!imageGroup) {
     return {
       title: t('galleryTitle'),
+      robots: { index: false },
     };
   }
 
-  return {
+  return pageMetadata({
+    locale,
+    path: `/gallery/${imageGroup.id}`,
     title: `${imageGroup.name} - Lyniq`,
     description: t('galleryGroupDescription', { name: imageGroup.name }),
-  };
+    images: imageGroup.images.slice(0, 1).map((image) => ({
+      url: image.src,
+      alt: image.title ?? imageGroup.name,
+    })),
+  });
 }
 
 export default async function ImageGroupPage({ params }: PageProps<'/[locale]/gallery/[imageGroupId]'>) {

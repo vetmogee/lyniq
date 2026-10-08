@@ -1,16 +1,19 @@
 import EmployeeCards from '@/components/EmployeeCards';
 import { getEmployees } from '@/lib/content';
 import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/employees'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-  return {
+  return pageMetadata({
+    locale,
+    path: '/employees',
     title: t('employeesTitle'),
     description: t('employeesDescription'),
-  };
+  });
 }
 
 export default async function EmployeesPage({ params }: PageProps<'/[locale]/employees'>) {

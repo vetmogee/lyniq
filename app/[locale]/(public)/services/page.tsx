@@ -1,16 +1,19 @@
 import ServiceGroupClient from '@/components/ServiceGroupClient';
 import { getServiceGroups } from '@/lib/content';
 import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/services'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-  return {
+  return pageMetadata({
+    locale,
+    path: '/services',
     title: t('servicesTitle'),
     description: t('servicesDescription'),
-  };
+  });
 }
 
 export default async function ServicesPage({ params }: PageProps<'/[locale]/services'>) {

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { getGoogleReviews } from '@/lib/google-reviews';
 import ReviewsSlider from '@/components/ReviewsSlider';
 import { Metadata } from 'next';
+import { OG_IMAGE, SITE_NAME, SITE_URL, localizedPath, pageMetadata } from '@/lib/site';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -15,10 +16,11 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-  return {
+  return pageMetadata({
+    locale,
     title: t('homeTitle'),
     description: t('homeDescription'),
-  };
+  });
 }
 
 export default async function HomePage({ params }: PageProps<'/[locale]'>) {
@@ -36,9 +38,53 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
 
   // Fetch reviews (server-side, cached for 24h)
   const { reviews, placeInfo } = await getGoogleReviews(locale);
+  const tMeta = await getTranslations('Metadata');
+
+  // Structured data so search engines can show the salon as a local business
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NailSalon',
+    name: SITE_NAME,
+    url: `${SITE_URL}${localizedPath(locale)}`,
+    logo: `${SITE_URL}/icon-512.png`,
+    image: `${SITE_URL}${OG_IMAGE.url}`,
+    description: tMeta('description'),
+    telephone: '+420775995611',
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Želenická 1627/25',
+      addressLocality: 'Děčín',
+      postalCode: '405 02',
+      addressCountry: 'CZ',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 50.7593947,
+      longitude: 14.1895123,
+    },
+    hasMap: 'https://maps.app.goo.gl/LjDxHHrtcxPfdSgX7',
+    sameAs: [
+      'https://www.instagram.com/lyniqstudio/',
+      'https://www.facebook.com/profile.php?id=61576728607438',
+    ],
+    ...(placeInfo?.rating && placeInfo.reviewCount
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: placeInfo.rating,
+            reviewCount: placeInfo.reviewCount,
+          },
+        }
+      : {}),
+  };
 
   return (
     <div className="bg-[#202020]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+      />
       {/* Sticky Video Background */}
       <video
         autoPlay
