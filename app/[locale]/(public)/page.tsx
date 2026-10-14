@@ -27,7 +27,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   const { locale } = await params;
 
   // Requests for missing root files (e.g. /lyniq.svg) land here as a "locale" -
-  // bail out before calling SerpAPI (the layout's check runs in parallel)
+  // bail out before reading reviews (the layout's check runs in parallel)
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -36,7 +36,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   const t = await getTranslations('Home');
   const tCommon = await getTranslations('Common');
 
-  // Fetch reviews (server-side, cached for 24h)
+  // Reviews stored in Global Config by the daily SerpAPI cron job
   const { reviews, placeInfo } = await getGoogleReviews(locale);
   const tMeta = await getTranslations('Metadata');
 

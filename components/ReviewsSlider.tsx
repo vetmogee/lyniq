@@ -36,6 +36,54 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
+// Review text clamped to 4 lines, with a show more/less toggle when it overflows
+function ReviewText({ text }: { text: string }) {
+  const t = useTranslations('Reviews');
+  const [expanded, setExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+    const checkOverflow = () => {
+      if (!expanded) {
+        setIsOverflowing(el.scrollHeight > el.clientHeight + 1);
+      }
+    };
+    checkOverflow();
+    const observer = new ResizeObserver(checkOverflow);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [text, expanded]);
+
+  return (
+    <>
+      <p
+        ref={textRef}
+        className="text-gray-300 leading-relaxed overflow-hidden"
+        style={expanded ? undefined : {
+          display: '-webkit-box',
+          WebkitLineClamp: 4,
+          WebkitBoxOrient: 'vertical',
+        }}
+      >
+        {text}
+      </p>
+      {(isOverflowing || expanded) && (
+        <button
+          type="button"
+          onClick={() => setExpanded((prev) => !prev)}
+          aria-expanded={expanded}
+          className="mt-2 text-sm font-medium text-white hover:text-gray-300 transition-colors duration-200"
+        >
+          {expanded ? t('showLess') : t('showMore')}
+        </button>
+      )}
+    </>
+  );
+}
+
 export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
   const t = useTranslations('Reviews');
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -383,13 +431,7 @@ export default function ReviewsSlider({ reviews }: ReviewsSliderProps) {
                 </CardHeader>
                 <CardContent>
                   {review.text ? (
-                    <p className="text-gray-300 leading-relaxed overflow-hidden" style={{
-                      display: '-webkit-box',
-                      WebkitLineClamp: 4,
-                      WebkitBoxOrient: 'vertical',
-                    }}>
-                      {review.text}
-                    </p>
+                    <ReviewText text={review.text} />
                   ) : (
                     <p className="text-gray-500 italic">{t('noText')}</p>
                   )}

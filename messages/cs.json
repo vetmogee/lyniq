@@ -63,6 +63,8 @@
   },
   "Reviews": {
     "noText": "Recenze neobsahuje text",
+    "showMore": "Zobrazit více",
+    "showLess": "Zobrazit méně",
     "viewAll": "Zobrazit všechny recenze"
   },
   "Services": {

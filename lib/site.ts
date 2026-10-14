@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { routing, type Locale } from '@/i18n/routing';
 
 /** Public origin of the site, used for canonical URLs, sitemap and Open Graph. Override with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lyniq.cz').replace(/\/$/, '');
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lyniqstudio.cz').replace(/\/$/, '');
 
 export const SITE_NAME = 'Lyniq Studio';
 

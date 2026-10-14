@@ -63,6 +63,8 @@
   },
   "Reviews": {
     "noText": "No review text available",
+    "showMore": "Show more",
+    "showLess": "Show less",
     "viewAll": "View all reviews"
   },
   "Services": {

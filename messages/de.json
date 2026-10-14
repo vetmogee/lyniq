@@ -63,6 +63,8 @@
   },
   "Reviews": {
     "noText": "Kein Bewertungstext vorhanden",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
     "viewAll": "Alle Bewertungen ansehen"
   },
   "Services": {
